@@ -1,0 +1,24 @@
+{
+    "Usuarios": [
+    {
+    "username": "Stiven",
+    "password": "con123"
+    },
+    {
+    "username": "usuario2",
+    "password": "abc456"
+    },
+    {
+    "username": "usuario3",
+    "password": "passwrd789"
+    },
+    {
+    "username": "usuario4",
+    "password": "12345qwert"
+    },
+    {
+    "username": "usuario5",
+    "password": "mypassword"
+    }
+    ]
+    }

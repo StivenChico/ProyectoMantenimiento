@@ -6,6 +6,9 @@
 nav{
     background-color: #EDEDED;
 }
+nav img{
+    justify-content: left;
+}
 nav ul {
     list-style-type: none;
     text-align: right;
