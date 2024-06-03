@@ -27,3 +27,41 @@ nav li a:hover{
     border-bottom: 5px solid #EA3A3A;
     color: #fff;
 }
+.caja{
+    display: flex; /*aplica flexbox para ubicar*/
+    padding-left: 3%;
+    padding-top: 3%;
+    padding-right: 3%;
+   
+}
+.pie{ 
+    text-align: left; /* a la izquierda */
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #EDEDED;
+    color: #666;
+}
+.pie ul {
+    list-style-type: none;  
+}
+.footer-links{
+    width: 25%;
+    padding: 0 15px;
+}
+.footer-links h4{
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 1px solid #EA3A3A;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+.links{
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+    padding-top: 10px;
+}
+.links a{
+    text-decoration: none;
+    border: none;
+}

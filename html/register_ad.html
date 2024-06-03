@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,17 @@
         <link rel="stylesheet" href="../css/login.css">
     </head>
 <body>
-    <!--inicio de sesion-->
+    <!--formulario de registro-->
     <div class="formulario">
-        <h1>Iniciar sesion</h1>
-        <form >
+        <h1>Registro</h1>
+        <form>
             <div class="username">
-                <label for="usertxt"> Usuario</label>
-                <input type="text" id="usertxt" placeholder="nombre de usuario">
+                <label for="nametxt">Nombre de usuario</label>
+                <input type="text" id="nametxt" placeholder="Usuario">
             </div>
             <div class="username">
-                <label for="mailtxt">Email</label>
+                <label for="mailtxt">Correo electronico</label>
                 <input type="email" placeholder="Correo">
-            </div>
-            <div class="username">
-                <label for="passwordtxt"> Contraseña</label>
-                <input type="password" id="passwordtxt" placeholder="Password">
             </div>
             <div class="username">
                 <label for="rol">Rol</label>
@@ -30,13 +27,19 @@
                     <option> Administrador</option>
                 </select>
             </div>
-            <div class="login">
-                <a href="registro.html">Registrarse</a>
+            <div class="username">
+                <label for="passwordtxt">Contraseña</label>
+                <input type="password" id="passwordtxt" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+            </div>
+            <div class="username">
+                <label for="passwordtxt2">Confirmar contraseña</label>
+                <input type="password" id="passwordtxt2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
             </div>
             <div class="login">
-                 <a href="fit.html">Iniciar</a>
+                <a href="Login.html">Crear</a>
             </div>
         </form>
     </div>
+    
 </body>
 </html>
