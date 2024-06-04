@@ -5,6 +5,7 @@
         <title>DS Workout Advisor</title>
         <link rel="icon" href="../img/e-trainer.ico">
         <link rel="stylesheet" href="../css/login.css">
+        <script src="../Js/Login.js"></script>
     </head>
 <body>
     <!--inicio de sesion-->
@@ -14,10 +15,6 @@
             <div class="username">
                 <label for="usertxt"> Usuario</label>
                 <input type="text" id="usertxt" placeholder="nombre de usuario">
-            </div>
-            <div class="username">
-                <label for="mailtxt">Email</label>
-                <input type="email" placeholder="Correo">
             </div>
             <div class="username">
                 <label for="passwordtxt"> Contraseña</label>
@@ -34,7 +31,7 @@
                 <a href="registro.html">Registrarse</a>
             </div>
             <div class="login">
-                 <a href="fit.html">Iniciar</a>
+                 <a onclick="verificar()" href="#">Iniciar</a>
             </div>
         </form>
     </div>
