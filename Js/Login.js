@@ -8,11 +8,11 @@ const verificar=()=>{
         path=""
         path2=""
         if(IngRol=="Usuario"){
-            path="/ss/ProyectoMantenimiento/json/Usuarios.json"
-            path2="/ss/ProyectoMantenimiento/html/users.html"
+            path="/json/Usuarios.json"
+            path2="/html/users.html"
         }else if(IngRol=="Administrador"){
-            path="/ss/ProyectoMantenimiento/json/Admins.json"
-            path2="/ss/ProyectoMantenimiento/html/admin.html"
+            path="/json/Admins.json"
+            path2="/html/admin.html"
         }
         fetch(path)
             .then(res=>res.json())
