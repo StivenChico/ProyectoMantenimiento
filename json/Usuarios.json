@@ -1,13 +1,5 @@
-    {
-        "usuarios":[
-    {
-    "username": "Stiven",
-    "password": "con123"
-    },
-    {
-    "username": "usuario2",
-    "password": "abc456"
-    },
+[
+    
     {
     "username": "usuario3",
     "password": "passwrd789"
@@ -21,5 +13,4 @@
     "password": "mypassword"
     }
     ]
-}
     
