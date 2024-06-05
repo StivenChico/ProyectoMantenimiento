@@ -1,0 +1,25 @@
+.parrafo{
+    font-size: 18px; /* tamaÃ±o de letra*/
+    padding-right: 4%;
+}
+.conten{
+    flex-wrap: wrap ;
+   justify-content: center; 
+    display: flex;
+}
+.container{
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.conten p{
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+.conten article h3{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.part2{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
