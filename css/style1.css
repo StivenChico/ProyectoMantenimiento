@@ -4,7 +4,7 @@
 }
 .conten{
     flex-wrap: wrap ;
-   justify-content: center; 
+    justify-content: center; 
     display: flex;
 }
 .container{

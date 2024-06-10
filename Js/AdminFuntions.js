@@ -1,13 +1,24 @@
-const tabla=document.querySelector("#lista-usuarios tbody")
+const tablae=document.querySelector("#tablaa tbody");
+console.log(tablae)
 const Init_Data=()=>{
-    fetch("/js/Usuarios")
+
+
+    fetch("../json/Usuarios.json")
     .then(res=>res.json())
     .then(usuarios=>{
         for(i of usuarios){
-            const row=document.createElement("tr");
-            row.innerHTML+='<td>${i.nombre}</td><td>${i.edad}</td><td>${i.peso}</td><td>${i.frecuencia}</td>'
+
+            const row=document.createElement('tr');
+            row.innerHTML+=`
+            <td>${i.username}</td>
+            <td>${i.email}</td>
+            <td>${i.password}</td>
+            <td>${i.Cell}</td>
+            `;
+            tablae.appendChild(row)
             
-            tabla.appendChild(row)
         }
     })
 }
+Init_Data();
+ 

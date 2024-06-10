@@ -2,15 +2,22 @@
     
     {
     "username": "usuario3",
-    "password": "passwrd789"
+    "email":"usuario3@gmail.com",
+    "password": "passwrd789",
+    "Cell":"3013013021"
     },
     {
     "username": "usuario4",
-    "password": "12345qwert"
+    "email":"usuario4@gmail.com",
+    "password": "12345qwert",
+    "Cell":"301304521"
+
     },
     {
     "username": "usuario5",
-    "password": "mypassword"
+    "email":"usuario5@gmail.com",
+    "password": "mypassword",
+    "Cell":"30131213021"
     }
     ]
     
