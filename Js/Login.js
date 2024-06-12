@@ -24,6 +24,7 @@ const verificar = () => {
           if (i.username == IngUser) {
             if (i.password == IngPass) {        // en caso de tener User y Pass correctos ingresan 
               alert("Ingreso Exitoso");         // al path que les correspondess
+              localStorage("Usuario", i)
               location.href = path2;
             }
           }
