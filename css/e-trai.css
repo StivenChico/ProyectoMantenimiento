@@ -1,7 +1,6 @@
 .formulario{
-position: absolute;
-margin-top: 80px;
-top: 50%;
+position:relative;
+padding-top: 100px;
 left: 50%;
 border-radius: 10px;
 transform: translate(-50% , -50%);

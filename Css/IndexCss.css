@@ -1,15 +1,12 @@
-.parrafo {
-    font-size: 18px;
-    /* tamaÃ±o de letra*/
-    padding-right: 4%;
-}
-
 .conten {
-    width: 100%;
+    width: 100vw;
+    padding-top: 80px;
     padding-left: 3%;
     flex-wrap: wrap;
     justify-content: center;
-    display: flex;
+}
+.items{
+    width: 85%;
 }
 
 @media (min-width:768px) {
@@ -18,19 +15,19 @@
         margin: 0 auto;
     }
 }
+.parrafo {
+    padding-right: 4%;
+}
+.parrafo h4{
+    font-size: 40px;
+}
+.parrafo p{
+    font-size: 16px;
+}
 
 #imagen1 {
-    width: 400px;
-    height: 400px;
-}
-
-.container {
-    padding-top: 3%;
-    padding-left: 3%;
-    padding-right: 3%;
-}
-
-.part2 {
-    padding-left: 1%;
-    padding-right: 1%;
+    max-width: 320px;
+    float: right;
+    border-radius: 15px;
+    margin-left: 15px;
 }

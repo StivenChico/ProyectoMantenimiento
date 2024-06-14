@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    padding-top: 6%;
+    padding-left: 3%;
+    padding-left: 3%;
+    flex-wrap: wrap;
+}
+.parrafo{
+    font-size: 18px;
+}

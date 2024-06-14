@@ -11,62 +11,88 @@
 <body>
     <!--Inicio de sesion de usuario-->
     <nav>
-        <ul><li><a href="fit.html">Inicio</a></li>
-        <li><a href="E-Trainer.html">E-Trainer</a></li>
+        <ul><li><a href="fit_intUser.html">Inicio</a></li>
+        <li><a class="active" href="E-Trainer.html">E-Trainer</a></li>
         <li><a href="Login.html">Cerrar sesion</a></li>
     </ul>
     </nav>
-    <div class="formulario">
-        <h4>Estado fisico</h4>
-        <form>
-            <div class="userques">
-                <label for="edadtxt">Edad</label>
-                <input type="number" id="edadtxt">
-            </div>
-            <div class="userques">
-                <label for="alturatxt">Altura en metros</label>
-                <select name="" id="alturatxt">
-                    <option value="1.65" selected="true">1.65</option>
-                    <option value="1.50" >1.50</option>
-                    <option value="1.55">1.55</option>
-                    <option value="1.60">1.60</option>
-                    <option value="1.70">1.70</option>
-                    <option value="1.75">1.75</option>
-                    <option value="1.80">1.80</option>
-                    <option value="1.85">1.85</option>
-                    <option value="1.90">1.90</option>
-                    <option value="1.95">1.95</option>
-                    <option value="2">2</option>
-                </select>
-            </div>
-            <div class="userques">
-                <label for="pesotxt">Peso</label>
-                <input type="number" id="pesotxt">
-            </div>
-            <div class="userques">
-                <label for="Workout">¿Con que frecuencia realiza ejercicio?</label>
-                <select id="Workout">
-                    <option value="No hago ejercicio" selected="true">No hago ejercicio</option>
-                    <option value="Diario">Diario</option>
-                    <option value="Regular">Regular</option>
-                    <option value="Rara vez">Rara vez</option>
-                </select>
-            </div>
-            <div class="userques">
-                <label for="water">¿Cuanta agua bebe al dia?</label>
-                <select id="water">
-                    <option>Mucha</option>
-                    <option selected="true">Poca</option>
-                    <option>casi nada</option>
-                </select>
-
-            </div>
-            <div class="save">
-                <a onclick="Submit()" href="">Guardar Datos</a>
-            </div>
-        </form>
-    </div>
-
+    <div class="cont_nedor">
+        <div class="formulario">
+            <h4>Estado fisico</h4>
+            <form>
+                <div class="userques">
+                    <label for="edadtxt">Edad</label>
+                    <input type="number" id="edadtxt">
+                </div>
+                <div class="userques">
+                    <label for="alturatxt">Altura en metros</label>
+                    <select name="" id="alturatxt">
+                        <option value="1.65" selected="true">1.65</option>
+                        <option value="1.50" >1.50</option>
+                        <option value="1.55">1.55</option>
+                        <option value="1.60">1.60</option>
+                        <option value="1.70">1.70</option>
+                        <option value="1.75">1.75</option>
+                        <option value="1.80">1.80</option>
+                        <option value="1.85">1.85</option>
+                        <option value="1.90">1.90</option>
+                        <option value="1.95">1.95</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="userques">
+                    <label for="pesotxt">Peso</label>
+                    <input type="number" id="pesotxt">
+                </div>
+                <div class="userques">
+                    <label for="Workout">¿Con que frecuencia realiza ejercicio?</label>
+                    <select id="Workout">
+                        <option value="No hago ejercicio" selected="true">No hago ejercicio</option>
+                        <option value="Diario">Diario</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Rara vez">Rara vez</option>
+                    </select>
+                </div>
+                <div class="userques">
+                    <label for="water">¿Cuanta agua bebe al dia?</label>
+                    <select id="water">
+                        <option>Mucha</option>
+                        <option selected="true">Poca</option>
+                        <option>casi nada</option>
+                    </select>
     
+                </div>
+                <div class="save">
+                    <a onclick="Submit()" href="">Guardar Datos</a>
+                </div>
+            </form>
+        </div><br>
+    </div>
+    <footer class="pie">
+        <div class="footer-links">
+            <h4><b>Contactos</b></h4>
+            <ul>
+                <li>Telefono +57 ****** </li>
+                <li>whatsApp +57****** </li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h4><b>Siguenos</b></h4>
+            <div class="links">
+                <a href="#">
+                    <img src="../img/facebook.ico" alt="facebook">
+                </a>
+                <a href="#">
+                    <img src="../img/instagram.ico" alt="Instagran">
+                </a>
+                <a href="#">
+                    <img src="../img/Twiter.ico" alt="Twiter">
+                </a>
+                <a href="#">
+                    <img src="../img/tik-tok.ico" alt="Tiktok">
+                </a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
