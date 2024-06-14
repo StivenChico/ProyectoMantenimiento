@@ -1,10 +1,13 @@
 .container{
     display: flex;
-    padding-top: 6%;
-    padding-left: 3%;
-    padding-left: 3%;
+    width: 70%;
+    margin: 30px auto;
     flex-wrap: wrap;
 }
 .parrafo{
     font-size: 18px;
+}
+.part2{
+    text-align: center;
+    margin: 20px auto;
 }
