@@ -1,6 +1,6 @@
 const InitVerify=()=>{
     let Usuario={}
-    Usuario=JSON.parse(localStorage.getItem("Usuario",i))
+    Usuario=JSON.parse(localStorage.getItem("Usuario"))
     if(Usuario==null){
         alert("Primero debe iniciar sección")
         location.href="../Index.html"
