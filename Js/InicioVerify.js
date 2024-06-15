@@ -5,8 +5,11 @@ const InitVerify=()=>{
         alert("Primero debe iniciar sección")
         location.href="../Index.html"
     }else{
-        document.getElementById("NombreUser").innerHTML= Usuario.name+" "+ Usuario.surname;
+        document.getElementById("NombreUser").innerHTML+= Usuario.name+" "+ Usuario.surname;
     }
 }
-
+const cerrarSeccion=()=>{
+    localStorage.removeItem("Usuario")
+    location.href="../Index.html"
+}
 InitVerify()
