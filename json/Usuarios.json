@@ -1,23 +1,136 @@
 [
-    
     {
-    "username": "usuario3",
-    "email":"usuario3@gmail.com",
-    "password": "passwrd789",
-    "Cell":"3013013021"
+        "ID":0,
+        "username": "Stiven",
+        "name":"Stiven",
+        "surname":"Chico",
+        "email":"stiven@gmail.com",
+        "password": "con123",
+        "Cell":"3012012012",
+        "Rol":"Admin"
     },
     {
-    "username": "usuario4",
-    "email":"usuario4@gmail.com",
-    "password": "12345qwert",
-    "Cell":"301304521"
+        "ID": 1,
+        "username": "Valentina Ramírez",
+        "name": "Valentina",
+        "surname": "Ramírez",
+        "email": "valentina.ramirez@correo.com",
+        "password": "Contraseña123", 
+        "Cell": "3123456789",      
+        "Rol": "Admin"
+    },
+    {
+        "ID": 2,
+        "username": "Alejandro Morales",
+        "name": "Alejandro",
+        "surname": "Morales",
+        "email": "alejandro.morales@correo.com",
+        "password": "micontraseñaSecreta",  
+        "Cell": "3017654321",      
+        "Rol": "Admin"
+    },
+    {
+        "ID": 3,
+        "username": "Mariana García",
+        "name": "Mariana",
+        "surname": "García",
+        "email": "mariana.garcia@correo.com",
+        "password": "claveSegura2024",  
+        "Cell": "3102543678",      
+        "Rol": "Admin"
+    },
+    {
+        "ID": 4,
+        "username": "Nicolás López",
+        "name": "Nicolás",
+        "surname": "López",
+        "email": "nicolas.lopez@correo.com",
+        "password": "miPasswordSecreto",  
+        "Cell": "3148967532",      
+        "Rol": "Admin"
+    },
+    {
+        "ID": 5,
+        "username": "Daniela Rodríguez",
+        "name": "Daniela",
+        "surname": "Rodríguez",
+        "email": "daniela.rodriguez@correo.com",
+        "password": "contrasenaSegura123", 
+        "Cell": "3125436789",     
+        "Rol": "Admin"
+    },
+    {
+        "ID": 6,
+        "username": "Paula Martínez",
+        "name": "Paula",
+        "surname": "Martínez",
+        "email": "paula.martinez@correo.com",
+        "password": "miClaveSecreta", 
+        "Cell": "3109876543",     
+        "Rol": "Admin"
+    },
+    {
+        "ID": 7,
+        "username": "Juan Hernández",
+        "name": "Juan",
+        "surname": "Hernández",
+        "email": "juan.hernandez@correo.com",
+        "password": "passwordSegura2024", 
+        "Cell": "3143215467",     
+        "Rol": "Admin"
+    }
+    ,
+    {
+        "ID":8,
+        "username": "Carlos Carlos",
+        "name":"Carlos",
+        "surname":"Carlos",
+        "email":"stiven@gmail.com",
+        "password": "con123",
+        "Cell":"3012012012",
+        "Rol":"Admin"
+    },
+    {
+        "ID":9,
+        "username": "David",
+        "name":"David",
+        "surname":"Carrillo",
+        "email":"david@gmail.com",
+        "password": "con456",
+        "Cell":"3019173112",
+        "Rol":"Admin"
+    },
+    {
+        "ID":10,
+        "username": "usuario3",
+        "name":"Usuario3",
+        "surname":"user",
+        "email":"usuario3@gmail.com",
+        "password": "passwrd789",
+        "Cell":"3013013021",
+        "Rol":"Admin"
+    },
+    {
+        "ID":11,
+        "username": "usuario4",
+        "name":"Usuario4",
+        "surname":"user4",
+        "email":"usuario4@gmail.com",
+        "password": "12345qwert",
+        "Cell":"301304521",
+        "Rol":"Usuario"
 
     },
     {
-    "username": "usuario5",
-    "email":"usuario5@gmail.com",
-    "password": "mypassword",
-    "Cell":"30131213021"
+        "ID":12,
+        "name":"Usuario5",
+        "surname":"user5",
+        "username": "usuario5",
+        "email":"usuario5@gmail.com",
+        "password": "mypassword",
+        "Cell":"30131213021",
+        "Rol":"Usuario"
     }
+    
     ]
     
