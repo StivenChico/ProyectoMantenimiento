@@ -1,4 +1,4 @@
-const tablae=document.querySelector("#tablaa tbody");
+/*const tablae=document.querySelector("#tablaa tbody");
 console.log(tablae)
 const Init_Data=()=>{
 

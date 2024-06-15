@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.contenedor{
+    width: 900px;
+    margin: 0px auto;  
+    padding-top: 80px;
+    flex:content;
+    display:flex ;
+
+}
+#tablaa{
+    text-align: center;
+    border-collapse: collapse  ;
+    padding-left: 4px;
+    width: 100%;
+    
+}
+td,th{
+    padding: 15px ;
+}
+thead{
+    color: white;
+    background-color: #246355;
+    border-bottom: solid 3px #0f362d;
+}
+tr:nth-child(even){
+    background-color: #ddd;
+}
+tr:hover td{
+    background-color: #2D8572;
+    color: #B9D6D0;
+}
+.Info_Selec{
+    width: 39%;
+    background-color: #2D8572;
+}
+.Users-tabla{
+    width: 59%;
+    border: solid 1px black;
+}
+.evaluacion{
+    position: relative;
+    margin-right: 4px;
+}

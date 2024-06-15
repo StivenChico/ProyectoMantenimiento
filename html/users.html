@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DS Workout Advisor</title>
     <link rel="stylesheet" href="../css/Fijos.css">
+    <link rel="stylesheet" href="../css/Users.css">
     <link rel="icon" href="../img/e-trainer.ico">
 </head>
 <body>
@@ -17,6 +18,35 @@
             <li><a href="Login.html">Cerrar sesion</a></li>
         </ul>
     </nav>
+    <div class="contenedor">
+         <!--div de la recomendación del admin al usuario-->
+        <div class="evaluacion">
+            <label for="Coment_admin">Evaluación</label>
+            <textarea name="coment" id="Coment_admin"></textarea>
+        </div>
+        <div class="table">
+            <div class="Info_Selec">
+                <h1>Información de Usuario seleccionado</h1>
+            </div>
+            <div class="Users-tabla">
+                <table id="tablaa">
+                    <thead>
+                        <tr><th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Usuario</th>
+                            <th>Estado fisico</th>
+                            <th>Celular</th>
+                            <th>Resultado de encuesta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../Js/AdminFuntions.js"></script>
     <!-- en la pagina se ve feo porque falta algo aqui que empuje el footer-->
     <footer class="pie">
         <div class="footer-links">
