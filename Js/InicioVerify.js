@@ -1,4 +1,5 @@
 const InitVerify=()=>{
+    let Usuario={}
     Usuario=localStorage.getItem("Usuario")
     if(Usuario==null){
         alert("Primero debe iniciar sección")
