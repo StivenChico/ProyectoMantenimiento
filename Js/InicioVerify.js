@@ -8,4 +8,4 @@ const InitVerify=()=>{
     }
 }
 
-//InitVerify()
+InitVerify()

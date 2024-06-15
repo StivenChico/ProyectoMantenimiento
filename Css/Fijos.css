@@ -13,7 +13,7 @@ nav {
 }
 
 nav img {
-    margin-left: 50px;
+    margin-left: 50px; 
     width: 58px;
     height: 58px;
 }
@@ -81,4 +81,28 @@ nav a.active, li a:hover {
 .links a {
     text-decoration: none;
     border: none;
+}
+
+.izquierda-NavBar{
+    display: inline-flex;
+}
+.izquierda-NavBar a{
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 600px;
+    margin: auto 20px;
+}
+.conten {
+    width: 100vw;
+    margin: 50px 30px;    
+    flex-wrap: wrap;
+    justify-content: center;
+}
+@media (min-width:768px) {
+    .conten {
+        width: 70%;
+        margin: 0 auto;
+        margin: 50px auto;  
+    }
 }

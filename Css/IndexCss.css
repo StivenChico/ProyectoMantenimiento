@@ -1,20 +1,9 @@
-.conten {
-    width: 100vw;
-    margin: 50px 30px;    
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 .items{
     width: 85%;
 }
 
-@media (min-width:768px) {
-    .conten {
-        width: 70%;
-        margin: 0 auto;
-        margin: 50px auto;  
-    }
-}
+
 .parrafo li{
     padding-right: 2%;
     margin-left: 6%;
