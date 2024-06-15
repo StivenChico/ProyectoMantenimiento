@@ -5,11 +5,11 @@ const verificar = () => {
   ) {
     alert("VERIFICAR CAMPOS VACIOS");
   } else {
-    IngUser = document.getElementById("usertxt").value;     // recibe los datos en caso no esten vacios
-    IngPass = document.getElementById("passwordtxt").value;
-    IngRol = document.getElementById("rol").value;
-    path=(IngRol=="Usuario")? "../html/fit_intUser.html":"../html/admin.html";
-    
+    let IngUser = document.getElementById("usertxt").value;     // recibe los datos en caso no esten vacios
+    let IngPass = document.getElementById("passwordtxt").value;
+    let IngRol = document.getElementById("rol").value;
+    let path=(IngRol=="Usuario")? "../html/fit_intUser.html":"../html/admin.html";
+    let bool=false
     fetch("/json/Usuarios.json")
       .then((res) => res.json())                // establece el formato en el que se recibirá el resultado
       .then((usuario) => {
@@ -17,7 +17,7 @@ const verificar = () => {
           if (i.username == IngUser) {
             if (i.password == IngPass) {        
               if(i.Rol==IngRol){         
-                
+                  bool=true
                   localStorage.setItem("Usuario", i)
                   location.href = path;
                 
@@ -26,5 +26,8 @@ const verificar = () => {
           }
         }
       });
+      if(!bool){
+        document.getElementById("mensaje").innerHTML= "Usuario y/o contraseña ingresada Erroneas "
+      }
   }
 };
