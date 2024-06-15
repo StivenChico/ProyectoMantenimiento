@@ -4,7 +4,7 @@ const InitVerify=()=>{
         alert("Primero debe iniciar sección")
         location.href="../Index.html"
     }else{
-        document.getElementById("NombreUser").innerHTML(Usuario.name+" "+ Usuario.surname)
+        document.getElementById("NombreUser").innerHTML= Usuario.name+" "+ Usuario.surname;
     }
 }
 
