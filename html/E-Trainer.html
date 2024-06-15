@@ -17,12 +17,14 @@
         </div>
         <ul><li><a href="fit_intUser.html">Inicio</a></li>
         <li><a class="active" href="E-Trainer.html">E-Trainer</a></li>
-        <li><a href="Login.html">Cerrar sesion</a></li>
+        <li><a href="" onclick="cerrarSesion()">Cerrar sesion</a></li>
     </ul>
     </nav>
-    <div class="cont_nedor">
+    <div class="conten">
         <div class="formulario">
             <h4>Estado fisico</h4>
+            <div class="introForm"><p>Antes de poder asesorarte con nuestro E-trainer debemos saber tus parametros fisicos actuales</p></div>
+            
             <form>
                 <div class="userques">
                     <label for="edadtxt">Edad</label>
@@ -66,8 +68,8 @@
                     </select>
     
                 </div>
-                <div class="save">
-                    <a onclick="Submit()" href="">Guardar Datos</a>
+                <div class="save" onclick="Submit()" >
+                    <a href="">Guardar Datos</a>
                 </div>
             </form>
         </div><br>
@@ -98,5 +100,6 @@
             </div>
         </div>
     </footer>
+    <script src="../Js/InicioVerify.js" ></script>
 </body>
 </html>

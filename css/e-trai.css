@@ -1,15 +1,23 @@
+.conten{
+    width: 400px;
+    margin: 30px auto;
+}
 .formulario{
-position:relative;
-padding-top: 100px;
-left: 50%;
-border-radius: 10px;
-transform: translate(-50% , -50%);
-width: 400px;
+    padding: 15px;
+    border: 2px #006DAA solid ;
+    border-radius: 10px;
+    width: 400px;
 }
 .formulario h4{
+    font-size: 25px;
     text-align: center;
     padding: 0 0 20px 0;
     border-bottom: 1px solid silver;
+}
+.introForm{
+    width: 340px;   
+    text-align: center;
+    margin: 10px auto;
 }
 .formulario form{
     padding: 0 40px;
@@ -30,4 +38,17 @@ div select{
     height: 40px;
     border: none;
     background: none;
+}
+.save{
+    background-color: #37c5db;
+    padding: 25px;
+    text-align: center ;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.save a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
 }

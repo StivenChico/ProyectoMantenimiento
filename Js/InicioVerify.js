@@ -8,7 +8,7 @@ const InitVerify=()=>{
         document.getElementById("NombreUser").innerHTML+= Usuario.name+" "+ Usuario.surname;
     }
 }
-const cerrarSeccion=()=>{
+const cerrarSesion=()=>{
     localStorage.removeItem("Usuario")
     location.href="../Index.html"
 }
