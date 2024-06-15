@@ -1,3 +1,4 @@
+
 const verificar = () => {
   if (
     document.getElementById("usertxt").value == "" ||
@@ -10,7 +11,8 @@ const verificar = () => {
     let IngRol = document.getElementById("rol").value;
     let path=(IngRol=="Usuario")? "../html/fit_intUser.html":"../html/admin.html";
     let bool=false
-    fetch("https://raw.githubusercontent.com/StivenChico/ProyectoMantenimiento/main/json/Usuarios.json?token=GHSAT0AAAAAACTUV6Q24WBIOELDFXWGDJLGZTN62FA")
+    fetch("https://raw.githubusercontent.com/StivenChico/ProyectoMantenimiento/main/json/Usuarios.json")
+    
       .then((res) => res.json())                // establece el formato en el que se recibirá el resultado
       .then((usuario) => {
         for (i of usuario) {                    // iteramos en cada objeto del json 
