@@ -18,7 +18,8 @@ const verificar = () => {
             if (i.password == IngPass) {        
               if(i.Rol==IngRol){         
                   bool=true
-                  localStorage.setItem("Usuario", i)
+                  console.log(i)
+                  localStorage.setItem("Usuario",JSON.stringify(i))
                   location.href = path;
                 
               }
