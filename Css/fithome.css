@@ -10,6 +10,9 @@ table th{
 table{
     border-collapse: collapse;
 }
+.rut_aliment{
+    justify-content: center;
+}
 .rutina table{
     border: solid 1px black;
 }
@@ -45,6 +48,10 @@ table{
 }
 .alimentacion{
     margin-top: 8px;
+    text-align: center;
+}
+.alimentacion table{
+    margin: auto;
 }
 .alimentacion thead tr:nth-of-type(1)> th{/* selecciona los th del primer tr es decir los dias*/
     background-color: #eb8b31;
