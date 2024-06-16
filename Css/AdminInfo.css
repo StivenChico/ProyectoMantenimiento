@@ -11,7 +11,6 @@ body{
 #tablaa{
     text-align: center;
     border-collapse: collapse  ;
-    margin-left: 1%;
     width: 100%;
     
 }
@@ -33,11 +32,12 @@ tr:hover td{
 .Info_Selec{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    width: 330px;
+    width: 60%;
+    margin: auto;
     text-align: center;
     background-color: #2D8572;
 }
 .Users-tabla{
-    width: 59%;
-    
+    width: 60%;
+    margin:auto
 }
