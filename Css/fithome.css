@@ -9,6 +9,8 @@ table th{
 }
 table{
     border-collapse: collapse;
+    text-align: center;
+    width: 100%;
 }
 .rut_aliment{
     justify-content: center;
@@ -21,6 +23,10 @@ table{
 }
 .rutina tr:nth-child(even){
     background-color: #ddd;
+}
+.rutina tr:hover td{
+    background-color: #006DAA;
+    color: #B9D6D0;
 }
 .rutina thead tr:nth-of-type(1)> th{/* selecciona los th del primer tr es decir los dias*/
  background-color: #006DAA;
@@ -59,6 +65,10 @@ table{
 .alimentacion thead tr th{
        color: white;
    }
+.alimentacion tr:hover td{
+    background-color: #eb8b31;
+    color: #B9D6D0;
+}
 #Rutina{
     width: 500px;
     height: 300px;
