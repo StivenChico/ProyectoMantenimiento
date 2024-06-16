@@ -1,0 +1,56 @@
+.fisic_grafic{
+    width: 50vw;
+    position: relative;
+    height: 40vh;
+    text-align: center;
+}
+table th{
+    width: 10em;
+}
+table{
+    border-collapse: collapse;
+}
+.rutina table{
+    border: solid 1px black;
+}
+.rutina h4{
+    text-align: center;
+}
+.rutina tr:nth-child(even){
+    background-color: #ddd;
+}
+.rutina thead tr:nth-of-type(1)> th{/* selecciona los th del primer tr es decir los dias*/
+ background-color: #006DAA;
+}
+.rutina thead tr th{
+    color: white;
+}
+.rutina tbody tr:nth-of-type(1)>th,
+.rutina tbody tr:nth-of-type(2)>th,
+.rutina tbody tr:nth-of-type(3)>th,
+.rutina tbody tr:nth-of-type(4)>th,
+.rutina tbody tr:nth-of-type(5)>th,
+.rutina tbody tr:nth-of-type(6)>th,
+.rutina tbody tr:nth-of-type(7)>th,
+.rutina tbody tr:nth-of-type(8)>th,
+.rutina tbody tr:nth-of-type(9)>th,
+.rutina tbody tr:nth-of-type(10)>th,
+.rutina tbody tr:nth-of-type(11)>th,
+.rutina tbody tr:nth-of-type(12)>th,
+.rutina tbody tr:nth-of-type(13)>th,
+.rutina tbody tr:nth-of-type(14)>th,
+.rutina tbody tr:nth-of-type(15)>th,
+.ruina  tbody tr:nth-of-type(16)>th{
+    background-color: #529eca;
+}
+.alimentacion{
+    margin-top: 8px;
+}
+.alimentacion thead tr:nth-of-type(1)> th{/* selecciona los th del primer tr es decir los dias*/
+    background-color: #eb8b31;
+   }
+.alimentacion thead tr th{
+       color: white;
+   }
+
+
