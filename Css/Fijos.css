@@ -60,7 +60,7 @@ nav a.active, li a:hover {
 }
 
 .footer-links {
-    width: 12%;
+    width: 170px;
     padding: 16px 0;
 }
 
@@ -102,7 +102,6 @@ nav a.active, li a:hover {
 @media (min-width:768px) {
     .conten {
         width: 70%;
-        margin: 0 auto;
         margin: 50px auto;  
     }
 }

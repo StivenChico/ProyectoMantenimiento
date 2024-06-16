@@ -1,4 +1,3 @@
-/*
 const verificar = () => {
   if (
     document.getElementById("usertxt").value == "" ||

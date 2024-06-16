@@ -1,4 +1,4 @@
-/*const InitVerify=()=>{
+const InitVerify=()=>{
     let Usuario={}
     Usuario=JSON.parse(localStorage.getItem("Usuario"))
     if(Usuario==null){

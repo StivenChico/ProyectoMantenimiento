@@ -1,4 +1,4 @@
-const tablae=document.querySelector("#tablaa tbody");
+const tablae=document.querySelector("#tablab tbody");
 console.log(tablae)
 const Init_Data=()=>{
 
@@ -11,12 +11,12 @@ const Init_Data=()=>{
             const row=document.createElement('tr');
             row.innerHTML+=`
             <td>${i.ID}</td>
-            <td>${i.username}</td>
             <td>${i.name}</td>
             <td>${i.surname}</td>
-            <td>${i.email}</td>
-            <td>${i.password}</td>
-            <td>${i.Cell}</td>
+            <td>${i.yearsOld}</td>
+            <td>${i.height}</td>
+            <td>${i.weight}</td>
+            <td>${i.Fr_Train}</td>
             `;
             tablae.appendChild(row)
             

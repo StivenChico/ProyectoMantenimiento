@@ -2,23 +2,21 @@ body{
     margin: 0;
     padding: 0;
 }
-.contenedor{
-    width: 900px;
-    margin: 0px auto;  
-    padding-top: 80px;
-    flex:content;
-    display:flex ;
-
+.conten{
+    width: 81%;
+    margin: 50px 9.5%;
+    display:inline-flex;
+    
 }
-#tablaa{
+#tablab{
     text-align: center;
     border-collapse: collapse  ;
-    padding-left: 4px;
+    margin-left: 1%;
     width: 100%;
     
 }
 td,th{
-    padding: 15px ;
+    padding: 12px ;
 }
 thead{
     color: white;
@@ -33,14 +31,25 @@ tr:hover td{
     color: #B9D6D0;
 }
 .Info_Selec{
-    width: 39%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    width: 330px;
+    text-align: center;
     background-color: #2D8572;
 }
 .Users-tabla{
     width: 59%;
-    border: solid 1px black;
+
 }
 .evaluacion{
-    position: relative;
-    margin-right: 4px;
+    margin-left: 1em;
+}
+#Coment_admin{
+    resize: none;
+}
+.Contenido_ConIzq{
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding: 15px 0;
+    background-color: #6EA69A;
 }

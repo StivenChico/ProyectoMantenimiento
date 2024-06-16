@@ -11,6 +11,10 @@
 <body>
     <!--inicio de sesion del administrador,-->
     <nav>
+        <div class="izquierda-NavBar">
+            <img src="../img/e-trainer.ico" alt="DS LOGO">
+            <a href="#" id="NombreUser">Bienvenido(a) </a>
+        </div>
         <ul><li><a href="admin.html">Inicio</a></li>
             <li><a href="register_ad.html">Registrar</a></li>
             <li><a class="active" href="users.html">Usuarios</a></li>
@@ -18,33 +22,40 @@
             <li><a href="Login.html">Cerrar sesion</a></li>
         </ul>
     </nav>
-    <div class="contenedor">
-         <!--div de la recomendación del admin al usuario-->
-        <div class="evaluacion">
-            <label for="Coment_admin">Evaluación</label>
-            <textarea name="coment" id="Coment_admin"></textarea>
+    <div class="conten">
+        <div class="conIzq">
+        <div class="Info_Selec">
+            <h1>Información de Usuario seleccionado</h1>
+            
         </div>
-        <div class="table">
-            <div class="Info_Selec">
-                <h1>Información de Usuario seleccionado</h1>
+         
+        <div class="Contenido_ConIzq">
+            <div id="INFO_User"></div>
+            <!--div de la recomendación del admin al usuario-->
+            <div class="evaluacion">
+                <label for="Coment_admin">Evaluación</label><br>
+                <textarea cols="40" rows="12" name="coment" id="Coment_admin"></textarea>
             </div>
+        </div>
+        </div>
+   
             <div class="Users-tabla">
-                <table id="tablaa">
+                <table id="tablab">
                     <thead>
                         <tr><th>ID</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
-                            <th>Usuario</th>
-                            <th>Estado fisico</th>
-                            <th>Celular</th>
-                            <th>Resultado de encuesta</th>
+                            <th>Edad</th>
+                            <th>Estatura</th>
+                            <th>Peso</th>
+                            <th>Frecuencia <br>de entrenamiento</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
             </div>
-        </div>
+        
     </div>
     <script src="../Js/AdminFuntions.js"></script>
     <!-- en la pagina se ve feo porque falta algo aqui que empuje el footer-->
@@ -74,5 +85,7 @@
             </div>
         </div>
     </footer>
+    <script src="../Js/InicioVerify.js"></script>
+
 </body>
 </html>
