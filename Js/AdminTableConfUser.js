@@ -1,9 +1,7 @@
 const tablae=document.querySelector("#tablab tbody");
 console.log(tablae)
 const Init_Data=()=>{
-
-
-    fetch("https://raw.githubusercontent.com/StivenChico/ProyectoMantenimiento/main/json/Usuarios.json")
+    fetch("https://raw.githubusercontent.com/StivenChico/ProyectoMantenimiento/main/json/inf_users.json")
     .then(res=>res.json())
     .then(usuarios=>{
         for(i of usuarios){
@@ -24,4 +22,3 @@ const Init_Data=()=>{
     })
 }
 Init_Data();
- 

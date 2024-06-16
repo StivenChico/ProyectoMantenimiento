@@ -52,5 +52,15 @@ table{
 .alimentacion thead tr th{
        color: white;
    }
-
-
+#Rutina{
+    width: 500px;
+    height: 300px;
+    margin: 20px auto;
+    background-color: #6EA69A;
+    padding: 20px 0 0 20px;
+    border-radius: 20px;
+    text-align: center;
+}
+#RutinaUser{
+    text-align: justify;
+}

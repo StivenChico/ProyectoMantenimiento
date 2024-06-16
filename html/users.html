@@ -19,7 +19,7 @@
             <li><a href="register_ad.html">Registrar</a></li>
             <li><a class="active" href="users.html">Usuarios</a></li>
             <li><a href="Info_User_Fisic.html">Conf.Usuarios</a></li>
-            <li><a href="Login.html">Cerrar sesion</a></li>
+            <li><a href="" onclick="cerrarSesion()">Cerrar sesion</a></li>
         </ul>
     </nav>
     <div class="conten">
@@ -33,8 +33,11 @@
             <div id="INFO_User"></div>
             <!--div de la recomendación del admin al usuario-->
             <div class="evaluacion">
-                <label for="Coment_admin">Evaluación</label><br>
+                <h3>Rutina del Dia</h3><br>
+                <p>escribe la rutina del dia para tus usuarios</p>
                 <textarea cols="40" rows="12" name="coment" id="Coment_admin"></textarea>
+                <br>
+                <a href="" onclick="Rutina()" id="Enviar">Enviar Rutina</a>
             </div>
         </div>
         </div>
@@ -57,7 +60,6 @@
             </div>
         
     </div>
-    <script src="../Js/AdminFuntions.js"></script>
     <!-- en la pagina se ve feo porque falta algo aqui que empuje el footer-->
     <footer class="pie">
         <div class="footer-links">
@@ -85,7 +87,10 @@
             </div>
         </div>
     </footer>
-    <script src="../Js/InicioVerify.js"></script>
+    <script src="../Js/AdminTableConfUser.js"></script>
 
+    <script src="../Js/InicioVerify.js"></script>
+    <script src="../Js/EnviarRutina.js">
+    </script>
 </body>
 </html>

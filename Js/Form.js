@@ -1,5 +1,0 @@
-/*const Submit =()=>{
-    const InfoUser=[
-        [],[]
-    ]
-}

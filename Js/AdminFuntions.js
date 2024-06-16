@@ -1,5 +1,5 @@
-const tablae=document.querySelector("#tablaa tbody");
-console.log(tablae)
+const tabla=document.querySelector("#tablaa tbody");
+console.log(tabla)
 const Init_Data=()=>{
 
 
@@ -18,7 +18,7 @@ const Init_Data=()=>{
             <td>${i.password}</td>
             <td>${i.Cell}</td>
             `;
-            tablae.appendChild(row)
+            tabla.appendChild(row)
             
         }
     })

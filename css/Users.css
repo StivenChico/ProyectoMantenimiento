@@ -53,3 +53,9 @@ tr:hover td{
     padding: 15px 0;
     background-color: #6EA69A;
 }
+#Enviar{
+    width: 80%;
+    padding: 15px;
+    background-color: #2D8572;
+    color: white;
+}
