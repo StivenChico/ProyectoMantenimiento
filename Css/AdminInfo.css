@@ -32,12 +32,12 @@ tr:hover td{
 .Info_Selec{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    width: 60%;
+    width: 100%;
     margin: auto;
     text-align: center;
     background-color: #2D8572;
 }
 .Users-tabla{
-    width: 60%;
+    width: 100%;
     margin:auto
 }
