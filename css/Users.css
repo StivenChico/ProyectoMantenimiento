@@ -55,7 +55,9 @@ tr:hover td{
 }
 #Enviar{
     width: 80%;
+    margin:30px 90px;
     padding: 15px;
+    border-radius: 10px;
     background-color: #2D8572;
     color: white;
 }
