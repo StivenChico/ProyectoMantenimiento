@@ -5,44 +5,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DS Workout Advisor</title>
         <link rel="icon" href="../img/e-trainer.ico">
-        <link rel="stylesheet" href="../css/registro.css">
+        <!--bootstrap-->
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.css">
+    <!--css-->
+    <!--<link rel="stylesheet" href="css/Fijos.css">
+        <link rel="stylesheet" href="../css/registro.css">-->
     </head>
 <body>
      <!--formulario de registro-->
-     <div class="formulario">
-        <h1>Registro</h1>
-        <form>
-            <div class="username">
-                <label for="nametxt">Nombres</label>
-                <input type="text" id="nametxt" placeholder="Nombres">
+    <div class="container mt-5">
+        <form class="row g-3">
+            <div class="col-12">
+                <center class="h1">REGISTRO</center>
             </div>
-            <div class="username">
-                <label for="lastnametxt">Apellidos</label>
-                <input type="text" id="lastnametxt" placeholder="Apellidos">
+            <div class="col-md-6">
+              <label for="inputNames" class="form-label" >Nombres</label>
+              <input type="text" class="form-control" id="inputNames" placeholder="Nombres">
             </div>
-            <div class="username">
-                <label for="Usnametxt">Nombre de usuario</label>
-                <input type="text" id="Usnametxt" placeholder="Usuario">
+            <div class="col-md-6">
+              <label for="inputLastName" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="inputLastName" placeholder="Apellidos">
             </div>
-            <div class="username">
-                <label for="mailtxt">Correo electronico</label>
-                <input type="email" placeholder="Correo">
+            <div class="col-md-6">
+                <label for="inputUserName" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" id="inputUserName" placeholder="Usuario">
+              </div>
+              <div class="col-md-6">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Correo">
+              </div>
+            <div class="col-md-6">
+              <label for="inputPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
             </div>
-            <div class="username">
-                <label for="passwordtxt">Contraseña</label>
-                <input type="password" id="passwordtxt" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+            <div class="col-md-6">
+              <label for="inputPassword2" class="form-label">Confirme su contraseña</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
             </div>
-            <div class="username">
-                <label for="passwordtxt2">Confirme su contraseña</label>
-                <input type="password" id="passwordtxt2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">
+                    <a class="text-decoration-none text-white" href="###">Crear</a>
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <a class="text-decoration-none text-white" href="admin.html">Volver</a>
+                </button>
             </div>
-            <div class="login">
-                <a href="###">Crear</a>
-            </div>
-            <div class="login">
-                <a href="admin.html">Volver</a>
-            </div>
-        </form>
+          </form>
     </div>
     <script src="../js/InicioVerify.js"></script>
 </body>
