@@ -8,8 +8,7 @@
         <!--bootstrap-->
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.css">
     <!--css-->
-    <!--<link rel="stylesheet" href="css/Fijos.css">
-        <link rel="stylesheet" href="../css/registro.css">-->
+    <!--<link rel="stylesheet" href="../css/registro.css">-->
     </head>
 <body>
      <!--formulario de registro-->
@@ -18,29 +17,29 @@
             <div class="col-12">
                 <center class="h1">REGISTRO</center>
             </div>
-            <div class="col-md-6">
-              <label for="inputNames" class="form-label" >Nombres</label>
-              <input type="text" class="form-control" id="inputNames" placeholder="Nombres">
+            <div class="col-md-6 form-floating mb-3">
+              <input type="text" class="text-secondary" id="inputNames" placeholder="Nombres">
+              
             </div>
-            <div class="col-md-6">
-              <label for="inputLastName" class="form-label">Apellidos</label>
+            <div class="col-md-6 form-floating mb-3">
               <input type="text" class="form-control" id="inputLastName" placeholder="Apellidos">
+              <label for="inputLastName" class="text-secondary">Apellidos</label>
             </div>
-            <div class="col-md-6">
-                <label for="inputUserName" class="form-label">Nombre de usuario</label>
+            <div class="col-md-6 form-floating mb-3">
                 <input type="text" class="form-control" id="inputUserName" placeholder="Usuario">
+                <label for="inputUserName" class="text-secondary">Nombre de usuario</label>
               </div>
-              <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
+              <div class="col-md-6 form-floating mb-3">
                 <input type="email" class="form-control" id="inputEmail" placeholder="Correo">
+                <label for="inputEmail" class="text-secondary">Email</label>
               </div>
-            <div class="col-md-6">
-              <label for="inputPassword" class="form-label">Contraseña</label>
+            <div class="col-md-6 form-floating mb-3">
               <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+              <label for="inputPassword" class="text-secondary">Contraseña</label>
             </div>
-            <div class="col-md-6">
-              <label for="inputPassword2" class="form-label">Confirme su contraseña</label>
+            <div class="col-md-6 form-floating mb-3">
               <input type="password" class="form-control" id="inputPassword2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+              <label for="inputPassword2" class="text-secondary">Confirme su contraseña</label>
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">

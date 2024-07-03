@@ -5,22 +5,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DS Workout Advisor</title>
         <link rel="icon" href="../img/e-trainer.ico">
-        <link rel="stylesheet" href="../Css/Fijos.css">
-        <link rel="stylesheet" href="../Css/fithome.css">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.css">
+        <!--css-->
+        <!--<link rel="stylesheet" href="../css/Fijos.css">
+        <link rel="stylesheet" href="../css/login.css">
+        <link rel="stylesheet" href="../Css/fithome.css">-->
     </head>
 <body>
-    <!--Inicio de sesion de usuario-->
-    <nav>
-        <div class="izquierda-NavBar">
-            <img src="../img/e-trainer.ico" alt="DS LOGO">
-            <a href="#" id="NombreUser">Bienvenido(a) </a>
+    <!--inicio de sesion del cliente-->
+    <nav class="navbar bg-primary navbar-expand-sm">
+        <div class="container-fluid">
+          <!--logo-->
+          <img class="navbar-branad" src="../img/e-trainer.ico" alt="DS LOGO" widht="60px" height="60px">
+          <a class="h5 text-decoration-none text-white" href="#" id="NombreUser">Bienvenido(a) </a>
+            <!--boton para abrir el menu-->
+          <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#menu-navbar" aria-controls="menu-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <!--menu-->
+          <div class="collapse navbar-collapse justify-content-end" id="menu-navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link fw-bold active" href="fit_intUser.html">INICIO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="E-Trainer.html">E-TRAINER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold" href="##" onclick="cerrarSesion()">CERRAR SESION</a>
+                </li>
+            </ul>
+          </div>
         </div>
-        <ul>
-        <li><a class="active" href="fit_intUser.html">Inicio</a></li>
-        <li><a href="E-Trainer.html">E-Trainer</a></li>
-        <li><a href="#" onclick="cerrarSesion()">Cerrar sesión</a></li>
-    </ul>
-    </nav>
+      </nav>
+      <!--contenedor de todo-->
     <div class="conten">
         <h1>Bienvenido </h1>
         <div class="fisic_grafic"><!-- aqui tenemos pensado poner un grafico que muestre la actividad fisica semanal, sabemos que se extrayendo los datos de una base de datos pero aun no tenemos la base de datos hecha-->
@@ -111,33 +130,53 @@
             </div>
         </div>
     </div>
-    <footer class="pie">
-        <div class="footer-links">
-            <h4><b>Contactos</b></h4>
-            <ul>
-                <li>Telefono +57 ****** </li>
-                <li>whatsApp +57****** </li>
-            </ul>
-        </div>
-        <div class="footer-links">
-            <h4><b>Siguenos</b></h4>
-            <div class="links">
-                <a href="#">
-                    <img src="../img/facebook.ico" alt="facebook">
-                </a>
-                <a href="#">
-                    <img src="../img/instagram.ico" alt="Instagran">
-                </a>
-                <a href="#">
-                    <img src="../img/Twiter.ico" alt="Twiter">
-                </a>
-                <a href="#">
-                    <img src="../img/tik-tok.ico" alt="Tiktok">
-                </a>
+    <!--pie de pagina-->
+    <div class="container-fluid">
+        <div class="row p-5 pb-1 bg-dark text-white">
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <p class="h5 mb-3">Autores</p>
+            <div class="mb-2">
+              <p class="text-secondary">David José Carrillo Quevedo</p>
             </div>
+            <div class="mb-2">
+              <p class="text-secondary">Stiven Alexander Chico Pelaez</p>
+            </div>
+          </div> 
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <p class="h5 mb-3">contactos</p>
+            <div class="mb-2">
+              <p class="text-secondary">Telefono +57 ******</p>
+            </div>
+            <div class="mb-2">
+              <p class="text-secondary">whatsApp +57 ******</p>
+            </div>
+          </div> 
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <p class="h5 mb-3">siguenos</p>
+            <a class="text-decoration-none" href="#">
+              <img src="../img/facebook.ico" alt="facebook">
+          </a>
+          <a class="text-decoration-none" href="#">
+              <img src="../img/instagram.ico" alt="Instagran">
+          </a>
+          <a class="text-decoration-none" href="#">
+              <img src="../img/Twiter.ico" alt="Twiter">
+          </a>
+          <a class="text-decoration-none" href="#">
+              <img src="../img/tik-tok.ico" alt="Tiktok">
+          </a>
+          </div> 
+          <div class="col-12 pt-3">
+            <p class="text-center">Copyright © 2023 DS Workout Advisor. Todos los derechos reservados.</p>
+          </div>
+          <div class="col-12">
+            <p class="text-center"><a class="text-decoration-none text-white" href="#"> Terminos y condiciones</a></p>
+          </div>
         </div>
-    </footer>
-    <script src="../Js/InicioVerify.js" ></script>
-    <script src="../Js/RecibirRutina.js"></script>
+      </div>
+      <!--javascript-->
+      <script src="../Js/InicioVerify.js"></script>
+      <script src="../Js/RecibirRutina.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

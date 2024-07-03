@@ -5,45 +5,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DS Workout Advisor</title>
         <link rel="icon" href="../img/e-trainer.ico">
-        <link rel="stylesheet" href="../css/registro.css">
+        <!--bootstrap-->
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.css">
+        <!--<link rel="stylesheet" href="../css/registro.css">-->
     </head>
 <body>
-    <!--formulario de registro-->
-    <div class="formulario">
-        <h1>Registro</h1>
-        <form>
-            <div class="username">
-                <label for="nametxt">Nombres</label>
-                <input type="text" id="nametxt" placeholder="Nombres">
+   <!--formulario de registro-->
+    <div class="container mt-5">
+        <form class="row g-3">
+            <div class="col-12">
+                <center class="h1">REGISTRO</center>
             </div>
-            <div class="username">
-                <label for="lastnametxt">Apellidos</label>
-                <input type="text" id="lastnametxt" placeholder="Apellidos">
+            <div class="col-md-6 form-floating mb-3">
+                <input type="text" class="form-control" id="inputNames" placeholder="Nombres">
+                <label for="inputNames" class="text-secondary" >Nombres</label>
             </div>
-            <div class="username">
-                <label for="Usnametxt">Nombre de usuario</label>
-                <input type="text" id="Usnametxt" placeholder="Usuario">
+            <div class="col-md-6 form-floating mb-3">
+                <input type="text" class="form-control" id="inputLastName" placeholder="Apellidos">
+                <label for="inputLastName" class="text-secondary">Apellidos</label>
             </div>
-            <div class="username">
-                <label for="mailtxt">Correo electronico</label>
-                <input type="email" placeholder="Correo">
+            <div class="col-md-6 form-floating mb-3">
+                <input type="text" class="form-control" id="inputUserName" placeholder="Usuario">
+                <label for="inputUserName" class="text-secondary">User name</label>
             </div>
-            <div class="username">
-                <label for="passwordtxt">Contraseña</label>
-                <input type="password" id="passwordtxt" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+            <div class="col-md-6 form-floating mb-3">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Correo">
+                <label for="inputEmail" class="text-secondary">Email</label>
             </div>
-            <div class="username">
-                <label for="passwordtxt2">Confirme su contraseña</label>
-                <input type="password" id="passwordtxt2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+            <div class="col-md-6 form-floating mb-3">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+                <label for="inputPassword" class="text-secondary">Password</label>
             </div>
-            <div class="login">
-                <a href="Login.html">Registrar</a>
+            <div class="col-md-6 form-floating mb-3">
+                <input type="password" class="form-control" id="inputPassword2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+                <label for="inputPassword2" class="text-secondary">Confirm password</label>
             </div>
-            <div class="login">
-                <a href="Login.html">Volver</a>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">
+                    <a class="text-decoration-none text-white" href="###">Crear</a>
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <a class="text-decoration-none text-white" href="../index.html">Volver</a>
+                </button>
             </div>
         </form>
     </div>
-    
 </body>
 </html>
