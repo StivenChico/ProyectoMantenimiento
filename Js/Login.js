@@ -28,8 +28,7 @@ const verificar = () => {
       axios({
         mehod: "GET",
         url: "http://127.0.0.1:3000/Login/" + IngUser,
-      })
-        .then(function (response) {
+      }).then(function (response) {
           if (response.data[0].username == IngUser) {
             if (response.data[0].password == IngPass) {
               if (response.data[0].rol == IngRol) {
@@ -42,8 +41,7 @@ const verificar = () => {
               }
             }
           }
-        })
-        .catch((err) => console.log("Error: ", err));
+        }).catch((err) => console.log("Error: ", err));
     } else {
       alert(mens);
     }

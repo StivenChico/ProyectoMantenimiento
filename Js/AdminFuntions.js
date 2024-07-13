@@ -1,7 +1,5 @@
 const tabla=document.querySelector("#tablaa tbody");
 
-//urll='http://bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com:3306/'
-
 const Init_Data=()=>{
     axios({
         method: 'GET',
