@@ -35,7 +35,7 @@ app.secret_key = "mysecretkey"
 def Table_Fisic_State():
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM client_status')
+        cur.execute('SELECT * FROM cliente')
         rv = cur.fetchall()
         cur.close()
         payload = []
