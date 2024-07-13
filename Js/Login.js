@@ -27,7 +27,7 @@ const verificar = () => {
     if (def) {
       axios({
         mehod: "GET",
-        url: "https://bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com/Login/" + IngUser,
+        url: "https://bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com:3000/Login/" + IngUser,
       })
         .then(function (response) {
           if (response.data[0].username == IngUser) {
