@@ -103,7 +103,7 @@ def registro():
             rol=request.json['rol']
 
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO estudiante (username,name,surname,email,password,cell,rol) VALUES (%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol))
+            cur.execute("INSERT INTO estudiante (username,name,surname,email,password,cell,rol) VALUES (%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,))
             mysql.connection.commit()
             return jsonify({"informacion":"Registro exitoso"})
     except Exception as e:
