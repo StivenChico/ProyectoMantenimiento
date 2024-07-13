@@ -81,7 +81,7 @@ def Login(username):
         payload = []
         content = {}
         for result in rv:
-            content= {"username":result[0],"name":result[1],"surname":result[2],"password":result[3],"rol":result[4]}
+            content= {"id":result[0],"username":result[1],"name":result[2],"surname":result[3],"password":result[4],"rol":result[5]}
             payload.append(content)
         return jsonify(payload)
     except Exception as e:
