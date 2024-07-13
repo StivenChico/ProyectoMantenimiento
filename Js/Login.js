@@ -34,6 +34,7 @@ const verificar = () => {
               if (response.data[0].rol == IngRol) {
                 location.href = path;
                 us={
+                  id:response.data[0].id,
                   name: response.data[0].name,
                   surname: response.data[0].surname,
                 }

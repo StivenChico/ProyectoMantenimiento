@@ -31,7 +31,7 @@ const Init_Data=()=>{
                 password.innerHTML = response.data[i].password;  
     
                 cell= nuevaFila.insertCell(6);
-                cell.innerHTML = response.data[i].cell;  /// tercer elemento
+                cell.innerHTML = response.data[i].cell; 
     
                 cell4  = nuevaFila.insertCell(7);
                 cell4.innerHTML =   `<a class="btn btn-warning mx-5 " onClick="onEdit(this)">Edit</a>

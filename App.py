@@ -31,7 +31,7 @@ app.secret_key = "mysecretkey"
 
 
 # ruta para consultar todos los registros
-@app.route('/Table_Fisic_State', methods=['GET'])
+@app.route('/TableFisic', methods=['GET'])
 def Table_Fisic_State():
     try:
         cur = mysql.connection.cursor()
@@ -41,7 +41,7 @@ def Table_Fisic_State():
         payload = []
         content = {}
         for result in rv:
-            content = {'id': result[0], 'Nombre': result[1], 'Apellido': result[2], 'Edad': result[3],'Altura': result[4],'peso': result[5],'Fr_Train': result[6]}
+            content = {'id': result[0], 'name': result[1], 'surname': result[2], 'age': result[3],'height': result[4],'weight': result[5],'Fr_Train': result[6]}
             payload.append(content)
             content = {}
         return jsonify(payload)
@@ -75,7 +75,7 @@ def TableUser():
 def Login(username):
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT username,name,surname,password,rol FROM usuarios WHERE username = %s', (username,))
+        cur.execute('SELECT id,username,name,surname,password,rol FROM usuarios WHERE username = %s', (username,))
         rv = cur.fetchall()
         cur.close()
         payload = []
