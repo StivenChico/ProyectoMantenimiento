@@ -1,7 +1,8 @@
 const tablae=document.querySelector("#tablab tbody");
 console.log(tablae)
+url="127.0.0.1:3000"
 const Init_Data=()=>{
-    fetch("https://raw.githubusercontent.com/StivenChico/ProyectoMantenimiento/main/json/inf_users.json")
+    fetch(url+"/getAll")
     .then(res=>res.json())
     .then(usuarios=>{
         for(i of usuarios){
@@ -15,6 +16,7 @@ const Init_Data=()=>{
             <td>${i.height}</td>
             <td>${i.weight}</td>
             <td>${i.Fr_Train}</td>
+            <td><input type="submit" class="btn btn-primary" value="editar"><input type="submit" class="btn btn-danger ml-5" value="eliminar"</td>
             `;
             tablae.appendChild(row)
             

@@ -1,27 +1,49 @@
 const tabla=document.querySelector("#tablaa tbody");
-console.log(tabla)
+
+//urll='http://bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com:3306/'
+
 const Init_Data=()=>{
+    axios({
+        method: 'GET',
+        url: 'http://127.0.0.1:3000/TableUser',
+        
+      }).then(function (response) {
+       
+        //console.log(response)
+            for (let i = 0; i < response.data.length; i++) {
+                              
+                let nuevaFila = tabla.insertRow(tabla.lenght);
+    
+                id = nuevaFila.insertCell(0);
+                id.innerHTML = response.data[i].id;
+    
+                username = nuevaFila.insertCell(1);
+                username.innerHTML = response.data[i].username;
+    
+                nameT = nuevaFila.insertCell(2);
+                nameT.innerHTML = response.data[i].name; 
+    
+                surname = nuevaFila.insertCell(3);
+                surname.innerHTML = response.data[i].surname;
+    
+                email = nuevaFila.insertCell(4);
+                email.innerHTML = response.data[i].email;
 
+                password = nuevaFila.insertCell(5);
+                password.innerHTML = response.data[i].password;  
+    
+                cell= nuevaFila.insertCell(6);
+                cell.innerHTML = response.data[i].cell;  /// tercer elemento
+    
+                cell4  = nuevaFila.insertCell(7);
+                cell4.innerHTML =   `<a class="btn btn-warning mx-5 " onClick="onEdit(this)">Edit</a>
+                    <a class= "btn btn-danger " onClick="onDelete(this)">Delete</a>`;
+                    
+            } 
+              
+      }).catch(err => console.log('Error: ', err))
 
-    fetch("https://raw.githubusercontent.com/StivenChico/ProyectoMantenimiento/main/json/Usuarios.json")
-    .then(res=>res.json())
-    .then(usuarios=>{
-        for(i of usuarios){
+    }
 
-            const row=document.createElement('tr');
-            row.innerHTML+=`
-            <td>${i.ID}</td>
-            <td>${i.username}</td>
-            <td>${i.name}</td>
-            <td>${i.surname}</td>
-            <td>${i.email}</td>
-            <td>${i.password}</td>
-            <td>${i.Cell}</td>
-            `;
-            tabla.appendChild(row)
-            
-        }
-    })
-}
 Init_Data();
  
