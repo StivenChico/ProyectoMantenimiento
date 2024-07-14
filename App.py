@@ -87,7 +87,25 @@ def Login(username):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-    
+
+
+#### ruta para verificar la existencia de un usuario ###
+@app.route('/VerifyUser/<username>',methods=['GET'])
+def VerifyUser(username):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT username FROM usuarios WHERE username = %s', (username,))
+        rv = cur.fetchall()
+        cur.close()
+        payload = []
+        content = {}
+        for result in rv:
+            content= {"username":result[0]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
 
 #### ruta para crear un registro########
 @app.route('/registro', methods=['POST'])
