@@ -99,7 +99,7 @@ const EmailVerify=(emailI)=>{
     return salida;
 }
 const PasswordVerify=(passwordI,passwordVerify)=>{
-    if(password.length>=8 && password.length<=12){
+    if(passwordI.length>=8 && passwordI.length<=12){
         tamaño=true
     }else{
         tamaño=false
