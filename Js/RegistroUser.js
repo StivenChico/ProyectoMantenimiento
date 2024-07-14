@@ -32,7 +32,8 @@ const Registrar=()=>{
         method:'GET',
         url:'http://127.0.0.1:3000/VerifyUser/'+usernameI
     }).then(function(response){
-        if(usernameI==response.data[0].username){
+        console.log(response.data.length)
+        if(response.data.length!=0){
             existe=true
         }
     }

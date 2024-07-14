@@ -123,6 +123,7 @@ def registro():
             cur = mysql.connection.cursor()
             cur.execute("INSERT INTO estudiante (username,name,surname,email,password,cell,rol) VALUES (%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,))
             mysql.connection.commit()
+            cur.close()
             return jsonify({"informacion":"Registro exitoso"})
     except Exception as e:
         print(e)
@@ -145,6 +146,7 @@ def update_contact(id):
         WHERE id = %s
         """, (fullname, email, phone, id))
         mysql.connection.commit()
+        cur.close()
         return jsonify({"informacion":"Registro actualizado"})
     except Exception as e:
         print(e)
