@@ -39,7 +39,7 @@ const Registrar=()=>{
                 rol:'Usuario'
             }
         }).then(function(response){
-            alert("Registro realizado correctamente");
+            alert(response.data[0].informacion);
             window.location.href="./html/Login";
         })
     }
