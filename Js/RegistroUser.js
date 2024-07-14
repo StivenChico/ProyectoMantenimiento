@@ -1,5 +1,5 @@
 const Registrar=()=>{
-    usernameI=document.getElementById("InputUserName").value
+    usernameI=document.getElementById("inputUserName").value
     nameI=document.getElementById("inputName").value
     surnameI=document.getElementById("inputLastName").value
     emailI=document.getElementById("InputEmail").value
