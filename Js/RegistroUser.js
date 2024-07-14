@@ -7,7 +7,7 @@ const Registrar=()=>{
     passwordI=document.getElementById("inputPassword").value
     passwordConfirm=document.getElementById("inputPassword2").value
     CellI=document.getElementById("inputCell").value
-    console.log(usernameI,nameI,surnameI,emailI,passwordI,cellI)
+    console.log(usernameI,nameI,surnameI,emailI,passwordI,CellI)
     //Verificaciones de los datos ingresados
     var listbool=[false,false,false,false];
     mensj=""
