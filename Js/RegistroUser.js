@@ -9,7 +9,7 @@ const Registrar=()=>{
     CellI=document.getElementById("inputCell").value
     console.log(usernameI,nameI,surnameI,emailI,passwordI,cellI)
     //Verificaciones de los datos ingresados
-    var listbool=[false,false,false];
+    var listbool=[false,false,false,false];
     mensj=""
     //Nombre y apellido solo con letras
     listbool[0]=NombreLetras(nameI)
