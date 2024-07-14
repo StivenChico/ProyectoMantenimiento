@@ -6,7 +6,7 @@ const Registrar=()=>{
     passwordI=document.getElementById("InputPassword").value
     passwordVerify=document.getElementById("InputPassword2")
     CellI=document.getElementById("InputCell").value
-
+    console.log(usernameI,nameI,surnameI,emailI,passwordI,cellI)
     //Verificaciones de los datos ingresados
     var listbool=[false,false,false];
     mensj=""
