@@ -2,10 +2,10 @@ const Registrar=()=>{
     usernameI=document.getElementById("inputUserName").value
     nameI=document.getElementById("inputName").value
     surnameI=document.getElementById("inputLastName").value
-    emailI=document.getElementById("InputEmail").value
-    passwordI=document.getElementById("InputPassword").value
-    passwordVerify=document.getElementById("InputPassword2")
-    CellI=document.getElementById("InputCell").value
+    emailI=document.getElementById("inputEmail").value
+    passwordI=document.getElementById("inputPassword").value
+    passwordVerify=document.getElementById("inputPassword2")
+    CellI=document.getElementById("inputCell").value
     console.log(usernameI,nameI,surnameI,emailI,passwordI,cellI)
     //Verificaciones de los datos ingresados
     var listbool=[false,false,false];
