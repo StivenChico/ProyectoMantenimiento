@@ -1,4 +1,5 @@
-var mensj="";
+mensj="";
+n=10;
 const Registrar=()=>{
     usernameI=document.getElementById("inputUserName").value
     nameI=document.getElementById("inputName").value
@@ -8,56 +9,64 @@ const Registrar=()=>{
     passwordConfirm=document.getElementById("inputPassword2").value
     CellI=document.getElementById("inputCell").value
     console.log(usernameI,nameI,surnameI,emailI,passwordI,CellI)
-    //Verificaciones de los datos ingresados
-    var listbool=[false,false,false,false];
-    mensj=""
-    //Nombre y apellido solo con letras
-    listbool[0]=NombreLetras(nameI)
-    listbool[1]=ApellidoLetras(surnameI)
-    //email que contenga @ y .
-    listbool[2]=EmailVerify(emailI)
-    listbool[3]=PasswordVerify(passwordI,passwordConfirm)
-    //todas las verificaciones deben ser TRUE para registrar
-    permite=true;
-    for(var i=0;i<4;i++){
-        permite=permite && listbool[i];
-    }
-    //si alguna es false "permite será false, y se enviara el mensaje"
-    if(permite==false){
-        alert(mensj)
-    }
-    existe=false
-    //Verificar si existe el usuario ingresado
-    axios({
-        method:'GET',
-        url:'http://127.0.0.1:3000/VerifyUser/'+usernameI
-    }).then(function(response){
-        console.log(response.data.length)
-        if(response.data.length!=0){
-            existe=true
+    //evitar campos vacios
+        if(usernameI!="" || nameI!="" || surnameI!="" || emailI!="" || passwordI!="" || CellI!=""){
+        //Verificaciones de los datos ingresados
+        var listbool=[false,false,false,false];
+        mensj=""
+        //Nombre y apellido solo con letras
+        listbool[0]=NombreLetras(nameI)
+        listbool[1]=ApellidoLetras(surnameI)
+        //email que contenga @ y .
+        listbool[2]=EmailVerify(emailI)
+        listbool[3]=PasswordVerify(passwordI,passwordConfirm)
+        //todas las verificaciones deben ser TRUE para registrar
+        permite=true;
+        for(var i=0;i<4;i++){
+            permite=permite && listbool[i];
         }
-    }
-)
-    //Si no existe procede con el registro
-    if(existe==false && permite==true){
+        console.log("permite = "+permite)
+        
+        //Verificar si existe el usuario ingresado
         axios({
-            method:'POST',
-            url:'https://127.0.0.1:3000/registro',
-            data:{
-                username:usernameI,
-                name:nameI,
-                surname:surnameI,
-                email:emailI,
-                password:passwordI,
-                cell:cellI,
-                rol:'Usuario'
-            }
+            method:'GET',
+            url:'http://127.0.0.1:3000/VerifyUser/'+usernameI
         }).then(function(response){
-            alert(response.data[0].informacion);
-            window.location.href="./html/Login";
-        })
+            n=response.data.length
+            console.log(n)
+            
+        }
+    ).catch(err => console.log('Error: ', err))
+    existe=n!=0?true:false;
+        //Si no existe procede con el registro
+    setTimeout(()=>{
+        if(existe==false ){
+            if(permite==true){
+                axios({
+                    method:'POST',
+                    url:'http://127.0.0.1:3000/registro',
+                    data:{
+                        username:usernameI,
+                        name:nameI,
+                        surname:surnameI,
+                        email:emailI,
+                        password:passwordI,
+                        cell:CellI,
+                        rol:'Usuario'
+                    }
+                }).then(function(response){
+                    alert("Registro exitoso");
+                    location.href="./Login.html";
+                })
+            }else{
+            //si alguna es false "permite será false, y se enviara el mensaje"
+                alert(mensj)
+            }
+        }else{
+            alert("El usuario Ingresado ya existe,Por favor intenta con otro")
+        }},5000)
     }else{
-        alert("El usuario Ingresado ya existe,Por favor intenta con otro")
+        alert("Verifique que no existan campos vacios!")
     }
 }
 
@@ -99,6 +108,8 @@ const EmailVerify=(emailI)=>{
     return salida;
 }
 const PasswordVerify=(passwordI,passwordVerify)=>{
+    tamaño=true
+    verifypass=true
     if(passwordI.length>=8 && passwordI.length<=12){
         tamaño=true
     }else{
@@ -111,4 +122,5 @@ const PasswordVerify=(passwordI,passwordVerify)=>{
         verifypass=false;
         mensj+="Las Contraseñas ingresadas no son iguales\n"
     }
+    return tamaño && verifypass;
 }
