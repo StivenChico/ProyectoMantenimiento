@@ -40,93 +40,58 @@
         </div>
       </nav>
       <!--contenedor de todo-->
-    <div class="conten">
-        <h1>Bienvenido </h1>
-        <div class="fisic_grafic"><!-- aqui tenemos pensado poner un grafico que muestre la actividad fisica semanal, sabemos que se extrayendo los datos de una base de datos pero aun no tenemos la base de datos hecha-->
-            <h3>aqui iria un grafico de la actividad fisica semanal del cliente</h3>
-        </div>
-        <div id="Rutina">
-            <h2>Rutina del Día</h2>
-            <div id="RutinaUser"></div>
-        </div>
-        <div class="rut_aliment">
-            <div class="rutina">
-                <h4>HORAIRO DE RUTINA </h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Horas</th>
-                            <th>Domingo</th>
-                            <th>Lunes</th>
-                            <th>Martes</th>
-                            <th>Miercoles</th>
-                            <th>Jueves</th>
-                            <th>Viernes</th>
-                            <th>Sabado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>6:00-7:00Am</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>7:00-8:00Am</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>8:00-9:00Am</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>9:00-10:00Am</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>10:00-11:00Am</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>11:00-12:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>1:00-2:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr><th>2:00-3:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>3:00-4:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>4:00-5:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>5:00-6:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>6:00-7:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <th>7:00-8:00Pm</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div id="Rutina" class="card">
+                    <h4 class="card-header">Diagnostico</h4>
+                    <div class="card-body">
+                        <div id="RutinaUser" >
+                            <!--DIAGNOSTICO-->
+                        </div>
+                        <!--NOTA-->
+                        <div class="form-floating">
+                            <textarea id="txtnota" class="form-control"></textarea>
+                            <label for="txtnota">queja u opinion:</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="alimentacion">
-                <h4>MENÚ SEMANAL</h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Comida</th>
-                            <th>Cena</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><th>Lunes</th><td></td><td></td></tr>
-                        <tr><th>Martes</th><td></td><td></td></tr>
-                        <tr><th>Miercoels</th><td></td><td></td></tr>
-                        <tr><th>Jueves</th><td></td><td></td></tr>
-                        <tr><th>Viernes</th><td></td><td></td></tr>
-                        <tr><th>Sábbado</th><td></td><td></td></tr>
-                        <tr><th>Domingo</th><td></td><td></td></tr>
-                    </tbody>
-                </table>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-header bg-success">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                <h4 id="nombrerutina" class="text-center text-white"><!--nombre de la rutina--></h4>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <h4 id="nivelR" class="text-center text-white">Nivel: <!--nivel de la rutina--></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <label for="descripR" class="form-label"><b>Descripción</b></label>
+                            <!--descripción de la rutina-->
+                            <textarea name="" id="descripR" class="form-control"></textarea required>                               
+                        </div>
+                        <div class="table-responsive">
+                            <table id="tablaRcliente" class=" table table-striped " style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th><b>Ejercicios</b> </th>
+                                        <th><b>Duración</b></th>
+                                        <th><b>Sesiones</b></th>
+                                        <th><b>Repeticiones</b></th>
+                                        <th><b>Descanso</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                           </table>
+                       </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
