@@ -49,12 +49,13 @@ const Registrar=()=>{
                         email:emailI,
                         password:passwordI,
                         cell:CellI,
-                        rol:2
+                        rol:2,
+                        status:1
                     }
                 }).then(function(response){
                     alert("Registro exitoso");
                     location.href="./Login.html";
-                })
+                }).catch(err => console.log('Error: ', err))
             }else{
             //si alguna es false "permite será false, y se enviara el mensaje"
                 alert("Mensaje"+mensj)
