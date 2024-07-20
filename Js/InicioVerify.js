@@ -5,7 +5,10 @@ const InitVerify=()=>{
         alert("Primero debe iniciar sección")
         location.href="../Index.html"
     }else{
+document.getElementById("NombreUser")!=null
+        if(document.getElementById("NombreUser")!=null){
         document.getElementById("NombreUser").innerHTML+= Usuario.name+" "+ Usuario.surname;
+    }
     }
 }
 const cerrarSesion=()=>{

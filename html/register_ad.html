@@ -12,22 +12,22 @@
     </head>
 <body>
      <!--formulario de registro-->
-    <div class="container mt-5">
+    <div class="container col-lg-7 mt-5">
         <form class="row g-3">
             <div class="col-12">
                 <center class="h1">REGISTRO</center>
             </div>
             <div class="col-md-6 form-floating mb-3">
-              <input type="text" class="form-control" id="inputNames" placeholder="Nombres">
-              <label for="inputName" class="text-secondary">Nombres</label>
+              <input type="text" class="form-control" id="inputName" placeholder="Nombres">
+              <label for="inputName" class="text-secondary">Nombre</label>
             </div>
             <div class="col-md-6 form-floating mb-3">
               <input type="text" class="form-control" id="inputLastName" placeholder="Apellidos">
-              <label for="inputLastName" class="text-secondary">Apellidos</label>
+              <label for="inputLastName" class="text-secondary">Apellido</label>
             </div>
             <div class="col-md-6 form-floating mb-3">
                 <input type="text" class="form-control" id="inputUserName" placeholder="Usuario">
-                <label for="inputUserName" class="text-secondary">Nombre de usuario</label>
+                <label for="inputUserName" class="text-secondary">Usuario</label>
               </div>
               <div class="col-md-6 form-floating mb-3">
                 <input type="email" class="form-control" id="inputEmail" placeholder="Correo">
@@ -39,11 +39,24 @@
             </div>
             <div class="col-md-6 form-floating mb-3">
               <input type="password" class="form-control" id="inputPassword2" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
-              <label for="inputPassword2" class="text-secondary">Confirme su contraseña</label>
+              <label for="inputPassword2" class="text-secondary">Confirma su contraseña</label>
             </div>
+            <div class="col-md-6 form-floating mb-3">
+              <input type="number" class="form-control" id="inputCell" placeholder="Ingrese su contraseña" maxlength="10" minlength="6">
+              <label for="inputCell" class="text-secondary">Celular</label>
+          </div>
+          <div class="col-md-6 form-floating mb-3">
+              <select class="form-select"  id="SelecRol">
+                  <option value="0" selected></option>
+                  <option value="1">Administrador</option>
+                  <option value="2">Usuario</option>
+                  <option value="3">Profesional</option>
+              </select>
+              <label for="SelecRol">rol</label>
+          </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">
-                    <a class="text-decoration-none text-white" href="###">Crear</a>
+                    <a class="text-decoration-none text-white" onclick="Registrar()" href="#">Crear</a>
                 </button>
                 <button type="submit" class="btn btn-primary">
                     <a class="text-decoration-none text-white" href="admin.html">Volver</a>
@@ -53,6 +66,6 @@
     </div>
     <script src="../js/InicioVerify.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <script src="../Js/RegistroAdmin.js"></script>
 </body>
 </html>

@@ -15,26 +15,30 @@ const Init_Data=()=>{
                 id = nuevaFila.insertCell(0);
                 id.innerHTML = response.data[i].id;
     
-                username = nuevaFila.insertCell(1);
-                username.innerHTML = response.data[i].name;
+                namei = nuevaFila.insertCell(1);
+                namei.innerHTML = response.data[i].name;
     
-                nameT = nuevaFila.insertCell(2);
-                nameT.innerHTML = response.data[i].surname; 
+                surname = nuevaFila.insertCell(2);
+                surname.innerHTML = response.data[i].surname; 
     
-                surname = nuevaFila.insertCell(3);
-                surname.innerHTML = response.data[i].age;
-    
-                email = nuevaFila.insertCell(4);
-                email.innerHTML = response.data[i].height;
+                age = nuevaFila.insertCell(3);
+                age.innerHTML = response.data[i].age;
 
-                password = nuevaFila.insertCell(5);
-                password.innerHTML = response.data[i].weight;  
+                gender = nuevaFila.insertCell(4);
+                gender.innerHTML = response.data[i].gender;
     
-                cell= nuevaFila.insertCell(6);
-                cell.innerHTML = response.data[i].Fr_Train; 
+                height= nuevaFila.insertCell(5);
+                height.innerHTML = response.data[i].height;
+
+                weight = nuevaFila.insertCell(5);
+                weight.innerHTML = response.data[i].weight;  
+    
+                Fr_Train= nuevaFila.insertCell(6);
+                Fr_Train.innerHTML = response.data[i].Fr_Train; 
     
                 cell4  = nuevaFila.insertCell(7);
-                cell4.innerHTML =   `<a class="btn btn-warning mx-5 " onClick="onEdit(this)">Edit</a>
+                cell4.innerHTML =   `<a class="btn btn-success mx-5 " onClick="onEdit(this)">Evaluar</a>
+                <a class="btn btn-warning mx-5 " onClick="onEdit(this)">Edit</a>
                     <a class= "btn btn-danger " onClick="onDelete(this)">Delete</a>`;
                     
             } 

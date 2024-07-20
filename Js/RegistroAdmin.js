@@ -1,16 +1,17 @@
 mensj="";
 
 const Registrar=()=>{
-    usernameI=document.getElementById("inputUserName").value
-    nameI=document.getElementById("inputName").value
-    surnameI=document.getElementById("inputLastName").value
-    emailI=document.getElementById("inputEmail").value
-    passwordI=document.getElementById("inputPassword").value
-    passwordConfirm=document.getElementById("inputPassword2").value
-    CellI=document.getElementById("inputCell").value
-    console.log(usernameI,nameI,surnameI,emailI,passwordI,CellI)
+    usernameI=document.getElementById("inputUserName").value;
+    nameI=document.getElementById("inputName").value;
+    surnameI=document.getElementById("inputLastName").value;
+    emailI=document.getElementById("inputEmail").value;
+    passwordI=document.getElementById("inputPassword").value;
+    passwordConfirm=document.getElementById("inputPassword2").value;
+    CellI=document.getElementById("inputCell").value;
+    rolI=document.getElementById("SelecRol").value;
+    console.log(usernameI,nameI,surnameI,emailI,passwordI,CellI,rolI);
     //evitar campos vacios
-        if(usernameI!="" || nameI!="" || surnameI!="" || emailI!="" || passwordI!="" || CellI!=""){
+        if(usernameI!="" || nameI!="" || surnameI!="" || emailI!="" || passwordI!="" || CellI!="" || rolI!=""){
         //Verificaciones de los datos ingresados
         var listbool=[false,false,false,false];
         console.log(listbool)
@@ -49,15 +50,18 @@ const Registrar=()=>{
                         email:emailI,
                         password:passwordI,
                         cell:CellI,
-                        rol:2
+                        rol:rolI
                     }
                 }).then(function(response){
-                    alert("Registro exitoso");
-                    location.href="./Login.html";
+                    alert(response.data.informacion);
+                    console.log(response.data.informacion)
+                    
                 })
             }else{
             //si alguna es false "permite será false, y se enviara el mensaje"
                 alert("Mensaje"+mensj)
+                limpiar()
+                
             }
         }else{
             alert("El usuario Ingresado ya existe,Por favor intenta con otro")
@@ -124,4 +128,13 @@ const PasswordVerify=(passwordI,passwordVerify)=>{
         mensj+="Las Contraseñas ingresadas no son iguales\n"
     }
     return tamaño && verifypass;
+}
+const limpiar=()=>{
+    document.getElementById("inputUserName").value="";
+    document.getElementById("inputName").value="";
+    document.getElementById("inputLastName").value="";
+    document.getElementById("inputEmail").value="";
+    document.getElementById("inputPassword").value="";
+    document.getElementById("inputPassword2").value="";
+    document.getElementById("inputCell").value="";
 }
