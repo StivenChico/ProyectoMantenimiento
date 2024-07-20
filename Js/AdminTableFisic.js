@@ -37,9 +37,7 @@ const Init_Data=()=>{
                 Fr_Train.innerHTML = response.data[i].Fr_Train; 
     
                 cell4  = nuevaFila.insertCell(7);
-                cell4.innerHTML =   `<a class="btn btn-success mx-5 " onClick="onEdit(this)">Evaluar</a>
-                <a class="btn btn-warning mx-5 " onClick="onEdit(this)">Edit</a>
-                    <a class= "btn btn-danger " onClick="onDelete(this)">Delete</a>`;
+                cell4.innerHTML =   `<a class="btn btn-primary mx-5 " onClick="onEdit(this)">Evaluar</a>`;
                     
             } 
               
