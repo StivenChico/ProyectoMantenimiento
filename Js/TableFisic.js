@@ -1,6 +1,7 @@
 const tabla=document.querySelector("#tablab tbody");
 
 const Init_Data=()=>{
+    botones=`<a class="btn btn-success mx-5 ">Evaluar</a>`
     axios({
         method: 'GET',
         url: 'http://127.0.0.1:3000/TableFisic',
@@ -30,15 +31,14 @@ const Init_Data=()=>{
                 height= nuevaFila.insertCell(5);
                 height.innerHTML = response.data[i].height;
 
-                weight = nuevaFila.insertCell(5);
+                weight = nuevaFila.insertCell(6);
                 weight.innerHTML = response.data[i].weight;  
     
-                Fr_Train= nuevaFila.insertCell(6);
+                Fr_Train= nuevaFila.insertCell(7);
                 Fr_Train.innerHTML = response.data[i].Fr_Train; 
     
-                cell4  = nuevaFila.insertCell(7);
-                cell4.innerHTML =   `<a class="btn btn-primary mx-5 " onClick="onEdit(this)">Evaluar</a>`;
-                    
+                cell4  = nuevaFila.insertCell(8);
+                cell4.innerHTML =botones;  
             } 
               
       }).catch(err => console.log('Error: ', err))

@@ -49,6 +49,37 @@ def Table_Fisic_State():
         print(e)
         return jsonify({"informacion":e})
 
+# ruta para saber informacion de un usuario con el id
+@app.route('/FisicById/<id>',methods=['GET'])
+def FisicById(id):
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute('SELECT * FROM tablaetrainer WHERE id = %s', (id,))
+        rv = cur.fetchone()
+        cur.close()
+        content = {'id': rv[0], 'name': rv[1], 'surname': rv[2], 'age': rv[3],'gender': rv[4],'height': rv[5],'weight': rv[6],'Fr_Train':rv[7],'restrictions':rv[8],'duration':rv[9],'goal':rv[10]}
+        return jsonify(content)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+    
+
+@app.route('/addDiagnostico', methods=['POST'])
+def addDiagnostico():
+    try:
+        id_cliente=request.json['id_cliente']
+        id_prof=request.json['id_prof']
+        fecha=request.json['fecha']
+        diagnostico=request.json['diagnostico']
+
+        cur=mysql.connection.cursor()
+        cur.execute("INSERT INTO evaluation (id_cliente, id_prof, fech_evaluation, diagnostico) VALUES (%s,%s,%s,%s)", (id_cliente,id_prof,fecha,diagnostico))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify({"informacion":"Registro exitoso"})
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
 
 @app.route('/TableUser', methods=['GET'])
 def TableUser():
@@ -75,15 +106,11 @@ def TableUser():
 def Login(username):
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT id,username,name,surname,password,rol FROM usuarios WHERE username = %s', (username,))
-        rv = cur.fetchall()
+        cur.execute('SELECT id,username,name,surname,password,rol,status FROM usuarios WHERE username = %s', (username,))
+        rv = cur.fetchone()
         cur.close()
-        payload = []
-        content = {}
-        for result in rv:
-            content= {"id":result[0],"username":result[1],"name":result[2],"surname":result[3],"password":result[4],"rol":result[5]}
-            payload.append(content)
-        return jsonify(payload)
+        content= {"id":rv[0],"username":rv[1],"name":rv[2],"surname":rv[3],"password":rv[4],"rol":rv[5],"status":rv[6]}
+        return jsonify(content)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
@@ -119,8 +146,9 @@ def registro():
             password = request.json['password']
             cell= request.json['cell']
             rol=request.json['rol']
+            status=request.json['status']
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO usuarios (username,name,surname,email,password,cell,rol) VALUES (%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,))
+            cur.execute("INSERT INTO usuarios (username,name,surname,email,password,cell,rol,status) VALUES (%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,status))
             mysql.connection.commit()
             cur.close()
             return jsonify({"informacion":"Registro exitoso"})
