@@ -31,6 +31,7 @@ tabla.addEventListener('click',function(e){
 const CargarInfo=()=>{
  
     let contenido=JSON.parse(localStorage.getItem('datos'))
+    if(localStorage.getItem('datos')!=null){
     console.log(contenido)
     document.getElementById('inputnombre').value= contenido.name
     document.getElementById('inputApellido').value= contenido.surname
@@ -42,6 +43,10 @@ const CargarInfo=()=>{
     document.getElementById('inputDuration_sesion').value= contenido.duration
     document.getElementById('inputObjetivo').value= contenido.goal
     document.getElementById('inputRestricción_alimenticia').value= contenido.restrictions
+    }else{
+        alert('No hay datos seleccionados')
+        window.location.href = 'FisicUsers.html';
+    }
 }
 
 const EnvioDiagnostico=()=>{
@@ -64,6 +69,11 @@ const EnvioDiagnostico=()=>{
         }
         }).then(function(response){
             alert(response.data.informacion)
+            localStorage.removeItem('datos')
             window.location.href = 'FisicUsers.html';
         })
+}
+const volver=()=>{
+    localStorage.removeItem('datos')
+    window.location.href = 'FisicUsers.html';
 }

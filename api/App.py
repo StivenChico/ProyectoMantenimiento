@@ -81,6 +81,21 @@ def addDiagnostico():
         print(e)
         return jsonify({"informacion":e})
 
+@app.route('/GetDiagnostico/<id>',methods=['GET'])
+def GetDiagnostico(id):
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute('SELECT id_cliente,id_prof,fech_evaluation,diagnostico FROM evaluation WHERE id_cliente = %s', (id,))
+        rv = cur.fetchone()
+        print(rv)
+        cur.close()
+        content = {'id_cliente': rv[0], 'id_prof':rv[1], 'fech_evaluation': rv[2], 'diagnostico': rv[3]}
+        return jsonify(content)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+
+
 @app.route('/TableUser', methods=['GET'])
 def TableUser():
     try:
