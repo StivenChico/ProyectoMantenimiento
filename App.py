@@ -20,7 +20,7 @@ mysql = MySQL(app)
 app.config['MYSQL_HOST'] = 'localhost' 
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'prueba12'
+app.config['MYSQL_DB'] = 'prueba1'
 mysql = MySQL(app)
 # settings A partir de ese momento Flask utilizará esta clave para poder cifrar la información de la cookie
 app.secret_key = "mysecretkey"
@@ -128,7 +128,27 @@ def registro():
         print(e)
         return jsonify({"informacion":e})
 
-
+@app.route("/regisFisicState",methods=['POST'])
+def regisFisicState():
+    try:
+        if request.method=='POST':
+            id=request.json['id']
+            age=request.json['age']
+            gender=request.json['gender']
+            height=request.json['height']
+            weight=request.json['weight']
+            Fr_train=request.json['Fr_train']
+            duration=request.json['duration']
+            goal=request.json['goal']
+            restrictions=request.json['restrictions']
+            cur=mysql.connection.cursor()
+            cur.execute("INSERT INTO cliente (id_usuario,age,gender,height,weight,fr_train,duration_exerss,goal,restrictions) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",(id,age,gender,height,weight,Fr_train,duration,goal,restrictions))
+            mysql.connection.commit()
+            cur.close()
+            return jsonify({"informacion":"Registro de estado fisico Exitoso"})
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
 ######### ruta para actualizar################
 @app.route('/update/<id>', methods=['PUT'])
 def update_contact(id):

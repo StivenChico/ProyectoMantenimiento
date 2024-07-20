@@ -11,7 +11,7 @@ const Registrar=()=>{
     rolI=document.getElementById("SelecRol").value;
     console.log(usernameI,nameI,surnameI,emailI,passwordI,CellI,rolI);
     //evitar campos vacios
-        if(usernameI!="" || nameI!="" || surnameI!="" || emailI!="" || passwordI!="" || CellI!="" || rolI!=""){
+        if(usernameI!="" || nameI!="" || surnameI!="" || emailI!="" || passwordI!="" || CellI!="" || rolI!="0"){
         //Verificaciones de los datos ingresados
         var listbool=[false,false,false,false];
         console.log(listbool)
@@ -50,13 +50,14 @@ const Registrar=()=>{
                         email:emailI,
                         password:passwordI,
                         cell:CellI,
-                        rol:rolI
+                        rol:rolI,
+                        status:1
                     }
                 }).then(function(response){
                     alert(response.data.informacion);
                     console.log(response.data.informacion)
                     
-                })
+                }).catch(err => console.log('Error: ', err))
             }else{
             //si alguna es false "permite será false, y se enviara el mensaje"
                 alert("Mensaje"+mensj)
