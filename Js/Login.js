@@ -10,7 +10,7 @@ const verificar = () => {
     let IngRol = document.getElementById("rol").value;
     console.log(IngRol);
     let path =
-      IngRol == "Usuario" ? "../html/fit_intUser.html" : "../html/admin.html";
+      IngRol == "2" ? "../html/fit_intUser.html" : "../html/admin.html";
     Listbool = [true, true, true];
     let mens = "";
     if (IngPass.length >= 8) {
@@ -29,10 +29,11 @@ const verificar = () => {
         mehod: "GET",
         url: "http://127.0.0.1:3000/Login/" + IngUser,
       }).then(function (response) {
+        console.log(response.data)
           if (response.data[0].username == IngUser) {
             if (response.data[0].password == IngPass) {
               if (response.data[0].rol == IngRol) {
-                location.href = path;
+                window.location.href = path;
                 us={
                   id:response.data[0].id,
                   name: response.data[0].name,
