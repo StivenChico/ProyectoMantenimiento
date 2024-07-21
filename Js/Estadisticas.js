@@ -1,8 +1,57 @@
+const grafica1 = document.getElementById('Grafica1').getContext('2d');
 const grafica2=document.getElementById("Grafica2");
 const grafica3=document.getElementById("Grafica3");
 const grafica4=document.getElementById("Grafica4");
+const grafica5=document.getElementById("Grafica5");
 const Init_Graficas=()=>{
-    //carga del grafico 2 con get en la bd
+
+    //peticion para grafica 1 sobre el IMC
+axios({
+    method: 'GET',
+    url: 'http://127.0.0.1:3000/GetGrafica1',
+    }).then(function(response){
+        let arreglorecibe=response.data;
+        counts=[0,0,0,0]
+        for(i=0;i<arreglorecibe.length;i++){
+            let weight=parseFloat(arreglorecibe[i].weight);
+            let height=parseFloat(arreglorecibe[i].height);
+            let IMC=weight/(height*height);
+            if(IMC<18.5){
+                counts[0]++;
+            }else if(IMC>=18.5 && IMC<24.9){
+                counts[1]++;
+            } else if(IMC>=25 && IMC<30){
+                counts[2]++;
+            } else if(IMC>=30){
+                counts[3]++;
+            }
+        }
+
+
+
+    var chart1=new Chart(grafica1, {
+        type:'pie',
+        data:{
+            labels: [ 'Bajo peso', 'Peso normal', 'Sobrepeso', 'Obesidad'],
+            datasets:[{
+                label:"Grafica de IMC",
+                data:counts,
+                backgroundColor:['rgba(92, 186, 224 ,0.8)',
+                                 'rgba(157, 178, 39, 0.8)',
+                                 'rgba(217, 115, 24, 0.8)',
+                                 'rgba(198, 62, 47, 0.8)'],
+                borderColor:['rgba(92, 186, 224 ,1)',
+                             'rgba(157, 178, 39, 1)',
+                             'rgba(217, 115, 24, 1)',
+                             'rgba(198, 62, 47, 1)'],
+                borderWidth:1
+            }]
+        }
+    })
+    }).catch(err => console.log('Error: ', err))
+
+
+    //carga del grafico 2 con get (grafica sobre el genero)
     axios({
         method: 'GET',
         url: 'http://127.0.0.1:3000/GetGrafica2',
@@ -22,7 +71,7 @@ const Init_Graficas=()=>{
     });
     }).catch(err => console.log('Error: ', err))
 
-    //carga de grafica 3 con un get 
+    //carga de grafica 3 con un get(grafica sobre objetivos) 
     axios({
         method:'GET',
         url:'http://127.0.0.1:3000/GetGrafica3'
@@ -50,7 +99,7 @@ const Init_Graficas=()=>{
 }).catch(err => console.log('Error: ', err))
 
 
-//Peticon a la api de datos para la grafica de roles
+//Peticon a la api de datos para la grafica 4 de roles
 axios({
     method: 'GET',
     url: 'http://127.0.0.1:3000/GetGrafica4',
@@ -80,31 +129,19 @@ axios({
                 borderColor:['rgba(75, 192, 192, 1)'],
                 borderWidth:1
             }]
+        },
+        options:{
+            scales:{
+                y:{
+                    beginAtZero:true
+                }
+            }
         }
     })
 })
 
-
-
-//peticion para grafica 5 sobre el IMC
-axios({
-    method: 'GET',
-    url: 'http://127.0.0.1:3000/GetGrafica5',
-    }).then(function(response){
-    
-    
-    
-    
-    })
-
-
-
-
-
-
-}
-const renderModelsChart = () => {
-    axios.get('http://127.0.0.1:3000/getGrafica1')
+//Grafica 5 sobre rango de edad
+axios.get('http://127.0.0.1:3000/getGrafica5')
 
       .then(function(response) {
         
@@ -121,13 +158,13 @@ const renderModelsChart = () => {
         // Rango de edades
         //const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
         //console.log(response.data)
-        const ageCtx = document.getElementById('Grafica1').getContext('2d');
-        const ageChart = new Chart(ageCtx, {
+        
+        const ageChart = new Chart(grafica5, {
           type: 'bar',
           data: {
             labels: nombres, // etiquetas de los rangos de edad
             datasets: [{
-              label: 'Número de Personas',
+              label: 'Rangos de edad',
               data:data, // datos de la cantidad de personas en cada rango de edad
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
@@ -144,6 +181,18 @@ const renderModelsChart = () => {
         });
       })
       .catch(err => console.log('error:', err));
+
+
+
+
+
+
+
+
+}
+
+const renderModelsChart = () => {
+    
   }
 
 

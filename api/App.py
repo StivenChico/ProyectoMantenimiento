@@ -256,35 +256,26 @@ def delete_contact(id):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-####Peticion de datos para la grafica 1####
-@app.route('/getGrafica1',methods=['GET'])
-def getGrafica1():
+
+###Peticion de datos para la grafica 1####
+@app.route('/GetGrafica1',methods=['GET'])
+def GetGrafica5():
     try:
         cur = mysql.connection.cursor()
-        cur.execute('''SELECT 
-                CASE 
-                    WHEN age BETWEEN 0 AND 17 THEN '0-17'
-                    WHEN age BETWEEN 18 AND 25 THEN '18-25'
-                    WHEN age BETWEEN 26 AND 35 THEN '26-35'
-                    WHEN age BETWEEN 36 AND 45 THEN '36-45'
-                    WHEN age BETWEEN 46 AND 55 THEN '46-55'
-                    WHEN age BETWEEN 56 AND 65 THEN '56-65'
-                    WHEN age > 65 THEN '66+'
-                    ELSE 'Unknown'
-                END AS rango_edad,
-                COUNT(*) AS numero_de_personas
-            FROM cliente
-            GROUP BY rango_edad''')
+        cur.execute('''SELECT cliente.weight,cliente.height
+            FROM cliente join usuarios ON (cliente.id_usuario=usuarios.id) where usuarios.status=1''')
         rv = cur.fetchall()
         cur.close()
         payload = []
         content = {}
         for result in rv:
-            content = {'rango_edad': result[0], 'total': result[1]}
+            content = {'weight': result[0], 'height': result[1]}
             payload.append(content)
         return jsonify(payload)
     except Exception as e:
-        return jsonify({"error":str(e)})
+        print(e)
+        return jsonify({"informacion":e})
+
 
 ####Peticion de datos para la grafica 2####
 
@@ -341,6 +332,37 @@ def GetGrafica4():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
+####Peticion de datos para la grafica 5####
+@app.route('/getGrafica5',methods=['GET'])
+def getGrafica1():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('''SELECT 
+                CASE 
+                    WHEN age BETWEEN 0 AND 17 THEN '0-17'
+                    WHEN age BETWEEN 18 AND 25 THEN '18-25'
+                    WHEN age BETWEEN 26 AND 35 THEN '26-35'
+                    WHEN age BETWEEN 36 AND 45 THEN '36-45'
+                    WHEN age BETWEEN 46 AND 55 THEN '46-55'
+                    WHEN age BETWEEN 56 AND 65 THEN '56-65'
+                    WHEN age > 65 THEN '66+'
+                    ELSE 'Unknown'
+                END AS rango_edad,
+                COUNT(*) AS numero_de_personas
+            FROM cliente
+            GROUP BY rango_edad''')
+        rv = cur.fetchall()
+        cur.close()
+        payload = []
+        content = {}
+        for result in rv:
+            content = {'rango_edad': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
+
 
 # starting the app
 if __name__ == "__main__":
