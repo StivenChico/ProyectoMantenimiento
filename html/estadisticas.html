@@ -10,6 +10,7 @@
     <!--css-->
     <!--<link rel="stylesheet" href="css/Fijos.css">
     <link rel="stylesheet" href="../css/IndexCss.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.js"></script>
 </head>
 <body>
     <!--inicio de sesion del administrador,-->
@@ -41,6 +42,19 @@
           </div>
         </div>
       </nav>
+      <figure>
+        <h2>distribución de edad</h2>
+        <canvas id="edadChart"></canvas>
+      </figure>
+      <figure>
+        <h2 id="generoChart">pocentaje por genero</h2>
+      </figure>
+      <figure>
+        <h2>distribución de objetivos</h2>
+      </figure>
+      <figure>
+        <h2>distribución de usuarios</h2>
+      </figure>
        <!--pie de pagina-->
     <div class="container-fluid">
         <div class="row p-5 pb-1 bg-dark text-white">
@@ -86,6 +100,7 @@
         </div>
       </div>
       <script src="../Js/InicioVerify.js"></script>
+      <!--<script src="../js/chart.js"></script>-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
   </html>
