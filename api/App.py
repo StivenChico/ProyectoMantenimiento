@@ -273,7 +273,7 @@ def GetGeneral():
 
 ###Peticion de datos para la grafica 1####
 @app.route('/GetGrafica1',methods=['GET'])
-def GetGrafica5():
+def GetGrafica1():
     try:
         cur = mysql.connection.cursor()
         cur.execute('''SELECT cliente.weight,cliente.height
@@ -349,7 +349,7 @@ def GetGrafica4():
         return jsonify({"informacion":e})
 ####Peticion de datos para la grafica 5####
 @app.route('/getGrafica5',methods=['GET'])
-def getGrafica1():
+def getGrafica5():
     try:
         cur = mysql.connection.cursor()
         cur.execute('''SELECT 
