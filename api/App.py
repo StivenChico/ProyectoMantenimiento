@@ -301,6 +301,8 @@ def GetGrafica2():
         print(e)
         return jsonify({"informacion":e})
 
+####Peticion de datos para la grafica 3####
+
 @app.route('/GetGrafica3',methods=['GET'])
 def GetGrafica3():
     try:
@@ -317,9 +319,25 @@ def GetGrafica3():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-
-
-
+###Peticion de datos para la grafica 4###
+@app.route('/getGrafica4',methods=['GET'])
+def getGrafica4():
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute('''SELECT 
+                    CASE 
+                    WHEn rol = 1 THEN Administradores
+                    WHEN rol = 2 THEN Usuarios
+                    WHEN rol = 3 THEN Profedionales
+                END AS rol,
+                COUNT(*) AS numero_de_personas
+                FROM usuarios
+                GROUP BY rol''')
+        rv = cur.fetchall()
+        cur.close()
+        return jsonify(rv)
+    except Exception as e:
+        return jsonify({"error":str(e)})
 # starting the app
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
