@@ -182,19 +182,7 @@ axios.get('http://127.0.0.1:3000/getGrafica5')
       })
       .catch(err => console.log('error:', err));
 
-
-
-
-
-
-
-
-}
-
-const renderModelsChart = () => {
-    
-  }
-renderModelChart6 =()=>{
+  //Peticion de datos para la grafica 6 sobre altura
   axios.get('http://127.0.0.1:3000/getGrafica6')
   .then(response =>{
     // Rango de alturas
@@ -227,5 +215,4 @@ renderModelChart6 =()=>{
 
 
 Init_Graficas()
-renderModelsChart()
-renderModelChart6()
+

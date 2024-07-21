@@ -2,30 +2,34 @@ tablaa = document.getElementById("tablab");
 if(tablaa!=null){
 tabla.addEventListener('click',function(e){
     e.stopPropagation();
-    const id = e.target.parentNode.parentNode.children[0].textContent;
-    
-    //pedimos los datos en la base de datos en la tabla 
-    //cliente para saber la demas informacion
-    axios({
-        method:'GET',
-        url: 'http://127.0.0.1:3000/FisicById/'+id,
-    }).then(function(response){
-        conten={
-            id:id,
-            name:response.data.name,
-            surname:response.data.surname,
-            age:response.data.age,
-            gender:response.data.gender,
-            height:response.data.height,
-            weight:response.data.weight,
-            Fr_train:response.data.Fr_Train,
-            duration:response.data.duration,
-            goal:response.data.goal,
-            restrictions:response.data.restrictions
-        }
-        localStorage.setItem('datos', JSON.stringify(conten));
-        window.location.href = 'evaluar.html';
-    })
+    console.log(e.target.className == 'btn btn-success')
+    if(e.target.className == 'btn btn-success'){
+        e.stopPropagation();
+        const id = e.target.parentNode.parentNode.children[0].textContent;
+        
+        //pedimos los datos en la base de datos en la tabla 
+        //cliente para saber la demas informacion
+        axios({
+            method:'GET',
+            url: 'http://127.0.0.1:3000/FisicById/'+id,
+        }).then(function(response){
+            conten={
+                id:id,
+                name:response.data.name,
+                surname:response.data.surname,
+                age:response.data.age,
+                gender:response.data.gender,
+                height:response.data.height,
+                weight:response.data.weight,
+                Fr_train:response.data.Fr_Train,
+                duration:response.data.duration,
+                goal:response.data.goal,
+                restrictions:response.data.restrictions
+            }
+            localStorage.setItem('datos', JSON.stringify(conten));
+            window.location.href = 'evaluar.html';
+        })
+    }
 })
 }
 const CargarInfo=()=>{

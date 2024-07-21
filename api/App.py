@@ -315,28 +315,6 @@ def GetGrafica3():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-###Peticion de datos para la grafica 6###
-@app.route('/getGrafica6',methods=['GET'])
-def getGrafica6():
-    try:
-        cur = mysql.connection.cursor()
-        cur.execute('''SELECT 
-                CASE 
-                    WHEN height BETWEEN 1.55 AND 1.65 THEN '1.55-1.65'
-                    WHEN height BETWEEN 1.65 AND 1.75 THEN '1.65-1.75'
-                    WHEN height BETWEEN 1.72 AND 1.85 THEN '1.75-1.85'
-                    WHEN height BETWEEN 1.85 AND 1.95 THEN '1.85-1.95'
-                    ELSE 'Unknown'
-                END AS rango_altura,
-                COUNT(*) AS numero_de_personas
-            FROM cliente
-            GROUP BY rango_altura''')
-        rv = cur.fetchall()
-        cur.close()
-        data= [row[1] for row in rv]
-        return jsonify(data)
-    except Exception as e:
-        return jsonify({"error":str(e)})
 
 
 @app.route('/GetGrafica4',methods=['GET'])
@@ -382,6 +360,30 @@ def getGrafica1():
             content = {'rango_edad': result[0], 'total': result[1]}
             payload.append(content)
         return jsonify(payload)
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
+
+###Peticion de datos para la grafica 6###
+@app.route('/getGrafica6',methods=['GET'])
+def getGrafica6():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('''SELECT 
+                CASE 
+                    WHEN height BETWEEN 1.55 AND 1.65 THEN '1.55-1.65'
+                    WHEN height BETWEEN 1.65 AND 1.75 THEN '1.65-1.75'
+                    WHEN height BETWEEN 1.72 AND 1.85 THEN '1.75-1.85'
+                    WHEN height BETWEEN 1.85 AND 1.95 THEN '1.85-1.95'
+                    ELSE 'Unknown'
+                END AS rango_altura,
+                COUNT(*) AS numero_de_personas
+            FROM cliente join usuarios on cliente.id_usuario=usuarios.id where status=1
+            GROUP BY rango_altura''')
+        rv = cur.fetchall()
+        cur.close()
+        data= [row[1] for row in rv]
+        return jsonify(data)
     except Exception as e:
         return jsonify({"error":str(e)})
 
