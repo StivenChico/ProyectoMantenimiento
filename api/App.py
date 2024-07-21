@@ -100,7 +100,7 @@ def GetDiagnostico(id):
 def TableUser():
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM usuarios')
+        cur.execute('SELECT * FROM usuarios WHERE status = 1')
         rv = cur.fetchall()
         cur.close()
         payload = []
@@ -148,6 +148,27 @@ def VerifyUser(username):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
+####EDITAR UN USUARIO DESDE ADMIN####
+@app.route('/editUser/<id>', methods=['PUT'])
+def editUser(id):
+    try:
+        if request.method == 'PUT':
+            username= request.json['username']
+            name = request.json['name']
+            surname = request.json['surname']
+            email= request.json['email']  
+            password = request.json['password']
+            cell= request.json['cell']
+            rol=request.json['rol']
+            cur = mysql.connection.cursor()
+            cur.execute("UPDATE usuarios SET username=%s,name=%s,surname=%s,email=%s,password=%s,cell=%s,rol=%s WHERE id=%s", (username,name,surname,email,password,cell,rol,id))
+            mysql.connection.commit()
+            cur.close()
+            return jsonify({"informacion":"Actualizacion realizada con exito"})
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+
 
 #### ruta para crear un registro########
 @app.route('/registro', methods=['POST'])
@@ -161,9 +182,8 @@ def registro():
             password = request.json['password']
             cell= request.json['cell']
             rol=request.json['rol']
-            status=request.json['status']
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO usuarios (username,name,surname,email,password,cell,rol,status) VALUES (%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,status))
+            cur.execute("INSERT INTO usuarios (username,name,surname,email,password,cell,rol,status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,1))
             mysql.connection.commit()
             cur.close()
             return jsonify({"informacion":"Registro exitoso"})
@@ -216,12 +236,13 @@ def update_contact(id):
 
 
 
-@app.route('/delete/<id>', methods = ['DELETE'])
+@app.route('/delete/<id>', methods = ['PUT'])
 def delete_contact(id):
     try:
         cur = mysql.connection.cursor()
-        cur.execute('DELETE FROM contacts WHERE id = %s', (id,))
+        cur.execute('UPDATE usuarios SET status = %s WHERE id = %s', (0, id))
         mysql.connection.commit()
+        cur.close()
         return jsonify({"informacion":"Registro eliminado"}) 
     except Exception as e:
         print(e)

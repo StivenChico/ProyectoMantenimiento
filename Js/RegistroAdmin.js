@@ -51,11 +51,11 @@ const Registrar=()=>{
                         password:passwordI,
                         cell:CellI,
                         rol:rolI,
-                        status:1
                     }
                 }).then(function(response){
                     alert(response.data.informacion);
                     console.log(response.data.informacion)
+                    window.location.reload();
                     
                 }).catch(err => console.log('Error: ', err))
             }else{
@@ -129,13 +129,4 @@ const PasswordVerify=(passwordI,passwordVerify)=>{
         mensj+="Las Contraseñas ingresadas no son iguales\n"
     }
     return tamaño && verifypass;
-}
-const limpiar=()=>{
-    document.getElementById("inputUserName").value="";
-    document.getElementById("inputName").value="";
-    document.getElementById("inputLastName").value="";
-    document.getElementById("inputEmail").value="";
-    document.getElementById("inputPassword").value="";
-    document.getElementById("inputPassword2").value="";
-    document.getElementById("inputCell").value="";
 }
