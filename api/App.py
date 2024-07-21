@@ -364,7 +364,7 @@ def getGrafica5():
                     ELSE 'Unknown'
                 END AS rango_edad,
                 COUNT(*) AS numero_de_personas
-            FROM cliente
+            FROM cliente join usuarios on cliente.id_usuario=usuarios.id where status=1
             GROUP BY rango_edad''')
         rv = cur.fetchall()
         cur.close()
