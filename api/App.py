@@ -271,17 +271,13 @@ def getGrafica1():
                     WHEN age BETWEEN 56 AND 65 THEN '56-65'
                     WHEN age > 65 THEN '66+'
                     ELSE 'Unknown'
-                END AS rango_edad ,
-                COUNT(*) AS total 
+                END AS rango_edad,
+                COUNT(*) AS numero_de_personas
             FROM cliente
-            GROUP BY rango_edad ''')
+            GROUP BY rango_edad''')
         rv = cur.fetchall()
         cur.close()
-        content={}
-        data=[]
-        for result in rv:
-            content = {'rango_edad': result[0], 'total': result[1]}
-            data.append(content)
+        data= [row[1] for row in rv]
         return jsonify(data)
     except Exception as e:
         return jsonify({"error":str(e)})
@@ -305,6 +301,8 @@ def GetGrafica2():
         print(e)
         return jsonify({"informacion":e})
 
+####Peticion de datos para la grafica 3####
+
 @app.route('/GetGrafica3',methods=['GET'])
 def GetGrafica3():
     try:
@@ -321,6 +319,7 @@ def GetGrafica3():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
+
 
 @app.route('/GetGrafica4',methods=['GET'])
 def GetGrafica4():

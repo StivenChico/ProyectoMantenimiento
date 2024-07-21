@@ -91,6 +91,7 @@ axios({
 }
 const renderModelsChart = () => {
     axios.get('http://127.0.0.1:3000/getGrafica1')
+
       .then(function(response) {
         
         Arreglo=response.data
@@ -102,18 +103,18 @@ const renderModelsChart = () => {
             nombres.push(response.data[i].rango_edad);
             data.push(response.data[i].total);
         }
-        // Rango de edades
-        
-        //const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
 
+        // Rango de edades
+        const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
+        console.log(response.data)
         const ageCtx = document.getElementById('Grafica1').getContext('2d');
         const ageChart = new Chart(ageCtx, {
           type: 'bar',
           data: {
-            labels: nombres, // etiquetas de los rangos de edad
+            labels: labels, // etiquetas de los rangos de edad
             datasets: [{
-              label: 'Rango de edades',
-              data:data, // datos de la cantidad de personas en cada rango de edad
+              label: 'Número de Personas',
+              data: response.data, // datos de la cantidad de personas en cada rango de edad
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
@@ -130,6 +131,36 @@ const renderModelsChart = () => {
       })
       .catch(err => console.log('error:', err));
   }
+const renderModelsChart2 =() =>{
+  axios.get('http://127.0.0.1:3000/getGrafica4')
+  .then(response =>{
+    const data= response.data;
+    const roles=['Administradores', 'Usuarios','Profesionales']
+    console.log(data)
+    const rolCtx=document.getElementById('Grafica4').getContext('2d')
+    const rolChart = new Chart(rolCtx,{
+      type:'bar',
+      data:{
+        labels:roles,
+      datasets:[{
+        label:'Cantidades por Rol',
+        data:data,
+        backgroundColor:['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+        borderColor:['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+        borderWidth:1
+      }]
+    },
+    options:{
+      scales:{
+        y:{
+          beginAtZero:true
+        }
+      }
+    }
+    })
+  })
+}
 
 Init_Graficas()
 renderModelsChart()
+renderModelsChart2()
