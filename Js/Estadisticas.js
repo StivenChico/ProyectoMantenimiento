@@ -14,8 +14,25 @@ const Init_Graficas=()=>{
 
     
     grafica2=document.getElementById("Grafica2");
+    axios({
+        method: 'GET',
+        url: 'http://127.0.0.1:3000/GetGrafica2',
+    }).then(function(response){
 
+    var chart2 = new Chart(grafica2, {
+        type:'pie',
+        data:{
+            labels: ["Hombres", "Mujeres"],
+            datasets:{
+                label:"Grafica de Genero",
+                data:[response.data[1].total,response.data[0].total],
+                
+            }
+        }
+    })
+    }).catch(err => console.log('Error: ', err))
 }
+
 const renderModelsChart=()=>{
     axios.get('http://127.0.0.1:3000/getGrafica1'
     ).then(response =>{
@@ -35,4 +52,3 @@ const renderModelsChart=()=>{
     }).catch(err=> console.log('error:', err))
 }
 
-renderModelsChart();

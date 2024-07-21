@@ -35,14 +35,14 @@ const verificar = () => {
         mehod: "GET",
         url: "http://127.0.0.1:3000/Login/" + IngUser,
       }).then(function (response) {
-        if(response.data.length!=0 ){
-          if(response.data.status==1 && response.data.username == IngUser && response.data.password == IngPass &&response.data.rol == IngRol) {
+        if(response.data.length>0){
+          if(response.data[0].status==1 && response.data[0].username == IngUser && response.data[0].password == IngPass &&response.data[0].rol == IngRol) {
                   window.location.href = path;
                   us={
-                    id:response.data.id,
-                    name: response.data.name,
-                    surname: response.data.surname,
-                    rol:response.data.rol
+                    id:response.data[0].id,
+                    name: response.data[0].name,
+                    surname: response.data[0].surname,
+                    rol:response.data[0].rol
                   }
                   localStorage.setItem("Usuario",JSON.stringify(us));
 

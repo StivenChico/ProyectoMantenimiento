@@ -81,16 +81,21 @@ def addDiagnostico():
         print(e)
         return jsonify({"informacion":e})
 
+
 @app.route('/GetDiagnostico/<id>',methods=['GET'])
 def GetDiagnostico(id):
     try:
         cur=mysql.connection.cursor()
         cur.execute('SELECT id_cliente,id_prof,fech_evaluation,diagnostico FROM evaluation WHERE id_cliente = %s', (id,))
-        rv = cur.fetchone()
+        rv = cur.fetchall()
         print(rv)
         cur.close()
-        content = {'id_cliente': rv[0], 'id_prof':rv[1], 'fech_evaluation': rv[2], 'diagnostico': rv[3]}
-        return jsonify(content)
+        content = {}
+        payload = []
+        for result in rv:
+            content={'id_cliente':result[0],    'id_prof':result[1],'fech_evaluation':result[2],'diagnostico':result[3]}
+            payload.append(content)
+        return jsonify(payload)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
@@ -122,10 +127,14 @@ def Login(username):
     try:
         cur = mysql.connection.cursor()
         cur.execute('SELECT id,username,name,surname,password,rol,status FROM usuarios WHERE username = %s', (username,))
-        rv = cur.fetchone()
+        rv = cur.fetchall()
         cur.close()
-        content= {"id":rv[0],"username":rv[1],"name":rv[2],"surname":rv[3],"password":rv[4],"rol":rv[5],"status":rv[6]}
-        return jsonify(content)
+        content={}
+        payload=[]
+        for result in rv:
+            content= {"id":result[0],"username":result[1],"name":result[2],"surname":result[3],"password":result[4],"rol":result[5],"status":result[6]}
+            payload.append(content)
+        return jsonify(payload)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
@@ -247,8 +256,23 @@ def delete_contact(id):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-
-
+####Peticion de datos para la grafica 2####
+@app.route('/GetGrafica2', methods=['GET'])
+def GetGrafica2():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM generos")
+        rv = cur.fetchall()
+        cur.close()
+        payload = []
+        content = {}
+        for result in rv:
+            content = {'gender': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
 # starting the app
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
