@@ -277,8 +277,12 @@ def getGrafica1():
             GROUP BY rango_edad''')
         rv = cur.fetchall()
         cur.close()
-        data= [row[1] for row in rv]
-        return jsonify(data)
+        payload = []
+        content = {}
+        for result in rv:
+            content = {'rango_edad': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
     except Exception as e:
         return jsonify({"error":str(e)})
 
