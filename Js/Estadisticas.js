@@ -1,5 +1,6 @@
 const grafica2=document.getElementById("Grafica2");
 const grafica3=document.getElementById("Grafica3");
+const grafica4=document.getElementById("Grafica4");
 const Init_Graficas=()=>{
     //carga del grafico 2 con get en la bd
     axios({
@@ -47,18 +48,57 @@ const Init_Graficas=()=>{
         }
     })
 }).catch(err => console.log('Error: ', err))
+
+
+//Peticon a la api de datos para la grafica de roles
+axios({
+    method: 'GET',
+    url: 'http://127.0.0.1:3000/GetGrafica4',
+}).then(function(response){
+    arreglorecibe=response.data;
+    labels=[]
+    datos=[]
+    for(i=0;i<arreglorecibe.length;i++){
+    if(arreglorecibe[i].rol==1){
+        labels.push('Administrador');
+    }else if(arreglorecibe[i].rol==2){
+        labels.push('Usuario');
+    }else if(arreglorecibe[i].rol==3){
+        labels.push('Profesional');
+    }
+    datos.push(arreglorecibe[i].total);
+    }
+
+    var char4=new Chart(Grafica4,{
+        type:'bar',
+        data:{
+            labels:labels,
+            datasets:[{
+                label:"Grafica de Roles",
+                data:datos,
+                backgroundColor:['rgba(75, 192, 192, 1)'],
+                borderColor:['rgba(75, 192, 192, 1)'],
+                borderWidth:1
+            }]
+        }
+    })
+})
+
+
+
+
+
 }
 const renderModelsChart = () => {
     axios.get('http://127.0.0.1:3000/getGrafica1')
       .then(function(response) {
         
         Arreglo=response.data
-        //console.log(response.data.lenght);
         nombres=[];
         data=[];
         for(i=0;i<Arreglo.length;i++ ){
-            console.log(Arreglo[i].rango_edad);
-            console.log(Arreglo[i].total);
+            //console.log(Arreglo[i].rango_edad);
+            //console.log(Arreglo[i].total);
             nombres.push(response.data[i].rango_edad);
             data.push(response.data[i].total);
         }
