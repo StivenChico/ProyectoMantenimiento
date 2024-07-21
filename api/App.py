@@ -256,27 +256,7 @@ def delete_contact(id):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-####Peticion de datos para la grafica 2####
-@app.route('/GetGrafica2', methods=['GET'])
-def GetGrafica2():
-    try:
-        cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM generos")
-        rv = cur.fetchall()
-        cur.close()
-        payload = []
-        content = {}
-        for result in rv:
-            content = {'gender': result[0], 'total': result[1]}
-            payload.append(content)
-        return jsonify(payload)
-    except Exception as e:
-        print(e)
-        return jsonify({"informacion":e})
-# starting the app
-if __name__ == "__main__":
-    app.run(port=3000, debug=True)
-
+####Peticion de datos para la grafica 1####
 @app.route('/getGrafica1',methods=['GET'])
 def getGrafica1():
     try:
@@ -300,4 +280,26 @@ def getGrafica1():
         return jsonify(rv)
     except Exception as e:
         return jsonify({"error":str(e)})
+
+####Peticion de datos para la grafica 2####
+
+@app.route('/GetGrafica2', methods=['GET'])
+def GetGrafica2():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM generos")
+        rv = cur.fetchall()
+        cur.close()
+        payload = []
+        content = {}
+        for result in rv:
+            content = {'gender': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+# starting the app
+if __name__ == "__main__":
+    app.run(port=3000, debug=True)
 
