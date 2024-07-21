@@ -1,7 +1,7 @@
 const tabla=document.querySelector("#tablab tbody");
 
 const Init_Data=()=>{
-    botones=`<a class="btn btn-success mx-5 ">Evaluar</a>`
+    botones=`<a id="evaluar" class="btn btn-success mx-5">Evaluar</a>`
     axios({
         method: 'GET',
         url: 'http://127.0.0.1:3000/TableFisic',

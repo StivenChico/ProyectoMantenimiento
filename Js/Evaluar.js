@@ -2,8 +2,7 @@ tablaa = document.getElementById("tablab");
 if(tablaa!=null){
 tabla.addEventListener('click',function(e){
     e.stopPropagation();
-    console.log(e.target.className == 'btn btn-success')
-    if(e.target.className == 'btn btn-success'){
+    if(e.target.className === 'btn btn-success mx-5'){
         e.stopPropagation();
         const id = e.target.parentNode.parentNode.children[0].textContent;
         

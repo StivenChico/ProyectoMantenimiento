@@ -35,7 +35,7 @@ app.secret_key = "mysecretkey"
 def Table_Fisic_State():
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM tablaetrainer')
+        cur.execute('select usuarios.id ,usuarios.name, usuarios.surname, cliente.age ,cliente.gender, cliente.height, cliente.weight, cliente.fr_train, cliente.restrictions, cliente.duration_exerss, cliente.goal from (usuarios join cliente on(usuarios.id = cliente.id_usuario and usuarios.status = 1))')
         rv = cur.fetchall()
         cur.close()
         payload = []
@@ -54,7 +54,7 @@ def Table_Fisic_State():
 def FisicById(id):
     try:
         cur=mysql.connection.cursor()
-        cur.execute('SELECT * FROM tablaetrainer WHERE id = %s', (id,))
+        cur.execute('select usuarios.id ,usuarios.name, usuarios.surname, cliente.age ,cliente.gender, cliente.height, cliente.weight, cliente.fr_train, cliente.restrictions, cliente.duration_exerss, cliente.goal from (usuarios join cliente on(usuarios.id = cliente.id_usuario and usuarios.status = 1 AND id = %s))', (id,))
         rv = cur.fetchone()
         cur.close()
         content = {'id': rv[0], 'name': rv[1], 'surname': rv[2], 'age': rv[3],'gender': rv[4],'height': rv[5],'weight': rv[6],'Fr_Train':rv[7],'restrictions':rv[8],'duration':rv[9],'goal':rv[10]}
@@ -253,6 +253,20 @@ def delete_contact(id):
         mysql.connection.commit()
         cur.close()
         return jsonify({"informacion":"Registro eliminado"}) 
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+##peticion de datos generales para Estadisticas####
+@app.route('/GetGeneral',methods=['GET'])
+def GetGeneral():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT count(*) AS total ,(SELECT count(*) as total from evaluation) as Diagnosticos FROM cliente JOIN usuarios ON cliente.id_usuario=usuarios.id WHERE status=1')
+        rv = cur.fetchone()
+        cur.close()
+        content={'totalUsuarios': rv[0],'diagnosticosTotales': rv[1]}
+        
+        return jsonify(content)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})

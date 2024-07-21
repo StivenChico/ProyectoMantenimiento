@@ -4,6 +4,16 @@ const grafica3=document.getElementById("Grafica3");
 const grafica4=document.getElementById("Grafica4");
 const grafica5=document.getElementById("Grafica5");
 const Init_Graficas=()=>{
+    //Peticion de datos generales
+    axios({
+        method: 'GET',
+        url: 'http://127.0.0.1:3000/GetGeneral',
+    }).then(function(response){
+        document.getElementById("Activos").innerHTML+=response.data.totalUsuarios;
+        document.getElementById("DiagnosticosTt").innerHTML+=response.data.diagnosticosTotales;
+    }).catch(err => console.log('Error: ', err))
+
+
 
     //peticion para grafica 1 sobre el IMC
 axios({
@@ -138,7 +148,7 @@ axios({
             }
         }
     })
-})
+}).catch(err => console.log('Error: ', err))
 
 //Grafica 5 sobre rango de edad
 axios.get('http://127.0.0.1:3000/getGrafica5')
