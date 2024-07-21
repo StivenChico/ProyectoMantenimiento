@@ -17,11 +17,11 @@ const Init_Graficas=()=>{
 
 }
 const renderModelsChart=()=>{
-    axios.get('http://127.0.0.1:3000/regisFisicState'
+    axios.get('http://127.0.0.1:3000/getGrafica1'
     ).then(response =>{
         const data=response.data; // guardamos el resultado en la variable data
         const rango=['0-10','11-20','21-30','31-40']
-        const edades= data.map(cliente=>cliente.age); // se procesan las edades
+        const edades= data; // se procesan las edades
         const distribucionEdad ={
             labels:rango,
             datasets:[{

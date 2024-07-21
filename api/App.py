@@ -252,3 +252,28 @@ def delete_contact(id):
 # starting the app
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
+
+@app.route('/getGrafica1',methods=['GET'])
+def getGrafica1():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('''SELECT 
+                CASE 
+                    WHEN edad BETWEEN 0 AND 17 THEN '0-17'
+                    WHEN edad BETWEEN 18 AND 25 THEN '18-25'
+                    WHEN edad BETWEEN 26 AND 35 THEN '26-35'
+                    WHEN edad BETWEEN 36 AND 45 THEN '36-45'
+                    WHEN edad BETWEEN 46 AND 55 THEN '46-55'
+                    WHEN edad BETWEEN 56 AND 65 THEN '56-65'
+                    WHEN edad > 65 THEN '66+'
+                    ELSE 'Unknown'
+                END AS rango_edad,
+                COUNT(*) AS numero_de_personas
+            FROM clientes
+            GROUP BY rango_edad''')
+        rv = cur.fetchall()
+        cur.close()
+        return jsonify(rv)
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
