@@ -31,7 +31,7 @@ const renderModelsChart=()=>{
             }]
         } 
     
-        new Chart('edadChart',{type:'bar',distribucionEdad})
+        new Chart('Grafica1',{type:'bar',distribucionEdad})
     }).catch(err=> console.log('error:', err))
 }
 
