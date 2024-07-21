@@ -271,13 +271,17 @@ def getGrafica1():
                     WHEN age BETWEEN 56 AND 65 THEN '56-65'
                     WHEN age > 65 THEN '66+'
                     ELSE 'Unknown'
-                END AS rango_edad,
-                COUNT(*) AS numero_de_personas
+                END AS rango_edad ,
+                COUNT(*) AS total 
             FROM cliente
-            GROUP BY rango_edad''')
+            GROUP BY rango_edad ''')
         rv = cur.fetchall()
         cur.close()
-        data= [row[1] for row in rv]
+        content={}
+        data=[]
+        for result in rv:
+            content = {'rango_edad': result[0], 'total': result[1]}
+            data.append(content)
         return jsonify(data)
     except Exception as e:
         return jsonify({"error":str(e)})

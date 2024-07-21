@@ -50,18 +50,30 @@ const Init_Graficas=()=>{
 }
 const renderModelsChart = () => {
     axios.get('http://127.0.0.1:3000/getGrafica1')
-      .then(response => {
+      .then(function(response) {
+        
+        Arreglo=response.data
+        //console.log(response.data.lenght);
+        nombres=[];
+        data=[];
+        for(i=0;i<Arreglo.length;i++ ){
+            console.log(Arreglo[i].rango_edad);
+            console.log(Arreglo[i].total);
+            nombres.push(response.data[i].rango_edad);
+            data.push(response.data[i].total);
+        }
         // Rango de edades
-        const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
-        console.log(response.data)
+        
+        //const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
+
         const ageCtx = document.getElementById('Grafica1').getContext('2d');
         const ageChart = new Chart(ageCtx, {
           type: 'bar',
           data: {
-            labels: labels, // etiquetas de los rangos de edad
+            labels: nombres, // etiquetas de los rangos de edad
             datasets: [{
-              label: 'Número de Personas',
-              data: response.data, // datos de la cantidad de personas en cada rango de edad
+              label: 'Rango de edades',
+              data:data, // datos de la cantidad de personas en cada rango de edad
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
