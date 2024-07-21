@@ -277,8 +277,12 @@ def getGrafica1():
             GROUP BY rango_edad''')
         rv = cur.fetchall()
         cur.close()
-        data= [row[1] for row in rv]
-        return jsonify(data)
+        payload = []
+        content = {}
+        for result in rv:
+            content = {'rango_edad': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
     except Exception as e:
         return jsonify({"error":str(e)})
 
@@ -342,6 +346,25 @@ def getGrafica6():
         return jsonify(data)
     except Exception as e:
         return jsonify({"error":str(e)})
+
+
+@app.route('/GetGrafica4',methods=['GET'])
+def GetGrafica4():
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT rol,count(*) AS total FROM usuarios WHERE status=1 group by rol")
+        rv=cur.fetchall()
+        cur.close()
+        content={}
+        payload=[]
+        for result in rv:
+            content = {'rol': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+
 # starting the app
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
