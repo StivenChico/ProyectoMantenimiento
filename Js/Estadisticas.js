@@ -78,5 +78,36 @@ const renderModelsChart = () => {
       })
       .catch(err => console.log('error:', err));
   }
+renderModelChart6 =()=>{
+  axios.get('http://127.0.0.1:3000/getGrafica6')
+  .then(response =>{
+    // Rango de alturas
+    const labels = ['155-165 cm', '165-175 cm', '175-185 cm', '185-195 cm'];
+    console.log(response.data)
+    const heightCtx = document.getElementById('Grafica6').getContext('2d');
+    const heightChart = new Chart(heightCtx,{
+      type:'bar',
+      data:{
+        labels: labels, // etiqueta de los rangos
+        datasets:[{
+          label:'Numero de personas por altura',
+          data:response.data, // datos de la cantidad de personas en cada rango
+          backgroundColor: 'rgba(75, 192, 192)'
+        }]
+      },
+      options:{
+        scales:{
+          y:{
+            min:0, // Rango minimo
+            max:10,// rango maximo
+            beginAtZero:true
+          }
+        }
+      }
+    })
+  })
+  .catch(err => console.log('error:', err));
+}
 Init_Graficas()
 renderModelsChart()
+renderModelChart6()
