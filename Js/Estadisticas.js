@@ -48,25 +48,36 @@ const Init_Graficas=()=>{
     })
 }).catch(err => console.log('Error: ', err))
 }
-
-const renderModelsChart=()=>{
-    axios.get('http://127.0.0.1:3000/getGrafica1'
-    ).then(response =>{
-        const data=response.data; // guardamos el resultado en la variable data
-        const rango=['0-10','11-20','21-30','31-40']
-        const edades= data; // se procesan las edades
-        const distribucionEdad ={
-            labels:rango,
-            datasets:[{
-                data:edades,// regisro de los datos de la tabla
-                backgroundColor:['blue','red'],//fondo de las grafica en orden
-                borderColor:['rgba(75, 192, 192, 1)'],
+const renderModelsChart = () => {
+    axios.get('http://127.0.0.1:3000/getGrafica1')
+      .then(response => {
+        // Rango de edades
+        const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
+        console.log(response.data)
+        const ageCtx = document.getElementById('Grafica1').getContext('2d');
+        const ageChart = new Chart(ageCtx, {
+          type: 'bar',
+          data: {
+            labels: labels, // etiquetas de los rangos de edad
+            datasets: [{
+              label: 'Número de Personas',
+              data: response.data, // datos de la cantidad de personas en cada rango de edad
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
             }]
-        } 
-    
-        new Chart('Grafica1',{type:'bar',distribucionEdad})
-    }).catch(err=> console.log('error:', err))
-}
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      })
+      .catch(err => console.log('error:', err));
+  }
 
 Init_Graficas()
 renderModelsChart()
