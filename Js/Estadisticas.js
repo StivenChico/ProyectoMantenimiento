@@ -86,13 +86,14 @@ axios({
         method:'GET',
         url:'http://127.0.0.1:3000/GetGrafica3'
     }).then(function(response){
+        arreglorecibe=response.data; 
     var chart3 = new Chart(grafica3, {
         type:'bar',
         data:{
-            labels: [response.data[0].goal,response.data[1].goal ,response.data[2].goal],
+            labels: [arreglorecibe[0].goal,arreglorecibe[1].goal ,arreglorecibe[2].goal],
             datasets:[{
                 label:"Grafica Objetivos",
-                data:[response.data[0].total,response.data[1].total,response.data[2].total],
+                data:[arreglorecibe[0].total,arreglorecibe[1].total,arreglorecibe[2].total],
                 backgroundColor:['rgba(75, 192, 192, 1)'],
                 borderColor:['rgba(75, 192, 192, 1)'],
                 borderWidth:1

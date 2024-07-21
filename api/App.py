@@ -297,7 +297,7 @@ def GetGrafica1():
 def GetGrafica2():
     try:
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM generos")
+        cur.execute("SELECT cliente.gender, count(0) AS total FROM (cliente join usuarios on(cliente.id_usuario = usuarios.id)) WHERE usuarios.status = 1 GROUP BY cliente.gender")
         rv = cur.fetchall()
         cur.close()
         payload = []
@@ -317,7 +317,7 @@ def GetGrafica2():
 def GetGrafica3():
     try:
         cur=mysql.connection.cursor()
-        cur.execute("Select cliente.goal AS goal,count(*) AS total FROM( cliente JOIN usuarios ON (cliente.id_usuario=usuarios.id)) WHERE usuarios.status=1 group by cliente.goal")
+        cur.execute("Select cliente.goal ,count(*) AS total FROM( cliente JOIN usuarios ON (cliente.id_usuario=usuarios.id)) WHERE usuarios.status=1 group by cliente.goal")
         rv=cur.fetchall()
         cur.close()
         content={}
