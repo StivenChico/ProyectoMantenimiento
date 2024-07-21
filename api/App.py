@@ -30,7 +30,7 @@ app.secret_key = "mysecretkey"
 
 
 
-# ruta para consultar todos los registros
+# ruta para consultar todos los registros de estado fisico a traves de una vista creada en la base de datos
 @app.route('/TableFisic', methods=['GET'])
 def Table_Fisic_State():
     try:
@@ -49,7 +49,7 @@ def Table_Fisic_State():
         print(e)
         return jsonify({"informacion":e})
 
-# ruta para saber informacion de un usuario con el id
+# ruta para saber informacion de un usuario con el id a traves de una vista creada en la base de datos
 @app.route('/FisicById/<id>',methods=['GET'])
 def FisicById(id):
     try:
@@ -299,6 +299,26 @@ def GetGrafica2():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
+
+@app.route('/GetGrafica3',methods=['GET'])
+def GetGrafica3():
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute("Select cliente.goal AS goal,count(*) AS total FROM( cliente JOIN usuarios ON (cliente.id_usuario=usuarios.id)) WHERE usuarios.status=1 group by cliente.goal")
+        rv=cur.fetchall()
+        cur.close()
+        content={}
+        payload=[]
+        for result in rv:
+            content = {'goal': result[0], 'total': result[1]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+
+
+
 # starting the app
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
