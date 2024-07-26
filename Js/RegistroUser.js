@@ -31,7 +31,7 @@ const Registrar=()=>{
         //Verificar si existe el usuario ingresado
         axios({
             method:'GET',
-            url:'http://127.0.0.1:3000/VerifyUser/'+usernameI
+            url:'http://127.0.0.1:5000/VerifyUser/'+usernameI
         }).then(function(response){
             n=response.data.length
             console.log(n)
@@ -41,7 +41,7 @@ const Registrar=()=>{
             if(permite==true){
                 axios({
                     method:'POST',
-                    url:'http://127.0.0.1:3000/registro',
+                    url:'http://127.0.0.1:5000/registro',
                     data:{
                         username:usernameI,
                         name:nameI,

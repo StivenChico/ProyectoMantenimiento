@@ -33,7 +33,7 @@ const verificar = () => {
     if (def) {
       axios({
         mehod: "GET",
-        url: "http://127.0.0.1:3000/Login/" + IngUser,
+        url: "http://127.0.0.1:5000/Login/" + IngUser,
       }).then(function (response) {
         if(response.data.length>0){
           if(response.data[0].status==1 && response.data[0].username == IngUser && response.data[0].password == IngPass &&response.data[0].rol == IngRol) {

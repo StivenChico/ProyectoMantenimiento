@@ -7,7 +7,7 @@ const Init_Graficas=()=>{
     //Peticion de datos generales
     axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/GetGeneral',
+        url: 'http://127.0.0.1:5000/GetGeneral',
     }).then(function(response){
         document.getElementById("Activos").innerHTML+=response.data.totalUsuarios;
         document.getElementById("DiagnosticosTt").innerHTML+=response.data.diagnosticosTotales;
@@ -18,7 +18,7 @@ const Init_Graficas=()=>{
     //peticion para grafica 1 sobre el IMC
 axios({
     method: 'GET',
-    url: 'http://127.0.0.1:3000/GetGrafica1',
+    url: 'http://127.0.0.1:5000/GetGrafica1',
     }).then(function(response){
         let arreglorecibe=response.data;
         counts=[0,0,0,0]
@@ -64,7 +64,7 @@ axios({
     //carga del grafico 2 con get (grafica sobre el genero)
     axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/GetGrafica2',
+        url: 'http://127.0.0.1:5000/GetGrafica2',
     }).then(function(response){
         let M=response.data[1].total;
         let F=response.data[0].total;
@@ -84,7 +84,7 @@ axios({
     //carga de grafica 3 con un get(grafica sobre objetivos) 
     axios({
         method:'GET',
-        url:'http://127.0.0.1:3000/GetGrafica3'
+        url:'http://127.0.0.1:5000/GetGrafica3'
     }).then(function(response){
         arreglorecibe=response.data; 
     var chart3 = new Chart(grafica3, {
@@ -113,7 +113,7 @@ axios({
 //Peticon a la api de datos para la grafica 4 de roles
 axios({
     method: 'GET',
-    url: 'http://127.0.0.1:3000/GetGrafica4',
+    url: 'http://127.0.0.1:5000/GetGrafica4',
 }).then(function(response){
     arreglorecibe=response.data;
     labels=[]
@@ -152,7 +152,7 @@ axios({
 }).catch(err => console.log('Error: ', err))
 
 //Grafica 5 sobre rango de edad
-axios.get('http://127.0.0.1:3000/getGrafica5')
+axios.get('http://127.0.0.1:5000/getGrafica5')
 
       .then(function(response) {
         
@@ -194,7 +194,7 @@ axios.get('http://127.0.0.1:3000/getGrafica5')
       .catch(err => console.log('error:', err));
 
   //Peticion de datos para la grafica 6 sobre altura
-  axios.get('http://127.0.0.1:3000/getGrafica6')
+  axios.get('http://127.0.0.1:5000/getGrafica6')
   .then(response =>{
     // Rango de alturas
     const labels = ['155-165 cm', '165-175 cm', '175-185 cm', '185-195 cm'];

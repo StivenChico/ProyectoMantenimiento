@@ -20,7 +20,7 @@ const RegistroFisicState=()=>{
     
         axios({
             method:'POST',
-            url:"http://127.0.0.1:3000/regisFisicState",
+            url:"http://127.0.0.1:5000/regisFisicState",
             data:{
                 id:user.id,
                 age:ageI,

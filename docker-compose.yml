@@ -1,0 +1,15 @@
+
+services:
+    web:
+        build: .
+        ports:
+            - '5000:5000'
+        environment:
+             MYSQL_HOST: 'bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com'
+             MYSQL_USER: 'uv6qsokghzno3ntw'
+             MYSQL_PASSWORD: 'C9KrEz8JwELh7RZoERVj'
+             MYSQL_DB: 'bv7h1w4xo7apdbtrysyl'
+        depends_on:
+            - redis
+    redis:
+        image: redis:alpine

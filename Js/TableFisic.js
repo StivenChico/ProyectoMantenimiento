@@ -4,7 +4,7 @@ const Init_Data=()=>{
     botones=`<a id="evaluar" class="btn btn-success mx-5">Evaluar</a>`
     axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/TableFisic',
+        url: 'http://127.0.0.1:5000/TableFisic',
         
       }).then(function (response) {
        

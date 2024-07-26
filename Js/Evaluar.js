@@ -10,7 +10,7 @@ tabla.addEventListener('click',function(e){
         //cliente para saber la demas informacion
         axios({
             method:'GET',
-            url: 'http://127.0.0.1:3000/FisicById/'+id,
+            url: 'http://127.0.0.1:5000/FisicById/'+id,
         }).then(function(response){
             conten={
                 id:id,
@@ -63,7 +63,7 @@ const EnvioDiagnostico=()=>{
     fecha=year + '-' + (month < 10? '0' + month : month) + '-' + (day < 10? '0' + day : day);
     axios({
         method:'POST',
-        url: 'http://127.0.0.1:3000/addDiagnostico',
+        url: 'http://127.0.0.1:5000/addDiagnostico',
         data:{
             id_cliente:Cliente.id,
             id_prof:Pro.id,
