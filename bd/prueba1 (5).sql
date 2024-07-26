@@ -259,7 +259,6 @@ ALTER TABLE `cliente`
 ALTER TABLE `evaluation`
   ADD CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_usuario`),
   ADD CONSTRAINT `evaluation_ibfk_2` FOREIGN KEY (`id_prof`) REFERENCES `profesional` (`id_usuario`),
-  ADD CONSTRAINT `evaluation_ibfk_3` FOREIGN KEY (`id_prof_routine`,`id_routine`) REFERENCES `routine` (`id_prof`, `id_routine`);
 
 --
 -- Filtros para la tabla `profesional`
