@@ -3,7 +3,7 @@ const GetRutina=()=>{
     
     axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/GetDiagnostico/'+user.id,
+        url: 'http://127.0.0.1:5000/GetDiagnostico/'+user.id,
     }).then(function(response){
         //arreglo=response.data
         //console.log(response.data.length)

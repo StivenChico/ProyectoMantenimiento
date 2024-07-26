@@ -35,7 +35,7 @@ const onEdit=(e)=>{
 const Init_Data=()=>{
     axios({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/TableUser',
+        url: 'http://127.0.0.1:5000/TableUser',
         
       }).then(function (response) {
       tabla.innerHTML = '';
@@ -90,7 +90,7 @@ const Eliminar=()=>{
   idDel=localStorage.getItem("IdDelete")
   axios({
     method:'PUT',
-    url:'http://127.0.0.1:3000/delete/'+idDel,
+    url:'http://127.0.0.1:5000/delete/'+idDel,
   }).then(function(response){
     console.log(response.data.informacion)
     Init_Data()
@@ -109,7 +109,7 @@ const Actualizar=()=>{
   rolI=document.getElementById('SelecRol').value;
   axios({
     method:'PUT',
-    url:'http://127.0.0.1:3000/editUser/'+idUpt,
+    url:'http://127.0.0.1:5000/editUser/'+idUpt,
     data:{
       id:idUpt,
       username:usernameI,

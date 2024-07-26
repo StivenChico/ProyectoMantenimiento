@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
+import os
 
 # initializations
 app = Flask(__name__)
@@ -9,25 +10,22 @@ CORS(app)
 
 
 
-"""
+
 # Mysql Connection
-app.config['MYSQL_HOST'] = 'bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com' 
-app.config['MYSQL_USER'] = 'uv6qsokghzno3ntw'
-app.config['MYSQL_PASSWORD'] = 'C9KrEz8JwELh7RZoERVj'
-app.config['MYSQL_DB'] = 'bv7h1w4xo7apdbtrysyl'
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST') 
+app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER') 
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD') 
+app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB') 
 mysql = MySQL(app)
 """
-app.config['MYSQL_HOST'] = 'localhost' 
+app.config['MYSQL_HOST'] = 'mysql' 
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'prueba1'
-mysql = MySQL(app)
+
+mysql = MySQL(app)"""
 # settings A partir de ese momento Flask utilizará esta clave para poder cifrar la información de la cookie
 app.secret_key = "mysecretkey"
-
-
-
-
 
 
 # ruta para consultar todos los registros de estado fisico a traves de una vista creada en la base de datos
@@ -405,5 +403,5 @@ def getGrafica6():
 
 # starting the app
 if __name__ == "__main__":
-    app.run(port=3000, debug=True)
+    app.run(port=5000, debug=True)
 
