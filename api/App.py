@@ -2,7 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
-import os
+"""import os"""
 
 # initializations
 app = Flask(__name__)
@@ -11,19 +11,18 @@ CORS(app)
 
 
 
-# Mysql Connection
-app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST') 
-app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER') 
-app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD') 
-app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB') 
+"""# Mysql Connection
+app.config['MYSQL_HOST'] = 'bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com'   #os.environ.get('MYSQL_HOST') "
+app.config['MYSQL_USER'] ='uv6qsokghzno3ntw'               #os.environ.get('MYSQL_USER') 
+app.config['MYSQL_PASSWORD'] = 'C9KrEz8JwELh7RZoERVj'         #os.environ.get('MYSQL_PASSWORD') 
+app.config['MYSQL_DB'] =  'bv7h1w4xo7apdbtrysyl'               #os.environ.get('MYSQL_DB') 
 mysql = MySQL(app)
 """
-app.config['MYSQL_HOST'] = 'mysql' 
+app.config['MYSQL_HOST'] = 'localhost' 
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'prueba1'
-
-mysql = MySQL(app)"""
+app.config['MYSQL_DB'] = 'proyecto_fn'
+mysql = MySQL(app)
 # settings A partir de ese momento Flask utilizará esta clave para poder cifrar la información de la cookie
 app.secret_key = "mysecretkey"
 
@@ -60,8 +59,52 @@ def FisicById(id):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-    
+#ruta para registrar el ejercicio
+@app.route('/registroEjercicio',methods=['POST'])
+def registroEjercicio():
+    try:
+        if request.method== 'POST':
+            data = request.get_json()
+            print(f"datos recibidos:{data}")
+            nombre=data['nombre']
+            guide=data['guia']
+            tipo=data['tipo']
+            equipo=data['equipo']
+            nivel=data['nivel']
+            repetitions=data['repeticiones']
+            series=data['series']
+            duration=data['duracion']
+            cur= mysql.connection.cursor()
+            cur.execute("INSERT INTO workout( nombre, guide, tipo, equipo, nivel, repetitions, series, duration) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",(nombre,guide,tipo,equipo,nivel,repetitions,series,duration))
+            print("inserción de ejercicion realizada")
+            mysql.connection.commit()
+            cur.close()
+            return jsonify({"información":"Registro exitoso"})
+    except Exception as e:
+        print(f"Error:{e}")
+        return jsonify({"informacion":str(e)})
+#ruta para  mostrar los ejercicios en la tabla
+@app.route('/ejercicioTabla',methods=['GET'])
+def ejercicioTabla():
+    try: 
+        if request.method =='GET':
+            cur=mysql.connection.cursor()
+            cur.execute('SELECT * FROM workout')
+            print("consulta realizada")
+            rv = cur.fetchall()
+            cur.close()
+            content = {}
+            payload = []
+            for result in rv:
+                content={'id':result[0],'nombre':result[1], 'guia':result[2], 'tipo':result[3],'equipo':result[4],'nivel':result[5],'repeticiones':result[6],'series':result[7],'duracion':result[8]}
+                print("contenido ordenado")
+                payload.append(content)
+            return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
 
+# ruta para registrar el diagnostico del profesional
 @app.route('/addDiagnostico', methods=['POST'])
 def addDiagnostico():
     try:
@@ -79,7 +122,7 @@ def addDiagnostico():
         print(e)
         return jsonify({"informacion":e})
 
-
+#ruta para mostrar el diagnostico al cliente
 @app.route('/GetDiagnostico/<id>',methods=['GET'])
 def GetDiagnostico(id):
     try:
@@ -117,7 +160,7 @@ def TableUser():
         print(e)
         return jsonify({"informacion":e})
 
-  
+
 
 # ruta para consultar por parametro
 @app.route('/Login/<username>',methods=['GET'])
@@ -182,21 +225,41 @@ def editUser(id):
 def registro():
     try:
         if request.method == 'POST':
-            username= request.json['username']
-            name = request.json['name']
-            surname = request.json['surname']
-            email= request.json['email']  
-            password = request.json['password']
-            cell= request.json['cell']
-            rol=request.json['rol']
+            data = request.get_json()
+            #print(f"datos recibidos: {data}")
+            username= data['username']
+            name = data['name']
+            surname = data['surname']
+            email= data['email']  
+            password = data['password']
+            cell= data['cell']
+            rol=data['rol']
+            speciality = data.get('especialidad',None)
+            #print(f"especialidad resivida:{speciality}")
             cur = mysql.connection.cursor()
+            # iniciamos la transacción
+            cur.execute("START TRANSACTION")
+            print("transacción iniciada")
+            #inserción tabla usuarios
             cur.execute("INSERT INTO usuarios (username,name,surname,email,password,cell,rol,status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)", (username,name,surname,email,password,cell,rol,1))
+            print("inserción de usuario realizada")
+            #obtengo el ultimo ID insertdo
+            cur.execute("SELECT LAST_INSERT_ID()")
+            id_usuario =cur.fetchone()[0]
+            #print(f"id usuario: {id_usuario}")
+            #verifica que el usuario es profesional
+            if rol == '3' and speciality:
+                # inserción en la tabla del profesional con el id obtenido 
+                cur.execute("INSERT INTO profesional (id_usuario, `specialty`) VALUES (%s,%s)",(id_usuario,speciality))
+                print("inserccón de profesional realizada")
             mysql.connection.commit()
+            print("Transacción confirmada")
             cur.close()
             return jsonify({"informacion":"Registro exitoso"})
     except Exception as e:
-        print(e)
-        return jsonify({"informacion":e})
+        mysql.connection.rollback()
+        print(f"Error:{e}")
+        return jsonify({"informacion":str(e)})
 
 @app.route("/regisFisicState",methods=['POST'])
 def regisFisicState():
@@ -219,6 +282,7 @@ def regisFisicState():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
+
 ######### ruta para actualizar################
 @app.route('/update/<id>', methods=['PUT'])
 def update_contact(id):
