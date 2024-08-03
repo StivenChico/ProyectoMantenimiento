@@ -34,7 +34,7 @@ const RegistroFisicState=()=>{
             }
         }).then(function(response){
         alert(response.data.informacion)
-        window.location.href("/fit_intUser")
+        window.location.href="/fit_intUser"
         }).catch(err => console.log('Error: ', err))
     }
 

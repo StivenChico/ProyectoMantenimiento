@@ -165,7 +165,6 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
             nombres.push(Arreglo[i].rango_edad);
             data.push(Arreglo[i].total);
         }
-
         // Rango de edades
         //const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
         //console.log(response.data)
