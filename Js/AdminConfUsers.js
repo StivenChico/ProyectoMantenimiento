@@ -1,4 +1,4 @@
-const tabla=document.querySelector("#tablaa tbody");
+//const tabla=document.querySelector("#tablaa tbody");
 const tablaBoton=document.getElementById("tablaa");
 
 //console.log(tablaBoton)
@@ -30,7 +30,9 @@ tablaBoton.addEventListener('click', function(e){
 const onEdit=(e)=>{
   console.log(e.target.parentNode.parentNode.parentNode.children[0].textContent)
 }
-
+let tabla = new DataTable('#tablaa', {
+  paging:false,
+});
 
 const Init_Data=()=>{
     axios({
@@ -38,7 +40,9 @@ const Init_Data=()=>{
         url: 'http://127.0.0.1:5000/TableUser',
         
       }).then(function (response) {
-      tabla.innerHTML = '';
+        
+      botones=`<buttom type="buttom" class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#Editar">Edit</Buttom>
+      <a class= "btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#Eliminar" >Delete</a>`
         //console.log(response)
             for (let i = 0; i < response.data.length; i++) {
                 menRol=""
@@ -49,9 +53,9 @@ const Init_Data=()=>{
                 } else if(response.data[i].rol === 3){
                   menRol="Profesional"
                 }
-                              
-                let nuevaFila = tabla.insertRow(tabla.lenght);
-    
+                tabla.row.add([response.data[i].id,response.data[i].username, response.data[i].name, response.data[i].surname, response.data[i].email, response.data[i].password, response.data[i].cell,menRol,botones]).draw();
+                /*let nuevaFila = tabla.insertRow(tabla.lenght);
+                
                 id = nuevaFila.insertCell(0);
                 id.innerHTML = response.data[i].id;
     
@@ -78,7 +82,7 @@ const Init_Data=()=>{
 
                 cell4  = nuevaFila.insertCell(8);
                 cell4.innerHTML =   `<buttom type="buttom" class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#Editar">Edit</Buttom>
-                    <a class= "btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#Eliminar" >Delete</a>`;
+                    <a class= "btn btn-danger ms-3" data-bs-toggle="modal" data-bs-target="#Eliminar" >Delete</a>`;*/
                     
             } 
               
