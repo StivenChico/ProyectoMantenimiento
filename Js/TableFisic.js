@@ -1,5 +1,8 @@
-const tabla=document.querySelector("#tablab tbody");
+//const tabla=document.querySelector("#tablab tbody");
 
+let tabla = new DataTable('#tablab', {
+  // options
+});
 const Init_Data=()=>{
     botones=`<a id="evaluar" class="btn btn-success mx-5">Evaluar</a>`
     axios({
@@ -10,8 +13,9 @@ const Init_Data=()=>{
        
         //console.log(response)
             for (let i = 0; i < response.data.length; i++) {
-                              
-                let nuevaFila = tabla.insertRow(tabla.lenght);
+                    
+              tabla.row.add([response.data[i].id, response.data[i].name, response.data[i].surname, response.data[i].age, response.data[i].gender, response.data[i].height, response.data[i].weight, response.data[i].Fr_Train,botones]).draw();
+                /*let nuevaFila = tabla.insertRow(tabla.lenght);
     
                 id = nuevaFila.insertCell(0);
                 id.innerHTML = response.data[i].id;
@@ -38,7 +42,7 @@ const Init_Data=()=>{
                 Fr_Train.innerHTML = response.data[i].Fr_Train; 
     
                 cell4  = nuevaFila.insertCell(8);
-                cell4.innerHTML =botones;  
+                cell4.innerHTML =botones;  */
             } 
               
       }).catch(err => console.log('Error: ', err))

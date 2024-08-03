@@ -1,6 +1,6 @@
 tablaa = document.getElementById("tablab");
 if(tablaa!=null){
-tabla.addEventListener('click',function(e){
+tablaa.addEventListener('click',function(e){
     e.stopPropagation();
     if(e.target.className === 'btn btn-success mx-5'){
         e.stopPropagation();
