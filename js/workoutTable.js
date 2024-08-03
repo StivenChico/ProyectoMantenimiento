@@ -5,9 +5,7 @@ const Init_Data =() =>{
         data= response.data;
         for(let i = 0; i< data.length; i++){
             let row = tabla.insertRow(tabla.length);
-            id = row.insertCell(0);
-            id.innerHTML = data[i].id;
-            
+            row.insertCell(0).innerHTML = data[i].id;
             row.insertCell(1).innerHTML = data[i].nombre;
             row.insertCell(2).innerHTML = data[i].guia;
             row.insertCell(3).innerHTML = data[i].tipo;
