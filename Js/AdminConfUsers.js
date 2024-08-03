@@ -31,12 +31,9 @@ const onEdit=(e)=>{
   console.log(e.target.parentNode.parentNode.parentNode.children[0].textContent)
 }
 let tabla = new DataTable('#tablaa', {
-   responsive:true
+  paging:false,
 });
-tabla.on('responsive-resize', function (e, datatable, columns) {
-  var count = columns.reduce(function (a, b) {
-      return b === false ? a + 1 : a;
-  }, 0);});
+
 const Init_Data=()=>{
     axios({
         method: 'GET',

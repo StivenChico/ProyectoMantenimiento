@@ -1,7 +1,8 @@
 //const tabla=document.querySelector("#tablab tbody");
 
 let tabla = new DataTable('#tablab', {
-  // options
+  paging:false,
+  
 });
 const Init_Data=()=>{
     botones=`<a id="evaluar" class="btn btn-success mx-5">Evaluar</a>`
