@@ -2,17 +2,21 @@
 from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
-"""import os"""
+import os
+from dotenv import load_dotenv
 import jwt, datetime
 
 # initializations
 app = Flask(__name__)
 CORS(app)
 
-app.config['MYSQL_HOST'] = 'bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com'
-app.config['MYSQL_USER'] = 'uv6qsokghzno3ntw'
-app.config['MYSQL_PASSWORD'] = 'C9KrEz8JwELh7RZoERVj'
-app.config['MYSQL_DB'] = 'bv7h1w4xo7apdbtrysyl'
+# cargar el archivo.env para obtener las variables de entorno
+load_dotenv()
+app.config['MYSQL_HOST'] = os.getenv('MYSQl_HOST')
+app.config['MYSQL_USER'] = os.getenv('MYSQl_USER')
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQl_PASSWORD')
+app.config['MYSQL_DB'] =os.getenv('MYSQl_DB')
+app.config['MYSQL_PORT'] = 23566
 
 mysql = MySQL(app)
 """
@@ -376,13 +380,13 @@ def GetGrafica1():
 def GetGrafica2():
     try:
         cur = mysql.connection.cursor()
-        cur.execute("SELECT cliente.gender, count(0) AS total FROM (cliente join usuarios on(cliente.id_usuario = usuarios.id)) WHERE usuarios.status = 1 GROUP BY cliente.gender")
+        cur.execute("SELECT cliente.gender, count(0) AS total,(SELECT count(*) as total from evaluation) FROM (cliente join usuarios on(cliente.id_usuario = usuarios.id)) WHERE usuarios.status = 1 GROUP BY cliente.gender")
         rv = cur.fetchall()
         cur.close()
         payload = []
         content = {}
         for result in rv:
-            content = {'gender': result[0], 'total': result[1]}
+            content = {'gender': result[0], 'total': result[1], 'diagnosticosTotales': result[2]}
             payload.append(content)
         return jsonify(payload)
     except Exception as e:
@@ -444,15 +448,14 @@ def getGrafica5():
                 END AS rango_edad,
                 COUNT(*) AS numero_de_personas
             FROM cliente join usuarios on cliente.id_usuario=usuarios.id where status=1
-            GROUP BY rango_edad''')
+                GROUP BY rango_edad
+                    ''')
         rv = cur.fetchall()
         cur.close()
         payload = []
         content = {}
-        for result in rv:
-            content = {'rango_edad': result[0], 'total': result[1]}
-            payload.append(content)
-        return jsonify(payload)
+        
+        return jsonify(rv)
     except Exception as e:
         return jsonify({"error":str(e)})
 

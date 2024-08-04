@@ -5,18 +5,17 @@ const grafica4=document.getElementById("Grafica4");
 const grafica5=document.getElementById("Grafica5");
 const Init_Graficas=()=>{
     //Peticion de datos generales
-    axios({
+    /*axios({
         method: 'GET',
         url: 'http://127.0.0.1:5000/GetGeneral',
     }).then(function(response){
         document.getElementById("Activos").innerHTML+=response.data.totalUsuarios;
         document.getElementById("DiagnosticosTt").innerHTML+=response.data.diagnosticosTotales;
     }).catch(err => console.log('Error: ', err))
-
+*/
 
 
     //peticion para grafica 1 sobre el IMC
-
 axios({
     method: 'GET',
     url: 'http://127.0.0.1:5000/GetGrafica1',
@@ -69,6 +68,9 @@ axios({
     }).then(function(response){
         let M=response.data[1].total;
         let F=response.data[0].total;
+        act=M+F;
+        document.getElementById("Activos").innerHTML+=act;
+        document.getElementById("DiagnosticosTt").innerHTML+=response.data[0].diagnosticosTotales;
     var Chart2=new Chart(grafica2, {
         type:'pie',
         data:{
@@ -112,7 +114,6 @@ axios({
 
 
 //Peticon a la api de datos para la grafica 4 de roles
-setTimeout(()=>{
 axios({
     method: 'GET',
     url: 'http://127.0.0.1:5000/GetGrafica4',
@@ -228,7 +229,7 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
     })
   })
   .catch(err => console.log('error:', err));
-},'1000')
+
 }
 
 
