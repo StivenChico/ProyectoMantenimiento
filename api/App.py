@@ -97,10 +97,21 @@ def ejercicioTabla():
             cur.close()
             content = {}
             payload = []
+            print("antes del for")
             for result in rv:
-                content={'id':result[0],'nombre':result[1], 'guia':result[2], 'tipo':result[3],'equipo':result[4],'nivel':result[5],'repeticiones':result[6],'series':result[7],'duracion':result[8]}
+                print("dentro del for")
+                content={'id':result[0],
+                         'nombre':result[1], 
+                         'guia':result[2], 
+                         'tipo':result[3],
+                         'equipo':result[4],
+                         'nivel':result[5],
+                         'repeticiones':result[6],
+                         'series':result[7],
+                         'duracion':result[8]}
                 print("contenido ordenado")
                 payload.append(content)
+            print("despues del for")
             return jsonify(payload)
     except Exception as e:
         print(e)
