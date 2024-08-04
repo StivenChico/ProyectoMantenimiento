@@ -37,14 +37,16 @@ const verificar = () => {
       }).then(function (response) {
         if(response.data.length>0){
           if(response.data[0].status==1 && response.data[0].username == IngUser && response.data[0].password == IngPass &&response.data[0].rol == IngRol) {
+                  localStorage.setItem("token",response.data[0].token);
                   window.location.href = path;
-                  us={
+                  /*us={
                     id:response.data[0].id,
+                    username: response.data[0].username,
                     name: response.data[0].name,
                     surname: response.data[0].surname,
                     rol:response.data[0].rol
-                  }
-                  localStorage.setItem("Usuario",JSON.stringify(us));
+                  }*/
+                  
 
             }else{
               alert("Usuario y/o Contraseña erronea")
