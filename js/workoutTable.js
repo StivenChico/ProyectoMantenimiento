@@ -10,7 +10,7 @@ const Init_Data =() =>{
         botones=`<button class="btn btn-danger btn-sm">Delete</button>`
         data= response.data;
         for(let i = 0; i< data.length; i++){
-            tabla.row.add([data[i].nombre,data[i].guia,data[i].tipo,data[i].equipo,data[i].nivel,data[i].repeticiones,data[i].respeticiones,data[i].series,data[i].duracion,botones]).draw();
+            tabla.row.add([data[i].id,data[i].nombre,data[i].guia,data[i].tipo,data[i].equipo,data[i].nivel,data[i].repeticiones,data[i].series,data[i].duracion,botones]).draw();
             /*let row = tabla.insertRow(tabla.length);
             id = row.insertCell(0);
             id.innerHTML = data[i].id;

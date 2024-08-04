@@ -16,6 +16,7 @@ const Init_Graficas=()=>{
 
 
     //peticion para grafica 1 sobre el IMC
+
 axios({
     method: 'GET',
     url: 'http://127.0.0.1:5000/GetGrafica1',
@@ -111,6 +112,7 @@ axios({
 
 
 //Peticon a la api de datos para la grafica 4 de roles
+setTimeout(()=>{
 axios({
     method: 'GET',
     url: 'http://127.0.0.1:5000/GetGrafica4',
@@ -196,8 +198,13 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
   axios.get('http://127.0.0.1:5000/getGrafica6')
   .then(response =>{
     // Rango de alturas
-    const labels = ['155-165 cm', '165-175 cm', '175-185 cm', '185-195 cm'];
-    console.log(response.data)
+    const labels = []
+    datos=[]
+    for (lab in response.data){
+        labels.push(lab[0]);
+        datos.push(lab[1]);
+    }
+    
     const heightCtx = document.getElementById('Grafica6').getContext('2d');
     const heightChart = new Chart(heightCtx,{
       type:'bar',
@@ -205,7 +212,7 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
         labels: labels, // etiqueta de los rangos
         datasets:[{
           label:'Numero de personas por altura',
-          data:response.data, // datos de la cantidad de personas en cada rango
+          data:datos, // datos de la cantidad de personas en cada rango
           backgroundColor: 'rgba(75, 192, 192)'
         }]
       },
@@ -221,6 +228,7 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
     })
   })
   .catch(err => console.log('error:', err));
+},'1000')
 }
 
 

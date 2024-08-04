@@ -3,13 +3,12 @@ from flask import Flask, request, jsonify
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
 """import os"""
+import jwt, datetime
 
 # initializations
 app = Flask(__name__)
 CORS(app)
 
-
-# Mysql Connection
 app.config['MYSQL_HOST'] = 'bv7h1w4xo7apdbtrysyl-mysql.services.clever-cloud.com'
 app.config['MYSQL_USER'] = 'uv6qsokghzno3ntw'
 app.config['MYSQL_PASSWORD'] = 'C9KrEz8JwELh7RZoERVj'
@@ -23,7 +22,7 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'proyecto_fn'
 mysql = MySQL(app)"""
 # settings A partir de ese momento Flask utilizará esta clave para poder cifrar la información de la cookie
-app.secret_key = "mysecretkey"
+app.secret_key = "dsworkout"
 
 
 # ruta para consultar todos los registros de estado fisico a traves de una vista creada en la base de datos
@@ -94,10 +93,21 @@ def ejercicioTabla():
             cur.close()
             content = {}
             payload = []
+            print("antes del for")
             for result in rv:
-                content={'id':result[0],'nombre':result[1], 'guia':result[2], 'tipo':result[3],'equipo':result[4],'nivel':result[5],'repeticiones':result[6],'series':result[7],'duracion':result[8]}
+                print("dentro del for")
+                content={'id':result[0],
+                         'nombre':result[1], 
+                         'guia':result[2], 
+                         'tipo':result[3],
+                         'equipo':result[4],
+                         'nivel':result[5],
+                         'repeticiones':result[6],
+                         'series':result[7],
+                         'duracion':result[8]}
                 print("contenido ordenado")
                 payload.append(content)
+            print("despues del for")
             return jsonify(payload)
     except Exception as e:
         print(e)
@@ -160,7 +170,16 @@ def TableUser():
         return jsonify({"informacion":e})
 
 
-
+# ruta para verificar token
+@app.route('/verify_token/<token>', methods=['GET'])
+def verify_token(token):
+    try:
+        payload = jwt.decode(token, app.secret_key,algorithms=['HS256'])
+        return payload
+    except jwt.ExpiredSignatureError:
+        return {'message': 'The token has expired'}, 401
+    except jwt.InvalidTokenError:
+        return {'message': 'Invalid token'}, 403
 # ruta para consultar por parametro
 @app.route('/Login/<username>',methods=['GET'])
 def Login(username):
@@ -172,7 +191,17 @@ def Login(username):
         content={}
         payload=[]
         for result in rv:
-            content= {"id":result[0],"username":result[1],"name":result[2],"surname":result[3],"password":result[4],"rol":result[5],"status":result[6]}
+            jpayload={'id':result[0],
+                    'username':result[1],
+                    'name':result[2],
+                    'surname':result[3],
+                    'rol':result[5],
+                    'exp': datetime.datetime.now() + datetime.timedelta(hours=5,minutes=10),
+                    'iat': datetime.datetime.now()
+                 }
+            token=jwt.encode(jpayload, app.secret_key, algorithm='HS256')
+            #print(token)
+            content= {"id":result[0],"username":result[1],"name":result[2],"surname":result[3],"password":result[4],"rol":result[5],"status":result[6],'token':token}
             payload.append(content)
         return jsonify(payload)
     except Exception as e:
@@ -457,7 +486,8 @@ def getGrafica6():
             GROUP BY rango_altura''')
         rv = cur.fetchall()
         cur.close()
-        data= [row[1] for row in rv]
+        data= [row for row in rv]
+        print(data)
         return jsonify(data)
     except Exception as e:
         return jsonify({"error":str(e)})
