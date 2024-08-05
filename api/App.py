@@ -67,7 +67,7 @@ def registroEjercicio():
     try:
         if request.method== 'POST':
             data = request.get_json()
-            print(f"datos recibidos:{data}")
+            #print(f"datos recibidos:{data}")
             nombre=data['nombre']
             guide=data['guia']
             tipo=data['tipo']
@@ -78,7 +78,7 @@ def registroEjercicio():
             duration=data['duracion']
             cur= mysql.connection.cursor()
             cur.execute("INSERT INTO workout( nombre, guide, tipo, equipo, nivel, repetitions, series, duration) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",(nombre,guide,tipo,equipo,nivel,repetitions,series,duration))
-            print("inserción de ejercicion realizada")
+            #print("inserción de ejercicion realizada")
             mysql.connection.commit()
             cur.close()
             return jsonify({"información":"Registro exitoso"})
@@ -92,14 +92,14 @@ def ejercicioTabla():
         if request.method =='GET':
             cur=mysql.connection.cursor()
             cur.execute('SELECT * FROM workout')
-            print("consulta realizada")
+            #print("consulta realizada")
             rv = cur.fetchall()
             cur.close()
             content = {}
             payload = []
-            print("antes del for")
+            #print("antes del for")
             for result in rv:
-                print("dentro del for")
+                #print("dentro del for")
                 content={'id':result[0],
                          'nombre':result[1], 
                          'guia':result[2], 
@@ -109,6 +109,32 @@ def ejercicioTabla():
                          'repeticiones':result[6],
                          'series':result[7],
                          'duracion':result[8]}
+                print("contenido ordenado")
+                payload.append(content)
+            #print("despues del for")
+            return jsonify(payload)
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+# ruta para mostrar los ejercicios en rutinas
+@app.route('/ejercicioTabla_rutina',methods=['GET'])
+def ejercicioTabla_rutina():
+    try: 
+        if request.method =='GET':
+            cur=mysql.connection.cursor()
+            cur.execute('SELECT id_workout, tipo, nivel FROM workout')
+            print("consulta realizada")
+            rv = cur.fetchall()
+            print(f"datos consultados:{rv}")
+            cur.close()
+            content = {}
+            payload = []
+            print("antes del for")
+            for result in rv:
+                print("dentro del for")
+                content={'nombre':result[0],
+                         'tipo':result[1], 
+                         'nivel':result[2]}
                 print("contenido ordenado")
                 payload.append(content)
             print("despues del for")
