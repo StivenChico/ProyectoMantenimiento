@@ -200,7 +200,7 @@ def Login(username):
                     'name':result[2],
                     'surname':result[3],
                     'rol':result[5],
-                    'exp': datetime.datetime.now() + datetime.timedelta(hours=5,minutes=10),
+                    'exp': datetime.datetime.now() + datetime.timedelta(hours=5,minutes=15),
                     'iat': datetime.datetime.now()
                  }
             token=jwt.encode(jpayload, app.secret_key, algorithm='HS256')
@@ -463,8 +463,6 @@ def getGrafica5():
                     ''')
         rv = cur.fetchall()
         cur.close()
-        payload = []
-        content = {}
         
         return jsonify(rv)
     except Exception as e:
@@ -489,9 +487,8 @@ def getGrafica6():
             GROUP BY rango_altura''')
         rv = cur.fetchall()
         cur.close()
-        data= [row for row in rv]
-        print(data)
-        return jsonify(data)
+        
+        return jsonify(rv)
     except Exception as e:
         return jsonify({"error":str(e)})
 

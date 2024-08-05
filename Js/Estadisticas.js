@@ -5,14 +5,13 @@ const grafica4=document.getElementById("Grafica4");
 const grafica5=document.getElementById("Grafica5");
 const Init_Graficas=()=>{
     //Peticion de datos generales
-    /*axios({
+    axios({
         method: 'GET',
         url: 'http://127.0.0.1:5000/GetGeneral',
     }).then(function(response){
         document.getElementById("Activos").innerHTML+=response.data.totalUsuarios;
         document.getElementById("DiagnosticosTt").innerHTML+=response.data.diagnosticosTotales;
     }).catch(err => console.log('Error: ', err))
-*/
 
 
     //peticion para grafica 1 sobre el IMC
@@ -68,9 +67,6 @@ axios({
     }).then(function(response){
         let M=response.data[1].total;
         let F=response.data[0].total;
-        act=M+F;
-        document.getElementById("Activos").innerHTML+=act;
-        document.getElementById("DiagnosticosTt").innerHTML+=response.data[0].diagnosticosTotales;
     var Chart2=new Chart(grafica2, {
         type:'pie',
         data:{
@@ -158,16 +154,19 @@ axios({
 axios.get('http://127.0.0.1:5000/getGrafica5')
 
       .then(function(response) {
-        
+        //recibimos el arreglo de datos
         Arreglo=response.data
+        //console.log(Arreglo);
         nombres=[];
-        data=[];
-        for(i=0;i<Arreglo.length;i++ ){
-            //console.log(response.data[i].rango_edad);
-            //console.log(Arreglo[i].total);
-            nombres.push(Arreglo[i].rango_edad);
-            data.push(Arreglo[i].total);
+        datos=[];
+        //repetimos para cada rango de edad,segun su existencia aparecera la clasificacion
+        for(i in Arreglo){
+            intervalo=Arreglo[i]
+            nombres.push(intervalo[0]);
+            datos.push(intervalo[1]);
         }
+        //console.log(nombres);
+        //console.log(datos);
         // Rango de edades
         //const labels = ['0-17', '18-25', '26-35', '36-45', '46-55', '56-65', '66+'];
         //console.log(response.data)
@@ -178,7 +177,7 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
             labels: nombres, // etiquetas de los rangos de edad
             datasets: [{
               label: 'Rangos de edad',
-              data:data, // datos de la cantidad de personas en cada rango de edad
+              data:datos, // datos de la cantidad de personas en cada rango de edad
               backgroundColor: 'rgba(75, 192, 192, 0.2)',
               borderColor: 'rgba(75, 192, 192, 1)',
               borderWidth: 1
@@ -201,7 +200,8 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
     // Rango de alturas
     const labels = []
     datos=[]
-    for (lab in response.data){
+    for (i in response.data){
+        lab=response.data[i];
         labels.push(lab[0]);
         datos.push(lab[1]);
     }
