@@ -116,33 +116,20 @@ def ejercicioTabla():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-# ruta para mostrar los ejercicios en rutinas
-@app.route('/ejercicioTabla_rutina',methods=['GET'])
-def ejercicioTabla_rutina():
-    try: 
-        if request.method =='GET':
-            cur=mysql.connection.cursor()
-            cur.execute('SELECT id_workout, tipo, nivel FROM workout')
-            print("consulta realizada")
-            rv = cur.fetchall()
-            print(f"datos consultados:{rv}")
-            cur.close()
-            content = {}
-            payload = []
-            print("antes del for")
-            for result in rv:
-                print("dentro del for")
-                content={'nombre':result[0],
-                         'tipo':result[1], 
-                         'nivel':result[2]}
-                print("contenido ordenado")
-                payload.append(content)
-            print("despues del for")
-            return jsonify(payload)
+# ruta para mostrar los ejercicios en la predicción
+@app.route('/WorkoutById/<id>',methods=['GET'])
+def WorkoutById(id):
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT nombre, guide, tipo, equipo, nivel,duration FROM workout WHERE id_workout = %s",(id,))
+        rv = cur.fetchone()
+        cur.close()
+        content = {'nombre': rv[0], 'desc': rv[1], 'type': rv[2], 'equipment': rv[3],'level': rv[4], 'duration': rv[5]}
+        return jsonify(content)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-
+##rutina para obtener la duración de la rutina
 # ruta para registrar el diagnostico del profesional
 @app.route('/addDiagnostico', methods=['POST'])
 def addDiagnostico():

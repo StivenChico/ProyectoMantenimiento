@@ -90,11 +90,11 @@
                                          <textarea name="" id="txtdescripcion" class="form-control"></textarea required>                               
                                      </div>
                                      <div class="mb-2">
-                                         <label for="txtduration" class="form-label"><b>Duracción</b></label>
-                                         <input type="time" class="form-control" id="txtduration" required>
+                                         <label for="txtduration" class="form-label"><b>Duracción (min)</b></label>
+                                         <input type="number" class="form-control" id="txtduration" required placeholder="00 min">
                                      </div>
                                      <div class="mb-2">
-                                        <label for="txtNivel" class="form-label"><b>Nivel</b></label>
+                                        <label for="txtnivel" class="form-label"><b>Nivel</b></label>
                                         <select id="txtnivel" class="form-control">
                                           <option selected value="principiante">principiante</option>
                                           <option value="intermedio">intermedio</option>
@@ -102,16 +102,12 @@
                                         </select>
                                      </div> 
                                      <div class="mb-2">
-                                      <table id="tablacontacs" class=" table table-striped " style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th><b>Ejercicios</b> </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                   </table>
-                                  </div>                                  
+                                        <h4><b>Ejercicios</b></h4>
+                                        <ul id="listaRutina"></ul>
+
+                                     </div>
+                                     <!--input para guardar los id seleccionados-->
+                                     <input type="hidden" id="idEjercicios">                                  
                                   <div class="mb-2">
                                       <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
                                       <button type="button" class="btn btn-success" onclick="agregarcontacto()">Agregar</button>
@@ -126,42 +122,17 @@
                                         <table id="tablaWorkout_routine" class=" table text-center table-bordered table-striped table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th><b>Nombre</b></th>
-                                                    <th><b>Tipo</b></th>
-                                                    <th><b>Nivel</b></th>
-                                                    <th><b>Acccion</b></th>
+                                                    <th scope="col"><b>Id</b></th>
+                                                    <th scope="col"><b>Nombre</b></th>
+                                                    <th scope="col"><b>Tipo</b></th>
+                                                    <th scope="col"><b>Nivel</b></th>
+                                                    <th scope="col"><b>Acccion</b></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             </tbody>
                                         </table>
                                     </div>
-                                      <select id="txtejercicio" class="form-control">
-                                        <option selected value="##">principiante</option>
-                                        <option value="##">intermedio</option>
-                                        <option value="##">avanzado</option>
-                                      </select>
-                                     </div>   
-                                </div>
-                                <div class="mb-2 row">
-                                  <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <label for="txtrepeticion" class="form-label"><b>Repeticiones</b></label>
-                                    <input type="number" class="form-control disabled" id="txtrepeticion" readonly>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <label for="txtseries" class="form-label"><b>Series</b></label>
-                                    <input type="number" class="form-control disabled" id="txtseries" readonly>
-                                  </div>
-                                </div>
-                                <div class="mb-2 row">
-                                  <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <label for="txtdescripcion2"><b>Descripción</b></label>
-                                    <textarea name="" id="txtdescripcion2" class="form-control"></textarea readonly> 
-                                  </div>
-                                  <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <label for="txttype" class="form-label"><b>Type</b></label>
-                                    <input type="text" class="form-control" id="txttype" readonly>
-                                  </div>
                                 </div>
                               <!--PREDICCION DE E-TRAINER-->    
                                   <div class="justify-content-center">
@@ -170,36 +141,32 @@
                                   <form >
                                     <div class="mb-2 row">
                                       <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label for="txtejercicio2" class="form-label"><b>Ejercicio</b></label>
-                                        <input type="text" class="form-control" id="txtejercicio2" readonly>
+                                        <label for="predicName" class="form-label"><b>Ejercicio</b></label>
+                                        <input type="text" class="form-control" id="predicName" readonly>
                                       </div>
                                       <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label for="txtdescripcion3"><b>Descripción</b></label>
-                                        <textarea name="" id="txtdescripcion3" class="form-control"></textarea readonly> 
-                                      </div>
-                                    </div>
-                                    <div class="mb-2 row">
-                                      <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label for="txtejercicio2" class="form-label"><b>tipo</b></label>
-                                        <input type="text" class="form-control" id="txtejercicio2" readonly>
-                                      </div>
-                                      <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label for="txtdescripcion3"><b>Body part</b></label>
-                                        <textarea name="" id="txtdescripcion3" class="form-control"></textarea readonly> 
+                                        <label for="predicType" class="form-label"><b>Tipo</b></label>
+                                        <input type="text" class="form-control" id="predicType" readonly>
                                       </div>
                                     </div>
                                     <div class="mb-2 row">
                                       <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label for="txtejercicio2" class="form-label"><b>equpamiento</b></label>
-                                        <input type="text" class="form-control" id="txtejercicio2" readonly>
+                                        <label for="predicDescription"><b>Descripción</b></label>
+                                        <textarea name="" id="predicDescription" class="form-control"></textarea readonly> 
                                       </div>
                                       <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label for="txtdescripcion3"><b>nivel</b></label>
-                                        <select id="txtnivel" class="form-control">
-                                          <option selected value="principiante">principiante</option>
-                                          <option value="intermedio">intermedio</option>
-                                          <option value="avanzado">avanzado</option>
-                                        </select>
+                                        <label for="predicBody"><b>Body part</b></label>
+                                        <textarea name="" id="predicBody" class="form-control"></textarea> 
+                                      </div>
+                                    </div>
+                                    <div class="mb-2 row">
+                                      <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label for="predicEquipment" class="form-label"><b>Equipamiento</b></label>
+                                        <input type="text" class="form-control" id="predicEquipment" readonly>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label for="predicLevel" class="form-label"><b>Nivel</b></label>
+                                        <input type="text" class="form-control" id="predicLevel" readonly>
                                       </div>
                                     </div>
                                     <div class="mb-2">
