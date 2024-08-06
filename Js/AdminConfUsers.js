@@ -32,6 +32,7 @@ const onEdit=(e)=>{
 }
 let tabla = new DataTable('#tablaa', {
   paging:false,
+  scrollY:400
 });
 
 const Init_Data=()=>{

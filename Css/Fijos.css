@@ -3,7 +3,7 @@ nav.navbar{
 }
 
 nav a.active, li a:hover {
-    transition: 220ms;
+    transition: 100ms;
     background-color:#fff;
     border-bottom: 3px solid #ea6c36;
     border-radius: 10px;
@@ -12,4 +12,26 @@ nav a.active, li a:hover {
 .nav-link{
     color: #fff;
 }
+#nav-tab .nav-link{
+    color: black;
+}
+#nav-tab .nav-link:hover{
+    color: blue;
+}
+nav a.active, li a{
+    border-radius: 10px;
+}
+nav li{
+    padding: 0 6px 0 0;
+}
 
+td{
+    max-width: 125  px; /* Ancho máximo de la celda */
+    overflow: hidden; /* Oculta el contenido que desborda */
+    text-overflow: ellipsis; /* Muestra "..." para texto largo */
+    white-space: nowrap;
+}
+canvas{
+    margin: 15px;
+    align-content: center;
+}
