@@ -537,7 +537,21 @@ def regisRutina():
     except Exception as e:
         return jsonify({"error":e})
     
-
+@app.route('/getRoutines', methods=['GET'])
+def getRoutines(): 
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT CONCAT(usuarios.name,' ',usuarios.surname) as profesional,routine.id_routine,routine.nombre,descripcion,duration,nivel FROM routine JOIN usuarios ON routine.id_prof=usuarios.id WHERE usuarios.status=1")
+        rv=cur.fetchall()
+        cur.close()
+        content={}
+        payload=[]
+        for result in rv:
+            content={'Autor':result[0],'id_routine':result[1],'nombre':result[2],'descripcion':result[3],'duracion':result[4],'nivel':result[5]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        return jsonify({"error":str(e)})
 
 
 # starting the app

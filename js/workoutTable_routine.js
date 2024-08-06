@@ -2,6 +2,10 @@ let tabla = new DataTable('#tablaWorkout_routine', {
     paging:false,
     scrollY:200
 });
+let tablaR = new DataTable('#tablaR', {
+    paging:false,
+    scrollY:500
+});
 const Init_Data =() =>{
     axios.get('http://127.0.0.1:5000/ejercicioTabla')
     .then(function(response){0
@@ -14,6 +18,15 @@ const Init_Data =() =>{
         for(let i = 0; i< data.length; i++){
             tabla.row.add([data[i].id,data[i].nombre,data[i].tipo,data[i].nivel,botones1]).draw();
 
+        }
+    }).catch(err=> console.log('error:', err))
+
+    axios.get('http://127.0.0.1:5000/getRoutines')
+    .then(function(response){
+        botones2=`<button class="btn btn-danger btn-sm">Delete</button>`
+        data= response.data;
+        for(let i = 0; i< data.length; i++){
+            tablaR.row.add([data[i].Autor,data[i].id_routine,data[i].nombre,data[i].descripcion,data[i].duracion,data[i].nivel,botones2]).draw();
         }
     }).catch(err=> console.log('error:', err))
 }

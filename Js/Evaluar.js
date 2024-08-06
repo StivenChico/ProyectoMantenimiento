@@ -53,28 +53,33 @@ const CargarInfo=()=>{
 }
 
 const EnvioDiagnostico=()=>{
-    diagnostico=document.getElementById('diagnostico').value
-    Pro=JSON.parse(localStorage.getItem('Usuario'))
-    Cliente=JSON.parse(localStorage.getItem('datos'))
-    date = new Date();
-    year = date.getFullYear();
-    month = date.getMonth() + 1;
-    day = date.getDate();
-    fecha=year + '-' + (month < 10? '0' + month : month) + '-' + (day < 10? '0' + day : day);
     axios({
-        method:'POST',
-        url: 'http://127.0.0.1:5000/addDiagnostico',
-        data:{
-            id_cliente:Cliente.id,
-            id_prof:Pro.id,
-            fecha:fecha,
-            diagnostico:diagnostico 
-        }
-        }).then(function(response){
-            alert(response.data.informacion)
-            localStorage.removeItem('datos')
-            window.location.href = 'FisicUsers.html';
-        })
+        method:'GET',
+        url: 'http://127.0.0.1:5000/verify_token/'+localStorage.getItem('token')
+    }).then(function(response){
+        pro=response.data.id
+        diagnostico=document.getElementById('diagnostico').value
+        Cliente=JSON.parse(localStorage.getItem('datos'))
+        date = new Date();
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        day = date.getDate();
+        fecha=year + '-' + (month < 10? '0' + month : month) + '-' + (day < 10? '0' + day : day);
+        axios({
+            method:'POST',
+            url: 'http://127.0.0.1:5000/addDiagnostico',
+            data:{
+                id_cliente:Cliente.id,
+                id_prof:pro,
+                fecha:fecha,
+                diagnostico:diagnostico 
+            }
+            }).then(function(response){
+                alert(response.data.informacion)
+                localStorage.removeItem('datos')
+                window.location.href = 'FisicUsers.html';
+            }).catch(err => console.log('Error: ', err))
+        }).catch(err => console.log('Error: ', err))
 }
 const volver=()=>{
     localStorage.removeItem('datos')
