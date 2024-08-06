@@ -69,26 +69,29 @@ if(tablab!=null){
             const id = e.target.parentNode.parentNode.children[0].textContent;
             const nombre = e.target.parentNode.parentNode.children[1].textContent;
             // verificamos si el ejercicio ya esta en la lista de la rutina
+            console.log(ejerciciosSeleccionados.includes(id))
             if(!ejerciciosSeleccionados.includes(id)){
-                // se hace la consulta para obtener la duración del ejercicio
-                axios.get('http://127.0.0.1:5000/WorkoutById/'+id) 
-            .then(function(response){
-                duracionEjercicio = response.data.duration;
-                console.log(duracionEjercicio);
                 ejerciciosSeleccionados.push(id);
                 // se actualiza la lista de ejercicios
                 let listaRutina= document.getElementById('listaRutina');
                 let lista= document.createElement('li');
                 lista.innerText= nombre;
                 listaRutina.appendChild(lista);
+                // se agrega el id al sessionStorage
+                sessionStorage.setItem('Ejercicios',ejerciciosSeleccionados.join(','))
+
+                // se hace la consulta para obtener la duración del ejercicio
+                axios.get('http://127.0.0.1:5000/WorkoutById/'+id) 
+                .then(function(response){
+                duracionEjercicio = response.data.duration;
+                console.log(duracionEjercicio);
                 // se suma la duracion del nuevo ejercicio
                 totalDuracion += duracionEjercicio;
                 // se actualiza el input del total de la duracion de la rutina
-                document.getElementById('txtduration').value = totalDuracion;
-                // se agrega el id al input oculto que almacena los id
-                document.getElementById('idEjercicios').value = ejerciciosSeleccionados.join(',');
-                console.log(ejerciciosSeleccionados);
+                document.getElementById('txtduration').value = totalDuracion;               
             })
+            }else{
+                alert('El ejercicio ya se encuentra en la lista de la rutina')
             }
         }
     })
@@ -97,24 +100,43 @@ if(tablab!=null){
 mensj="";
 // se piden los datos del formulario
 const Registrar_rutina = () =>{
-    creadorI= JSON.parse(localStorage.getItem('Usuario'))
-    console.log(creadorI)
-    nombreRutinaI= document.getElementById('txtxnombre').value;
-    descripRutinaI=document.getElementById('txtdescripcion').value;
-    duracionRutinaI=document.getElementById('txtduration').value;
-    nivelRutinaI=document.getElementById('txtnivel').value;
-    ejercicios = document.getElementById('idEjercicios').value
     axios({
-        method:'POST',
-        url: 'http://127.0.0.1:5000/###',
-        data:{
-            creador:creadorI.id,
-            nombre:nombreRutinaI,
-            descripcion:descripRutinaI,
-            duracion:duracionRutinaI,
-            nivel:nivelRutinaI,
-            ejercicios:ejercicios
-        }
-    })
+        method:'GET',
+        url: 'http://127.0.0.1:5000/verify_token/'+localStorage.getItem('token')
+        }).then(function(response){
+        creadorI= response.data.id;
+        nombreRutinaI= document.getElementById('txtnombre').value;
+        descripRutinaI=document.getElementById('txtdescripcion').value;
+        duracionRutinaI=document.getElementById('txtduration').value;
+        nivelRutinaI=document.getElementById('txtnivel').value;
+        ejerciciosI = sessionStorage.getItem('Ejercicios')
+        axios({
+            method:'POST',
+            url: 'http://127.0.0.1:5000/regisRutina',
+            data:{
+                creador:creadorI,
+                nombre:nombreRutinaI,
+                descripcion:descripRutinaI,
+                duracion:duracionRutinaI,
+                nivel:nivelRutinaI,
+                ejercicios:ejerciciosI
+            }
+        }).then(function(response){
+            if(response.data.informacion=='Registro de runtina Exitoso'){
+                console.log('Rutina registrada correctamente');
+                // limpiamos los inputs
+                document.getElementById('txtnombre').value='';
+                document.getElementById('txtdescripcion').value='';
+                document.getElementById('txtduration').value='';
+                document.getElementById('txtnivel').value='';
+                sessionStorage.removeItem('Ejercicios');
+                // se vacia la lista de ejercicios seleccionados
+                document.getElementById('listaRutina').innerHTML='';
+                // se vacia el input del total de la duracion de la rutina
+                document.getElementById('txtduration').value = 0;
+                alert('Rutina registrada correctamente');
+            }
+        }).catch(err=> console.log('error:', err))
+    }).catch(err=> console.log('error:', err))
     
 }

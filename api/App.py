@@ -506,6 +506,40 @@ def getGrafica6():
         return jsonify({"error":str(e)})
 
 
+###RUTA PARA REGISTRAR UNA RUTINA##
+@app.route('/regisRutina',methods=['POST'])
+def regisRutina():
+    try:
+        id_prof=request.json['creador']
+        nombre=request.json['nombre']
+        descripcion=request.json['descripcion']
+        duracion=request.json['duracion']
+        nivel=request.json['nivel']
+        ejercicios=request.json['ejercicios']
+        print(ejercicios)
+        cur=mysql.connection.cursor()
+        cur.execute('INSERT INTO routine (id_prof,nombre,descripcion,duration,nivel) VALUES (%s,%s,%s,%s,%s)',(id_prof,nombre,descripcion,duracion,nivel))
+        
+        cur.execute("SELECT LAST_INSERT_ID()")
+        id_routine=cur.fetchone()[0]
+
+        peticion='INSERT INTO routine_workout (id_routine,id_workout, orden) VALUES '
+        exer=ejercicios.split(',')
+        
+        for i in range(len(exer)):
+            n=i+1	
+            peticion=peticion+' ('+str(id_routine)+','+str(exer[i])+','+str(n)+')'
+            if i!=len(exer)-1:
+                peticion=peticion+','
+        cur.execute(peticion)
+        mysql.connection.commit()
+        cur.close()
+        return jsonify({"informacion":"Registro de rutina Exitoso"})
+    except Exception as e:
+        return jsonify({"error":e})
+    
+
+
 
 # starting the app
 if __name__ == "__main__":
