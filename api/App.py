@@ -129,7 +129,6 @@ def WorkoutById(id):
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-##rutina para obtener la duración de la rutina
 # ruta para registrar el diagnostico del profesional
 @app.route('/addDiagnostico', methods=['POST'])
 def addDiagnostico():
