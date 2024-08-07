@@ -26,7 +26,7 @@ nav li{
 }
 
 td{
-    max-width: 125  px; /* Ancho máximo de la celda */
+    max-width: 125px; /* Ancho máximo de la celda */
     overflow: hidden; /* Oculta el contenido que desborda */
     text-overflow: ellipsis; /* Muestra "..." para texto largo */
     white-space: nowrap;
