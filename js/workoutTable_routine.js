@@ -135,19 +135,19 @@ const Registrar_rutina = () =>{
                 ejercicios:ejerciciosI
             }
         }).then(function(response){
-            if(response.data.informacion=='Registro de runtina Exitoso'){
-                console.log('Rutina registrada correctamente');
+            if(response.data.informacion!=null){
+                
                 // limpiamos los inputs
                 document.getElementById('txtnombre').value='';
                 document.getElementById('txtdescripcion').value='';
-                document.getElementById('txtduration').value='';
-                document.getElementById('txtnivel').value='';
+                document.getElementById('txtnivel').value='principiante';
                 sessionStorage.removeItem('Ejercicios');
                 // se vacia la lista de ejercicios seleccionados
                 document.getElementById('listaRutina').innerHTML='';
                 // se vacia el input del total de la duracion de la rutina
                 document.getElementById('txtduration').value = 0;
                 alert('Rutina registrada correctamente');
+                console.log('Rutina registrada correctamente');
             }
         }).catch(err=> console.log('error:', err))
     }).catch(err=> console.log('error:', err))

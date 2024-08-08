@@ -24,7 +24,12 @@ nav a.active, li a{
 nav li{
     padding: 0 6px 0 0;
 }
-
+table{
+    width: max-content;
+}
+th{
+    white-space: nowrap;
+}
 td{
     max-width: 125px; /* Ancho máximo de la celda */
     overflow: hidden; /* Oculta el contenido que desborda */

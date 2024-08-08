@@ -13,30 +13,32 @@ const RegistroFisicState=()=>{
         alert("Todos los campos son obligatorios");
         return;
     }else{
-        user=JSON.parse(localStorage.getItem("Usuario"));
-        //console.log(user.id)
-        //console.log(user.id,ageI,genderI,weightI,heightI,Fr_trainI,durationI,goalI,restritionsI)
-
-    
+        token=localStorage.getItem("token");
         axios({
-            method:'POST',
-            url:"http://127.0.0.1:5000/regisFisicState",
-            data:{
-                id:user.id,
-                age:ageI,
-                gender:genderI,
-                height:heightI,
-                weight:weightI,
-                Fr_train:Fr_trainI,
-                duration:durationI,
-                goal:goalI,
-                restrictions:restrictionsI
-            }
+            method:'GET',
+            url:'http://127.0.0.1:5000/verify_token/'+token
         }).then(function(response){
-        alert(response.data.informacion)
-        window.location.href="/fit_intUser"
-        }).catch(err => console.log('Error: ', err))
+            user=response.data
+    
+            axios({
+                method:'POST',
+                url:"http://127.0.0.1:5000/regisFisicState",
+                data:{
+                    id:user.id,
+                    age:ageI,
+                    gender:genderI,
+                    height:heightI,
+                    weight:weightI,
+                    Fr_train:Fr_trainI,
+                    duration:durationI,
+                    goal:goalI,
+                    restrictions:restrictionsI
+                }
+            }).then(function(response){
+            alert(response.data.informacion)
+            window.location.href="/fit_intUser"
+            }).catch(err => console.log('Error: ', err))
+    }).catch((err) => console.log("Error: ", err));
+
     }
-
-
 }

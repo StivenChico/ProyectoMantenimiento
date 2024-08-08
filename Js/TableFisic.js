@@ -2,7 +2,7 @@
 
 let tabla = new DataTable('#tablab', {
   paging:false,
-  
+  scrollY:400
 });
 const Init_Data=()=>{
     botones=`<a id="evaluar" class="btn btn-success">Evaluar</a>`

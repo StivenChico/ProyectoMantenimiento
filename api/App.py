@@ -137,9 +137,10 @@ def addDiagnostico():
         id_prof=request.json['id_prof']
         fecha=request.json['fecha']
         diagnostico=request.json['diagnostico']
+        id_routine=request.json['rutina']
 
         cur=mysql.connection.cursor()
-        cur.execute("INSERT INTO evaluation (id_cliente, id_prof, fech_evaluation, diagnostico) VALUES (%s,%s,%s,%s)", (id_cliente,id_prof,fecha,diagnostico))
+        cur.execute("INSERT INTO evaluation (id_cliente, id_prof, fech_evaluation, diagnostico,id_routine) VALUES (%s,%s,%s,%s,%s)", (id_cliente,id_prof,fecha,diagnostico,id_routine))
         mysql.connection.commit()
         cur.close()
         return jsonify({"informacion":"Registro exitoso"})
@@ -152,21 +153,47 @@ def addDiagnostico():
 def GetDiagnostico(id):
     try:
         cur=mysql.connection.cursor()
-        cur.execute('SELECT id_cliente,id_prof,fech_evaluation,diagnostico FROM evaluation WHERE id_cliente = %s', (id,))
-        rv = cur.fetchall()
-        print(rv)
+        cur.execute('SELECT e.id_cliente,e.id_prof,e.fech_evaluation,e.diagnostico,r.id_routine,r.nombre,r.nivel,r.descripcion FROM evaluation e join routine r on e.id_routine=r.id_routine WHERE e.id_cliente = %s ORDER BY e.fech_evaluation DESC LIMIT 1', (id,))
+        rv = cur.fetchone()
         cur.close()
-        content = {}
-        payload = []
+        if rv:
+            content={'id_cliente':rv[0],
+                     'id_prof':rv[1],
+                     'fech_evaluation':rv[2],
+                     'diagnostico':rv[3],
+                     'idR':rv[4],
+                     'nombreR':rv[5],
+                     'nivelR':rv[6],
+                     'descripcion':rv[7]}
+            return jsonify(content)
+        else:
+            return jsonify({'informacion':"SinDiagnostico"})
+    except Exception as e:
+        print(e)
+        return jsonify({"informacion":e})
+
+#Ruta para Mostrar los ejercicios que estan asignados al usuario
+@app.route('/EjerciciosUser/<idRutina>',methods=['GET'])
+def EjerciciosUser(idRutina):
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute("Select w.id_workout, w.nombre,w.duration,w.repetitions,w.series from workout w join routine_workout rw on rw.id_workout=w.id_workout where rw.id_routine=%s ",(idRutina))
+        rv=cur.fetchall()
+        content={}
+        payload=[]
         for result in rv:
-            content={'id_cliente':result[0],    'id_prof':result[1],'fech_evaluation':result[2],'diagnostico':result[3]}
+            content={"id":result[0],
+                     "nombre":result[1],
+                     "duracion":result[2],
+                     "repeticiones":result[3],
+                     "series":result[4]}
             payload.append(content)
         return jsonify(payload)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-
-
+    
+####RUTA PARA CARGAR LA INFORMACION DE CONFIGURACION DE LOS USUARIOS##
 @app.route('/TableUser', methods=['GET'])
 def TableUser():
     try:
@@ -515,7 +542,7 @@ def regisRutina():
         duracion=request.json['duracion']
         nivel=request.json['nivel']
         ejercicios=request.json['ejercicios']
-        print(ejercicios)
+        #print(ejercicios)
         cur=mysql.connection.cursor()
         cur.execute('INSERT INTO routine (id_prof,nombre,descripcion,duration,nivel) VALUES (%s,%s,%s,%s,%s)',(id_prof,nombre,descripcion,duracion,nivel))
         
@@ -541,7 +568,7 @@ def regisRutina():
 def getRoutines(): 
     try:
         cur=mysql.connection.cursor()
-        cur.execute("SELECT CONCAT(usuarios.name,' ',usuarios.surname) as profesional,routine.id_routine,routine.nombre,descripcion,duration,nivel FROM routine JOIN usuarios ON routine.id_prof=usuarios.id WHERE usuarios.status=1")
+        cur.execute("SELECT CONCAT(usuarios.name,' ',usuarios.surname) as profesional,routine.id_routine,routine.nombre,descripcion,duration,nivel FROM routine JOIN usuarios ON routine.id_prof=usuarios.id ")
         rv=cur.fetchall()
         cur.close()
         content={}
@@ -553,7 +580,22 @@ def getRoutines():
     except Exception as e:
         return jsonify({"error":str(e)})
 
-
+##Lista de rutinas para modal###
+@app.route('/RutinaModal', methods=['GET'])
+def RutinaModal():
+    try:
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT rw.id_routine,ro.nombre,(SElECT GROUP_CONCAT(w.nombre ORDER BY rw.orden SEPARATOR ', ') from workout w join routine_workout rw on w.id_workout=rw.id_workout where rw.id_routine=ro.id_routine) FROM routine ro JOIN routine_workout rw ON rw.id_routine=ro.id_routine group BY ro.id_routine")
+        rv=cur.fetchall()
+        cur.close()
+        content={}
+        payload=[]
+        for result in rv:
+            content={'id_routine':result[0],'nombre':result[1],'ejercicios':result[2]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        return jsonify({"error":str(e)})
 # starting the app
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

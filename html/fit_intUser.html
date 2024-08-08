@@ -42,12 +42,12 @@
       </nav>
       <!--contenedor de todo-->
     <div class="container">
-        <div class="row mt-3">
+        <div class="row my-4">
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                 <div id="Rutina" class="card mb-5">
                     <h4 class="card-header">Diagnostico</h4>
                     <div class="card-body ">
-                        <div id="RutinaUser" class="my-4 border border-info rounded p-1" >
+                        <div id="RutinaUser" class="my-4 mx-1 border border-info rounded p-1" >
                             <!--DIAGNOSTICO-->
                         </div>
                         <!--NOTA-->
@@ -58,14 +58,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
                 <div class="card">
                     <div class="card-header bg-success">
                         <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <h4 id="nombrerutina" class="text-center text-white"><!--nombre de la rutina--></h4>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <h4 id="nivelR" class="text-center text-white">Nivel: <!--nivel de la rutina--></h4>
                             </div>
                         </div>
@@ -74,17 +74,17 @@
                         <div class="mb-2">
                             <label for="descripR" class="form-label"><b>Descripción</b></label>
                             <!--descripción de la rutina-->
-                            <textarea name="" id="descripR" class="form-control"></textarea required>                               
+                            <textarea name="" readonly id="descripR" class="form-control"></textarea required>                               
                         </div>
                         <div class="table-responsive">
-                            <table id="tablaRcliente" class=" table table-striped " style="width:100%">
+                            <table id="tablaRtUser" class=" table table-striped " style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>id</th>
                                         <th><b>Ejercicios</b> </th>
                                         <th><b>Duración</b></th>
                                         <th><b>Sesiones</b></th>
                                         <th><b>Repeticiones</b></th>
-                                        <th><b>Descanso</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -141,8 +141,14 @@
         </div>
       </div>
       <!--javascript-->
-      <script src="../Js/InicioVerify.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="../Js/InicioVerify.js"></script>
+      <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.dataTables.css" />
+        <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
       <script src="../Js/UserFunciones.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
