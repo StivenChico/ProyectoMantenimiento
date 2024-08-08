@@ -44,7 +44,7 @@ if(tablab!=null){
     // creamos el evento de click
     tablab.addEventListener('click',function(e){
         e.stopPropagation();
-        // se verifica que el elemeto clicado tenga la clase correcta para evitar erroes
+        // se verifica que el elemento clicado tenga la clase correcta para evitar errores
         if(e.target.className=='btn btn-primary btn-sm'){
             e.stopPropagation();
             const id = e.target.parentNode.parentNode.children[0].textContent;

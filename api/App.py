@@ -177,7 +177,7 @@ def GetDiagnostico(id):
 def EjerciciosUser(idRutina):
     try:
         cur=mysql.connection.cursor()
-        cur.execute("Select w.id_workout, w.nombre, w.duration, w.repetitions, w.series from workout w join routine_workout rw on rw.id_workout=w.id_workout where rw.id_routine=%s ",(idRutina))
+        cur.execute("Select w.id_workout, w.nombre, w.duration, w.repetitions, w.series from workout w join routine_workout rw on rw.id_workout=w.id_workout where rw.id_routine=%s ",(idRutina,))
         rv=cur.fetchall()
         content={}
         payload=[]
