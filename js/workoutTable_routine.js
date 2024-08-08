@@ -153,3 +153,15 @@ const Registrar_rutina = () =>{
     }).catch(err=> console.log('error:', err))
     
 }
+const Cancelar = () =>{
+    // limpiamos los inputs
+    document.getElementById('txtnombre').value='';
+    document.getElementById('txtdescripcion').value='';
+    document.getElementById('txtduration').value='';
+    document.getElementById('txtnivel').value='';
+    sessionStorage.removeItem('Ejercicios');
+    // se vacia la lista de ejercicios seleccionados
+    document.getElementById('listaRutina').innerHTML='';
+    // se vacia el input del total de la duracion de la rutina
+    document.getElementById('txtduration').value = 0;
+}
