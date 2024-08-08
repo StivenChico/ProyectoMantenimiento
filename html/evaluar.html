@@ -160,12 +160,15 @@
                 <label for="RutinaAsignada">Rutina Asignada</label>
                 <input type="text" id="RutinaA" class="form-control" readonly placeholder="Rutina sin asignar">
               </div>
-              <div class="col-lg-12">
-                <button class="btn btn-primary mt-2">
+              <div class="col-lg-12 mt-2">
+                <button class="btn btn-primary">
                     <a data-bs-toggle="modal" data-bs-target="#Asignar" class="text-decoration-none text-white">asignar Rutina</a>
                 </button>
-                <button  class="btn btn-success mt-2">
+                <button  class="btn btn-success">
                     <a href="#" onclick="EnvioDiagnostico()" class="text-decoration-none text-white">Enviar diagnostico</a>
+                </button>
+                <button class="btn btn-info">
+                  <a data-bs-toggle="modal" data-bs-target="#rutinaPersonalizada" class="text-decoration-none text-white">Crear Rutina Personalizada</a>
                 </button>
               </div>
               </div>
@@ -194,6 +197,111 @@
             </div>
           </div>
         </div>
+        </div>
+      <!--Modal para formar rutina y ver prediccion-->
+        <div class="modal fade modal-xl" tabindex="-1" id="rutinaPersonalizada">
+          <div class="modal-dialog  col-lg-10">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="text-center my-1 ms-4">Nueva rutina</h1>
+              </div>
+              <div class="modal-body">
+                             <div class="row">
+                                 <div class="col-lg-6 col-md-6 ">
+                                     <div class="mb-2">
+                                         <label for="txtnombre" class="form-label"><b>Nombre</b></label>
+                                         <input type="text" class="form-control" id="txtnombre" required>
+                                     </div>
+                                     <div class="mb-2">
+                                         <label for="txtdescripcion" class="form-label"><b>Descripción</b></label>
+                                         <textarea name="" id="txtdescripcion" class="form-control"></textarea required>                               
+                                     </div>
+                                     <div class="mb-2">
+                                         <label for="txtduration" class="form-label"><b>Duracción (min)</b></label>
+                                         <input type="number" class="form-control" id="txtduration" required placeholder="00 min">
+                                     </div>
+                                     <div class="mb-2">
+                                        <label for="txtnivel" class="form-label"><b>Nivel</b></label>
+                                        <select id="txtnivel" class="form-control">
+                                          <option selected value="Principiante">Principiante</option>
+                                          <option value="Intermedio">Intermedio</option>
+                                          <option value="Avanzado">Avanzado</option>
+                                        </select>
+                                     </div> 
+                                     <div class="mb-2">
+                                        <h4><b>Ejercicios</b></h4>
+                                        <ul id="listaRutina"></ul>
+
+                                     </div>
+                                                                    
+                                  <div class="mb-2">
+                                      <button type="button" class="btn btn-dark" onclick="Cancelar()">Cancelar</button>
+                                      <button type="button" class="btn btn-success" onclick="Registrar_rutina()">Agregar</button>
+                                  </div>
+                             </div>
+                             <!--ejercicios--> 
+                                <div class="col-lg-6 col-md-6 ">
+                                  <div class="mb-2">
+                                    <div class="mb-2">
+                                      <h4 class="text-center"><b>Ejercicios</b></h4>
+                                      <div class="table-responsive">
+                                        <table id="tablaWorkout_routine" class=" table text-center table-bordered table-striped table-hover" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"><b>Id</b></th>
+                                                    <th scope="col"><b>Nombre</b></th>
+                                                    <th scope="col"><b>Tipo</b></th>
+                                                    <th scope="col"><b>Nivel</b></th>
+                                                    <th scope="col"><b>Acccion</b></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                              <!--PREDICCION DE E-TRAINER-->    
+                                  <div class="justify-content-center">
+                                    <h4 class="h4 text-center">Información</h4>
+                                  </div>         
+                                  <form >
+                                    <div class="mb-2 row">
+                                      <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label for="predicName" class="form-label"><b>Ejercicio</b></label>
+                                        <input type="text" class="form-control" id="predicName" readonly>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label for="predicType" class="form-label"><b>Tipo</b></label>
+                                        <input type="text" class="form-control" id="predicType" readonly>
+                                      </div>
+                                    </div>
+                                    <div class="mb-2 row">
+                                      <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label for="predicDescription"><b>Descripción</b></label>
+                                        <textarea name="" id="predicDescription" class="form-control"></textarea readonly> 
+                                      </div>
+                                    </div>
+                                    <div class="mb-2 row">
+                                      <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label for="predicEquipment" class="form-label"><b>Equipamiento</b></label>
+                                        <input type="text" class="form-control" id="predicEquipment" readonly>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <label for="predicLevel" class="form-label"><b>Nivel</b></label>
+                                        <input type="text" class="form-control" id="predicLevel" readonly>
+                                      </div>
+                                    </div>
+                                  </form>
+                                 
+                                </div>
+                             </div>
+                         </div>
+                         </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <a class="btn btn-primary me-5 " data-bs-dismiss="modal">Cancelar</a>
+              </div>
+            </div>
+          </div>
         </div>
       <!--pie de pagina-->
     <div class="container-fluid">
@@ -239,6 +347,7 @@
           </div>
         </div>
       </div>
+    </div>
       <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"
   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="

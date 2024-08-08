@@ -6,6 +6,17 @@ import os
 from dotenv import load_dotenv
 import jwt, datetime
 
+##importaciones necesarias para uso de Machine learning
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
 # initializations
 app = Flask(__name__)
 CORS(app)
@@ -147,6 +158,71 @@ def addDiagnostico():
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
+
+##predecir Ejercicio
+@app.route('/predictWorkout',methods=['POST'])
+def predictWorkout():
+    data = request.get_json()
+    Equipment=data['equipment']
+    BodyPart=data['bodypart']
+    Type=data['type']
+    Level=data['level']
+    file_path = 'api/megaGymDataset.csv'
+    data = pd.read_csv(file_path)
+
+    # Imputar valores faltantes
+    data['Rating'].fillna(data['Rating'].mean(), inplace=True)
+    data['RatingDesc'].fillna('No Description', inplace=True)
+
+    # Seleccionar características y la variable objetivo
+    features = ['Type', 'BodyPart', 'Equipment', 'Level']
+    X = data[features]
+    y = data['Rating']
+
+    # Codificación de variables categóricas
+    categorical_transformer = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+        ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ])
+
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('cat', categorical_transformer, features)
+        ])
+
+    # Dividir el conjunto de datos en entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Definir el modelo Gradient Boosting Regressor
+    model = GradientBoostingRegressor(random_state=42)
+
+    # Crear el pipeline
+    clf = Pipeline(steps=[('preprocessor', preprocessor),
+                        ('regressor', model)])
+
+    # Entrenar el modelo
+    clf.fit(X_train, y_train)
+
+    # Hacer predicciones
+    y_pred = clf.predict(X_test)
+
+    # Evaluar el modelo
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    print(f'RMSE: {rmse}')
+
+    # Ejemplo de predicción con nuevos datos
+    new_data = pd.DataFrame({
+        'Type': [Type],
+        'BodyPart': [BodyPart],
+        'Equipment': [Equipment],
+        'Level': [Level]
+    })
+
+    # Predecir el rating para los nuevos datos
+    new_pred = clf.predict(new_data)
+    return jsonify({'Rating': new_pred[0]})
+
+
 
 #ruta para mostrar el diagnostico al cliente
 @app.route('/GetDiagnostico/<id>',methods=['GET'])
