@@ -89,10 +89,16 @@
                 <input type="text" class="form-control" id="inputObjetivo"readonly>
               </div>
               <div class="col-md-12">
+                <label for="inputEquipamiento">Equipamiento</label>
+                <input type="text" class="form-control" id="inputEquipamiento
+                "readonly>
+              </div>
+              <div class="col-md-12">
                 <label for="inputRestricción_alimenticia" class="form-label">Restricciones alimenticias</label>
                 <input type="text" class="form-control" id="inputRestricción_alimenticia"readonly>
               </div>
             </form>
+            <!-- Diagnostico del cliente-->
             <div class="justify-content-center">
                 <h4 class="h4 fw-bold text-center">Diagnostico</h3>
             </div>
@@ -103,6 +109,45 @@
               
             </div>
             <div>
+              <div class="col-md-12 mb-2">
+                <label for="inputTypePredic">Tipo de ejercicios</label>
+                <select id="inputTypePredic" class="form-select">
+                  <option value="Strength" selected>Fuerza</option>
+                  <option value="Stretching">Estiramiento</option>
+                  <option value="Plyometrics">Pilometría</option>
+                  <option value="Powerlifting">Levantamiento de pesas</option>
+                  <option value="Cardio">Cardio</option>
+                </select>
+              </div>
+              <div class="col-md-12 mb-2">
+                <label for="inputBodypartPredic">Parte del cuerpo</label>
+                <select id="inputBodypartPredic" class="form-select">
+                  <option value="Abdominals" selected>Abdomen</option>
+                  <option value="Adductors">Adductores</option>
+                  <option value="Forearms">Antebrazos</option>
+                  <option value="Biceps">Bíceps</option>
+                  <option value="Neck">Cuello</option>
+                  <option value="Quadriceps">Cuádriceps</option>
+                  <option value="Lats">Dorsales</option>
+                  <option value="Lower Back">Espalda baja</option>
+                  <option value="Middle Back">Espalda media</option>
+                  <option value="Glutes">Glúteos</option>
+                  <option value="Shoulders">Hombros</option>
+                  <option value="Hamstrings">Isquiotibiales</option>
+                  <option value="Chest">Pecho</option>
+                  <option value="Calves">Pantorrillas</option>
+                  <option value="Traps">Trapecios</option>
+                  <option value="Triceps">Tríceps</option>
+                </select>
+              </div>
+              <div class="col-md-12 mb-2">
+                <label for="inputLevelPredic">Nivel del cliente</label>
+                <select id="inputLevelPredic" class="form-select">
+                  <option value="Beginner" selected>Principiante</option>
+                  <option value="Intermediate">Intermedio</option>
+                  <option value="Expert">Experto</option>
+                </select>
+              </div>
               <div class="col-lg-6 my-3">
                 <label for="RutinaAsignada">Rutina Asignada</label>
                 <input type="text" id="RutinaA" class="form-control" readonly placeholder="Rutina sin asignar">
