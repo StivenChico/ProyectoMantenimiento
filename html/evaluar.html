@@ -55,7 +55,7 @@
                   <input type="text" class="form-control" placeholder="Nombre" aria-label="First name" id="inputnombre" readonly>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <label for="inputapellido">Apellido</label>
+                    <label for="inputApellido">Apellido</label>
                   <input type="text" class="form-control" placeholder="Apellido" aria-label="Last name" id="inputApellido"readonly>
                 </div>
 
@@ -73,7 +73,7 @@
                 <input type="text" class="form-control" id="inputpeso"readonly>
               </div>
               <div class="col-sm-12 col-md-6">
-                <label for="inputaltura">Altura(m)</label>
+                <label for="inputAltura">Altura(m)</label>
                 <input type="text" class="form-control" id="inputAltura" placeholder="Altura(m)"readonly>
               </div>
               <div class="col-sm-12 col-md-6">
@@ -163,31 +163,32 @@
                     <option value="Foam Roll">Rodillo de espuma</option>
                     <option value="Kettlebells">Pesas rusas</option>
                     <option value="Machine">Máquina</option>
-                    <option value="Medicine Ball">Balónn medicinal</option>
+                    <option value="Medicine Ball">Balón medicinal</option>
                     <option value="Other">Otro</option>
                   </select>
                 </div>
               </div>
               <div class="row">
                   <div class="col-md-6 mt-4">
-                    <input type="number" class="form-control">
+                    <input type="text" readonly id="predic" class="form-control">
+                    <div class="col-md-6 my-1">
+                      <button type="button" class="btn btn-success my-2" onclick="predecir()">Predecir</button>
+                    </div>
                   </div>
-                  <div class="col-lg-6 ">
-                    <label for="RutinaAsignada">Rutina Asignada</label>
+                  <div class="col-lg-6 col-md-6">
+                    <label for="RutinaA">Rutina Asignada</label>
                     <input type="text" id="RutinaA" class="form-control" readonly placeholder="Rutina sin asignar">
                   </div>
               </div>
-              <div class="col-md-12 my-1">
-                <button type="button" class="btn btn-success mb-1" onclick="">Predecir</button>
-              </div>
+              
               <div class="col-lg-12 mt-2">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary me-2 mb-2">
                     <a data-bs-toggle="modal" data-bs-target="#Asignar" onclick="CargarRutinas()" class="text-decoration-none text-white">asignar Rutina</a>
                 </button>
-                <button  class="btn btn-success">
+                <button  class="btn btn-success me-2 mb-2">
                     <a href="#" onclick="EnvioDiagnostico()" class="text-decoration-none text-white">Enviar diagnostico</a>
                 </button>
-                <button class="btn btn-info">
+                <button class="btn btn-info me-2">
                   <a data-bs-toggle="modal" data-bs-target="#rutinaPersonalizada" class="text-decoration-none text-white">Crear Rutina Personalizada</a>
                 </button>
               </div>
@@ -222,8 +223,14 @@
         <div class="modal fade modal-xl" tabindex="-1" id="rutinaPersonalizada">
           <div class="modal-dialog  col-lg-10">
             <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="text-center my-1 ms-4">Nueva rutina</h1>
+              <div class="modal-header d-flex justify-content-between">
+                <div>
+                  <h1 class="text-center my-1 ms-4">Nueva rutina</h1>
+                </div>
+                <div>
+                  <a onclick="FiltroPredic()" class="btn btn-success my-2">Recomendacion</a>
+                  <a onclick="CargarEjercicios()" class="btn btn-secondary">Quitar Recomendacion</a>
+                </div>
               </div>
               <div class="modal-body">
                              <div class="row">

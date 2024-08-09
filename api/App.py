@@ -113,6 +113,8 @@ def ejercicioTabla():
                 #print("dentro del for")
                 if result[9]==None :
                     re=0
+                else:
+                    re=result[9]
                 content={'id':result[0],
                          'nombre':result[1], 
                          'guia':result[2], 
@@ -173,8 +175,8 @@ def predictWorkout():
     data = pd.read_csv(file_path)
 
     # Imputar valores faltantes
-    data['Rating'].fillna(data['Rating'].mean(), inplace=True)
-    data['RatingDesc'].fillna('No Description', inplace=True)
+    data.fillna({'Rating':data['Rating'].mean()}, inplace=True)
+    data.fillna({'RatingDesc':'No Description'}, inplace=True)
 
     # Seleccionar características y la variable objetivo
     features = ['Type', 'BodyPart', 'Equipment', 'Level']
@@ -222,6 +224,7 @@ def predictWorkout():
 
     # Predecir el rating para los nuevos datos
     new_pred = clf.predict(new_data)
+    print(new_pred[0])
     return jsonify({'Rating': new_pred[0]})
 
 
@@ -675,6 +678,31 @@ def RutinaModal():
         return jsonify(payload)
     except Exception as e:
         return jsonify({"error":str(e)})
+    
+####Filtro de ejercicios con rating####
+@app.route('/ejercicioFiltro/<Rating>', methods=['GET'])
+def ejercicioFiltro(Rating):
+    try:
+        rating=float(Rating)
+        min=rating-1
+        max=rating+1
+        print(min,max)
+        cur=mysql.connection.cursor()
+        cur.execute("SELECT w.id_workout,w.nombre,w.tipo,w.rating FROM workout w where w.rating BETWEEN %s and %s",(min,max,))
+        rv=cur.fetchall()
+        cur.close()
+        content={}
+        payload=[]
+        for result in rv:
+            content={'id':result[0],
+                     'nombre':result[1],
+                     'tipo':result[2],
+                     'rating':result[3]}
+            payload.append(content)
+        return jsonify(payload)
+    except Exception as e:
+        return jsonify({"error":str(e)})
+
 # starting the app
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

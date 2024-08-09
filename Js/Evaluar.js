@@ -37,7 +37,7 @@ tablaa.addEventListener('click',function(e){
 const CargarInfo=()=>{
     let contenido=JSON.parse(localStorage.getItem('datos'))
     if(localStorage.getItem('datos')!=null){
-    console.log(contenido)
+    //console.log(contenido)
     document.getElementById('inputnombre').value= contenido.name
     document.getElementById('inputApellido').value= contenido.surname
     document.getElementById('inputage').value= contenido.age
@@ -55,7 +55,11 @@ const CargarInfo=()=>{
     window.location.href = 'FisicUsers.html';
     }
 }
-
+const tablaPD = new DataTable('#tablaWorkout_Personal', {
+    paging:false,
+    scrollY:200,
+    
+});
 const CargarEjercicios=()=>{
     axios.get('http://127.0.0.1:5000/ejercicioTabla')
     .then(function(response){
@@ -66,17 +70,13 @@ const CargarEjercicios=()=>{
 </svg></buttom>`
         data= response.data;
         ArregloDataPag1=[]
+        tablaPD.clear().draw();
         for(let i = 0; i< data.length; i++){
-            ArregloDataPag1.push([data[i].id,data[i].nombre,data[i].tipo,data[i].rating,botones1]);
+            tablaPD.row.add([data[i].id,data[i].nombre,data[i].tipo,data[i].rating,botones1]).draw();
 
         }
         
-        let tabla = new DataTable('#tablaWorkout_Personal', {
-            paging:false,
-            scrollY:200,
-            data:ArregloDataPag1
-            
-        });
+        
     }).catch(err=> console.log('error:', err))
 }
 let tablaAR = new DataTable('#tablaRutinas', {
@@ -112,7 +112,22 @@ tablaARevent.addEventListener('click',function(e){
     }
 })
 }
-
+predecirBool=false
+const predecir=() => {
+    axios({
+        method:'POST',
+        url: 'http://127.0.0.1:5000/predictWorkout',
+        data: {
+            equipment: document.getElementById('inputEquipamiento').value,
+            bodypart: document.getElementById('inputBodypartPredic').value,
+            type:document.getElementById('inputTypePredic').value,
+            level:document.getElementById('inputLevelPredic').value
+        }
+    }).then(function(response){
+        document.getElementById('predic').value=response.data.Rating.toFixed(3)
+        predecirBool=true
+    }).catch(err => console.log('Error: ', err))
+}
 const EnvioDiagnostico=()=>{
     diagnostico=document.getElementById('diagnostico').value
     if(diagnostico!=""){
@@ -148,7 +163,7 @@ const EnvioDiagnostico=()=>{
         alert("Diagnostico en blanco, porfavor verifique.")}
 }
 
-tablaP= document.getElementById('tablaWorkout_Personal');
+const tablaP= document.getElementById('tablaWorkout_Personal');
 // verificamos que no este vacia
 if(tablaP!=null){
     // creamos el evento de click
@@ -270,7 +285,33 @@ const Registrar_rutina = () =>{
     }).catch(err=> console.log('error:', err))
     
 }
+const FiltroPredic=()=>{
+    if(predecirBool==true){
+        axios.get('http://127.0.0.1:5000/ejercicioFiltro/'+document.getElementById('predic').value)
+        .then(function(response){
+            //console.log(response.data);
+            if(response.data.length>0){
+                botones1=`<buttom type="buttom" class="btn btn-success btn-sm" data-bs-target="#Agregar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+        </svg></Buttom> <buttom class= "btn btn-primary btn-sm" data-bs-target="#Información"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+        </svg></buttom>`
+                data= response.data;
+                ArregloDataPag1=[]
+                tablaPD.clear().draw();
+                for(let i = 0; i< data.length; i++){
+                    tablaPD.row.add([data[i].id,data[i].nombre,data[i].tipo,data[i].rating,botones1]).draw();
 
+                }
+                
+            }else{
+                alert('No se encontraron ejercicios con puntaje similar a '+document.getElementById('predic').value)
+            }
+        }).catch(err=> console.log('error:', err))
+    }else{
+        alert('Aun no haz realizado una predicción')
+    }
+}
 
 const volver=()=>{
     localStorage.removeItem('datos')
