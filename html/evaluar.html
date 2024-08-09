@@ -42,131 +42,131 @@
     </nav>
       <div class="container col-sm-10 col-lg-8 col-md-10  my-5" >
         <div>
-            <button class="btn"><a class="text-decoration-none text-dark" onclick="volver()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
-              </svg></a></button>
-        </div>
+            <div>
+              <button class="btn"><a class="text-decoration-none text-dark" onclick="volver()"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+                </svg></a>
+              </button>
+            </div>
             <div class="justify-content-center">
                 <h3 class="h3 fw-bold text-center">Estado Fisico</h3>
             </div>
-          <form class="row g-3">
+            <form class="row g-3">
                 <div class="col-sm-12 col-md-6">
                     <label for="inputnombre">Nombre</label>
-                  <input type="text" class="form-control" placeholder="Nombre" aria-label="First name" id="inputnombre" readonly>
+                    <input type="text" class="form-control" placeholder="Nombre" aria-label="First name" id="inputnombre" readonly>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <label for="inputapellido">Apellido</label>
-                  <input type="text" class="form-control" placeholder="Apellido" aria-label="Last name" id="inputApellido"readonly>
+                    <input type="text" class="form-control" placeholder="Apellido" aria-label="Last name" id="inputApellido"readonly>
                 </div>
-
                 <div class="col-sm-12 col-md-6 ">
                     <label for="inputage">Edad</label>
-                  <input type="text" class="form-control" id="inputage" placeholder="Edad"readonly>
+                    <input type="text" class="form-control" id="inputage" placeholder="Edad"readonly>
                 </div>
-
                 <div class="col-sm-12 col-md-6">
                     <label for="inputgenero">Genero</label>
                     <input type="text" class="form-control" id="inputgenero"readonly>
                 </div>
-              <div class="col-md-6">
-                <label for="inputpeso">Peso(kg)</label>
-                <input type="text" class="form-control" id="inputpeso"readonly>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <label for="inputaltura">Altura(m)</label>
-                <input type="text" class="form-control" id="inputAltura" placeholder="Altura(m)"readonly>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <label for="inputfr_train" class="form-label">Frecuencia con la que realiza actividad fisica</label>
-                <input type="text" id="inputfr_train" class="form-control"readonly>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <label for="inputDuration_sesion" class="form-label">Duracion de la sesion de ejerccio tipica</label>
-                <input type="text" class="form-control" id="inputDuration_sesion"readonly>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <label for="inputObjetivo" class="form-label">Objetivo</label>
-                <input type="text" class="form-control" id="inputObjetivo"readonly>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <label for="inputEquipamiento" class="form-label">Equipamiento</label>
-                <textarea name="" id="inputEquipamiento" class="form-control" readonly></textarea>
-              </div>
-              <div class="col-md-12">
-                <label for="inputRestricción_alimenticia" class="form-label">Restricciones alimenticias</label>
-                <input type="text" class="form-control" id="inputRestricción_alimenticia"readonly>
-              </div>
-            </form>
-            <!-- Diagnostico del cliente-->
-            <div class="justify-content-center">
-                <h4 class="h4 fw-bold text-center">Diagnostico</h3>
-            </div>
-            <div class="form-floating mb-3 col-lg-12">
-
-                <textarea class="form-control" placeholder="Leave a comment here" id="diagnostico" style="height: 100px" resize="false"></textarea>
-                <label for="diagnostico">Escriba aqui su diagnostico</label>
-              
-            </div>
-            <div>
-              <div class="row">
-                <div class="col-sm-12 col-md-6 mb-2">
-                  <label for="inputTypePredic">Tipo de ejercicios</label>
-                  <select id="inputTypePredic" class="form-select">
-                    <option value="Strength" selected>Fuerza</option>
-                    <option value="Stretching">Estiramiento</option>
-                    <option value="Plyometrics">Pilometría</option>
-                    <option value="Powerlifting">Levantamiento de pesas</option>
-                    <option value="Cardio">Cardio</option>
-                  </select>
-                </div>
-                <div class="col-sm-12 col-md-6 mb-2">
-                  <label for="inputBodypartPredic">Parte del cuerpo</label>
-                  <select id="inputBodypartPredic" class="form-select">
-                    <option value="Abdominals" selected>Abdomen</option>
-                    <option value="Adductors">Adductores</option>
-                    <option value="Forearms">Antebrazos</option>
-                    <option value="Biceps">Bíceps</option>
-                    <option value="Neck">Cuello</option>
-                    <option value="Quadriceps">Cuádriceps</option>
-                    <option value="Lats">Dorsales</option>
-                    <option value="Lower Back">Espalda baja</option>
-                    <option value="Middle Back">Espalda media</option>
-                    <option value="Glutes">Glúteos</option>
-                    <option value="Shoulders">Hombros</option>
-                    <option value="Hamstrings">Isquiotibiales</option>
-                    <option value="Chest">Pecho</option>
-                    <option value="Calves">Pantorrillas</option>
-                    <option value="Traps">Trapecios</option>
-                    <option value="Triceps">Tríceps</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-md-6 mb-2">
-                  <label for="inputLevelPredic">Nivel del cliente</label>
-                  <select id="inputLevelPredic" class="form-select">
-                    <option value="Beginner" selected>Principiante</option>
-                    <option value="Intermediate">Intermedio</option>
-                    <option value="Expert">Experto</option>
-                  </select>
+                <div class="col-md-6">
+                  <label for="inputpeso">Peso(kg)</label>
+                  <input type="text" class="form-control" id="inputpeso"readonly>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                  <label for="inputEquipamiento"> Equipamiento</label>
-                  <select id="inputEquipamiento" class="form-select">
-                    <option value="Body Only" selected>Ninguno</option>
-                    <option value="Bands">Bandas</option>
-                    <option value="Barbell">Pesas con barrra</option>
-                    <option value="Cable">Cuerda para saltar</option>
-                    <option value="Dumbbell">Pesas</option>
-                    <option value="E-Z Curl Bar">Barra E-Z Curl</option>
-                    <option value="Exercise Ball">Balón de ejercicios</option>
-                    <option value="Foam Roll">Rodillo de espuma</option>
-                    <option value="Kettlebells">Pesas rusas</option>
-                    <option value="Machine">Máquina</option>
-                    <option value="Medicine Ball">Balónn medicinal</option>
-                    <option value="Other">Otro</option>
-                  </select>
+                  <label for="inputaltura">Altura(m)</label>
+                  <input type="text" class="form-control" id="inputAltura" placeholder="Altura(m)"readonly>
                 </div>
+                <div class="col-sm-12 col-md-6">
+                  <label for="inputfr_train" class="form-label">Frecuencia con la que realiza actividad fisica</label>
+                  <input type="text" id="inputfr_train" class="form-control"readonly>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="inputDuration_sesion" class="form-label">Duracion de la sesion de ejerccio tipica</label>
+                    <input type="text" class="form-control" id="inputDuration_sesion"readonly>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <label for="inputObjetivo" class="form-label">Objetivo</label>
+                  <input type="text" class="form-control" id="inputObjetivo"readonly>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <label for="inputEquipamiento" class="form-label">Equipamiento</label>
+                  <textarea name="" id="inputEquipamiento" class="form-control" readonly></textarea>
+                </div>
+                <div class="col-md-12">
+                  <label for="inputRestricción_alimenticia" class="form-label">Restricciones alimenticias</label>
+                  <input type="text" class="form-control" id="inputRestricción_alimenticia"readonly>
+                </div>
+            </form>
+        </div>
+        <!--Diagnostico del cliente-->
+        <div>
+            <div class="justify-content-center">
+              <h4 class="h4 fw-bold text-center">Diagnostico</h3>
+            </div>
+            <div class="form-floating mb-3 col-lg-12">
+              <textarea class="form-control" placeholder="Leave a comment here" id="diagnostico" style="height: 100px" resize="false"></textarea>
+              <label for="diagnostico">Escriba aqui su diagnostico</label>
+            </div>
+            <div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-6 mb-2">
+                    <label for="inputTypePredic">Tipo de ejercicios</label>
+                    <select id="inputTypePredic" class="form-select">
+                      <option value="Strength" selected>Fuerza</option>
+                      <option value="Stretching">Estiramiento</option>
+                      <option value="Plyometrics">Pilometría</option>
+                      <option value="Powerlifting">Levantamiento de pesas</option>
+                      <option value="Cardio">Cardio</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-12 col-md-6 mb-2">
+                      <label for="inputBodypartPredic">Parte del cuerpo</label>
+                      <select id="inputBodypartPredic" class="form-select">
+                          <option value="Abdominals" selected>Abdomen</option>
+                          <option value="Adductors">Adductores</option>
+                          <option value="Forearms">Antebrazos</option>
+                          <option value="Biceps">Bíceps</option>
+                          <option value="Neck">Cuello</option>
+                          <option value="Quadriceps">Cuádriceps</option>
+                          <option value="Lats">Dorsales</option>
+                          <option value="Lower Back">Espalda baja</option>
+                          <option value="Middle Back">Espalda media</option>
+                          <option value="Glutes">Glúteos</option>
+                          <option value="Shoulders">Hombros</option>
+                          <option value="Hamstrings">Isquiotibiales</option>
+                          <option value="Chest">Pecho</option>
+                          <option value="Calves">Pantorrillas</option>
+                          <option value="Traps">Trapecios</option>
+                          <option value="Triceps">Tríceps</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-12 col-md-6 mb-2">
+                    <label for="inputLevelPredic">Nivel del ejercicio</label>
+                    <select id="inputLevelPredic" class="form-select">
+                      <option value="Beginner" selected>Principiante</option>
+                      <option value="Intermediate">Intermedio</option>
+                      <option value="Expert">Experto</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <label for="inputEquipamiento"> Equipamiento</label>
+                    <select id="inputEquipamiento" class="form-select">
+                      <option value="Body Only" selected>Ninguno</option>
+                      <option value="Bands">Bandas</option>
+                      <option value="Barbell">Pesas con barrra</option>
+                      <option value="Cable">Cuerda para saltar</option>
+                      <option value="Dumbbell">Pesas</option>
+                      <option value="E-Z Curl Bar">Barra E-Z Curl</option>
+                      <option value="Exercise Ball">Balón de ejercicios</option>
+                      <option value="Foam Roll">Rodillo de espuma</option>
+                      <option value="Kettlebells">Pesas rusas</option>
+                      <option value="Machine">Máquina</option>
+                      <option value="Medicine Ball">Balónn medicinal</option>
+                      <option value="Other">Otro</option>
+                    </select>
+                  </div>
               </div>
               <div class="row">
                   <div class="col-md-6 mt-4">
@@ -226,40 +226,40 @@
                 <h1 class="text-center my-1 ms-4">Nueva rutina</h1>
               </div>
               <div class="modal-body">
-                             <div class="row">
-                                 <div class="col-lg-6 col-md-6 ">
-                                     <div class="mb-2">
-                                         <label for="txtnombre" class="form-label"><b>Nombre</b></label>
-                                         <input type="text" class="form-control" id="txtnombre" required>
-                                     </div>
-                                     <div class="mb-2">
-                                         <label for="txtdescripcion" class="form-label"><b>Descripción</b></label>
-                                         <textarea name="" id="txtdescripcion" class="form-control"></textarea required>                               
-                                     </div>
-                                     <div class="mb-2">
-                                         <label for="txtduration" class="form-label"><b>Duracción (min)</b></label>
-                                         <input type="number" class="form-control" id="txtduration" required placeholder="00 min">
-                                     </div>
-                                     <div class="mb-2">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 ">
+                                    <div class="mb-2">
+                                        <label for="txtnombre" class="form-label"><b>Nombre</b></label>
+                                        <input type="text" class="form-control" id="txtnombre" required>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtdescripcion" class="form-label"><b>Descripción</b></label>
+                                        <textarea name="" id="txtdescripcion" class="form-control"></textarea required>                               
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtduration" class="form-label"><b>Duracción (min)</b></label>
+                                        <input type="number" class="form-control" id="txtduration" required placeholder="00 min">
+                                    </div>
+                                    <div class="mb-2">
                                         <label for="txtnivel" class="form-label"><b>Nivel</b></label>
                                         <select id="txtnivel" class="form-control">
                                           <option selected value="Principiante">Principiante</option>
                                           <option value="Intermedio">Intermedio</option>
                                           <option value="Avanzado">Avanzado</option>
                                         </select>
-                                     </div> 
-                                     <div class="mb-2">
+                                    </div> 
+                                    <div class="mb-2">
                                         <h4><b>Ejercicios</b></h4>
                                         <ul id="listaRutina"></ul>
 
-                                     </div>
+                                    </div>
                                                                     
                                   <div class="mb-2">
                                       <button type="button" class="btn btn-dark" onclick="Cancelar()">Cancelar</button>
                                       <button type="button" class="btn btn-success" onclick="Registrar_rutina()">Agregar</button>
                                   </div>
-                             </div>
-                             <!--ejercicios--> 
+                            </div>
+                            <!--ejercicios--> 
                                 <div class="col-lg-6 col-md-6 ">
                                   <div class="mb-2">
                                     <div class="mb-2">
@@ -312,17 +312,18 @@
                                       </div>
                                     </div>
                                   </form>
-                                 
+                                
                                 </div>
-                             </div>
-                         </div>
-                         </div>
+                            </div>
+                        </div>
+                        </div>
               <div class="modal-footer d-flex justify-content-center">
                 <a class="btn btn-primary me-5 " data-bs-dismiss="modal">Cancelar</a>
               </div>
             </div>
           </div>
-        </div>
+            </div>
+      </div>
       <!--pie de pagina-->
     <div class="container-fluid">
         <div class="row p-5 pb-1 bg-dark text-white">

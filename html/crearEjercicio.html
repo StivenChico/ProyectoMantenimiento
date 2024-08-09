@@ -94,13 +94,14 @@
                         </div>
                         <div class="row">
                           <div class="mb-2 col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                              <label for="inputTipo" class="form-label"><b>Tipo</b></label>
-                              <select id="inputTipo" class="form-control">
-                                <option selected value="Resistencia">Resistencia</option>
-                                <option value="Fortalecimiento">Fortalecimiento</option>
-                                <option value="Equilibrio">Equilibrio</option>
-                                <option value="Flexibilidad">Flexibilidad</option>
-                              </select>
+                            <label for="inputTipo"><b>Tipo</b></label>
+                            <select id="inputTipo" class="form-select">
+                              <option value="Strength" selected>Fuerza</option>
+                              <option value="Stretching">Estiramiento</option>
+                              <option value="Plyometrics">Pilometría</option>
+                              <option value="Powerlifting">Levantamiento de pesas</option>
+                              <option value="Cardio">Cardio</option>
+                            </select>
                           </div>
                           <div class="mb-2 col-sm-12 col-xs-12 col-md-6 col-lg-6">
                             <label for="inputEquipo" class="form-label"><b>Equipo</b></label>
@@ -109,13 +110,13 @@
                         </div>
                         <div class="row">
                           <div class="mb-2 col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                              <label for="inputNivel" class="form-label"><b>Nivel</b></label>
-                              <select id="inputNivel" class="form-control">
-                                <option selected value="Principiante">Principiante</option>
-                                <option value="Intermedio">Intermedio</option>
-                                <option value="Avanzado">Avanzado</option>
-                              </select>
-                          </div> 
+                            <label for="inputNivel"><b>Nivel</b></label>
+                            <select id="inputNivel" class="form-select">
+                              <option value="Beginner" selected>Principiante</option>
+                              <option value="Intermediate">Intermedio</option>
+                              <option value="Expert">Experto</option>
+                            </select>
+                          </div>
                           <div class="mb-2 col-sm-12 col-xs-12 col-md-6 col-lg-6">
                              <label for="inputRepeticion" class="form-label"><b>Repeticiones</b></label>
                              <input type="number" class="form-control" id="inputRepeticion" required>
