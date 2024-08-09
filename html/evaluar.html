@@ -90,8 +90,7 @@
               </div>
               <div class="col-sm-12 col-md-6">
                 <label for="inputEquipamiento" class="form-label">Equipamiento</label>
-                <input type="text" class="form-control" id="inputEquipamiento
-                "readonly>
+                <textarea name="" id="inputEquipamiento" class="form-control" readonly></textarea>
               </div>
               <div class="col-md-12">
                 <label for="inputRestricción_alimenticia" class="form-label">Restricciones alimenticias</label>
@@ -142,23 +141,44 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-12 mb-2">
-                <label for="inputLevelPredic">Nivel del cliente</label>
-                <select id="inputLevelPredic" class="form-select">
-                  <option value="Beginner" selected>Principiante</option>
-                  <option value="Intermediate">Intermedio</option>
-                  <option value="Expert">Experto</option>
-                </select>
+              <div class="row">
+                <div class="col-sm-12 col-md-6 mb-2">
+                  <label for="inputLevelPredic">Nivel del cliente</label>
+                  <select id="inputLevelPredic" class="form-select">
+                    <option value="Beginner" selected>Principiante</option>
+                    <option value="Intermediate">Intermedio</option>
+                    <option value="Expert">Experto</option>
+                  </select>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <label for="inputEquipamiento"> Equipamiento</label>
+                  <select id="inputEquipamiento" class="form-select">
+                    <option value="Body Only" selected>Ninguno</option>
+                    <option value="Bands">Bandas</option>
+                    <option value="Barbell">Pesas con barrra</option>
+                    <option value="Cable">Cuerda para saltar</option>
+                    <option value="Dumbbell">Pesas</option>
+                    <option value="E-Z Curl Bar">Barra E-Z Curl</option>
+                    <option value="Exercise Ball">Balón de ejercicios</option>
+                    <option value="Foam Roll">Rodillo de espuma</option>
+                    <option value="Kettlebells">Pesas rusas</option>
+                    <option value="Machine">Máquina</option>
+                    <option value="Medicine Ball">Balónn medicinal</option>
+                    <option value="Other">Otro</option>
+                  </select>
+                </div>
               </div>
               <div class="row">
-                  <div class="col-md-6 mb-2 d-flex">
-                    <button type="button" class="btn btn-success me-3" onclick="">Predecir</button>
-                    <input type="numbr" class="form-control">
+                  <div class="col-md-6 mt-4">
+                    <input type="number" class="form-control">
+                  </div>
+                  <div class="col-lg-6 ">
+                    <label for="RutinaAsignada">Rutina Asignada</label>
+                    <input type="text" id="RutinaA" class="form-control" readonly placeholder="Rutina sin asignar">
                   </div>
               </div>
-              <div class="col-lg-6 my-3">
-                <label for="RutinaAsignada">Rutina Asignada</label>
-                <input type="text" id="RutinaA" class="form-control" readonly placeholder="Rutina sin asignar">
+              <div class="col-md-12 my-1">
+                <button type="button" class="btn btn-success mb-1" onclick="">Predecir</button>
               </div>
               <div class="col-lg-12 mt-2">
                 <button class="btn btn-primary">

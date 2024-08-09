@@ -41,6 +41,7 @@ const GetRutina=()=>{
             }else{
                 document.getElementById("RutinaUser").innerHTML="Aun no se te ha asignado una rutina"
                 alert("Debes realizar el formulario de estado fisico para recibir un  diagnostico")
+                window.location.href='../html/FisicEstate.html'
             }
         }).catch((err) => console.log("Error: ", err));
     }).catch((err) => console.log("Error: ", err));

@@ -5,6 +5,7 @@ const RegistroFisicState=()=>{
     Fr_trainI=document.getElementById("inputfr_train").value
     durationI=document.getElementById("inputDuration_sesion").value
     goalI=document.getElementById("inputObjetivo").value
+    equipment=document.getElementById("inputEquipamiento").value
     restrictionsI=document.getElementById("inputRestricción_alimenticia").value
 
     genderI=document.getElementById("M").checked==true?"M":"F";
@@ -32,6 +33,7 @@ const RegistroFisicState=()=>{
                     Fr_train:Fr_trainI,
                     duration:durationI,
                     goal:goalI,
+                    equipment:equipment,
                     restrictions:restrictionsI
                 }
             }).then(function(response){

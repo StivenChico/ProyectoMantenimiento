@@ -24,6 +24,7 @@ tablaa.addEventListener('click',function(e){
                 Fr_train:response.data.Fr_Train,
                 duration:response.data.duration,
                 goal:response.data.goal,
+                equipment:response.data.equipment,
                 restrictions:response.data.restrictions
             }
             localStorage.setItem('datos', JSON.stringify(conten));
@@ -46,6 +47,7 @@ const CargarInfo=()=>{
     document.getElementById('inputfr_train').value= contenido.Fr_train
     document.getElementById('inputDuration_sesion').value= contenido.duration
     document.getElementById('inputObjetivo').value= contenido.goal
+    document.getElementById('inputEquipamiento').value= contenido.equipment
     document.getElementById('inputRestricción_alimenticia').value= contenido.restrictions
     
     
