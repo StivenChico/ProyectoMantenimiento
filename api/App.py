@@ -111,6 +111,8 @@ def ejercicioTabla():
             #print("antes del for")
             for result in rv:
                 #print("dentro del for")
+                if result[9]==None :
+                    re=0
                 content={'id':result[0],
                          'nombre':result[1], 
                          'guia':result[2], 
@@ -119,15 +121,15 @@ def ejercicioTabla():
                          'nivel':result[5],
                          'repeticiones':result[6],
                          'series':result[7],
-                         'duracion':result[8]}
-                print("contenido ordenado")
+                         'duracion':result[8],
+                         'rating':re}
                 payload.append(content)
             #print("despues del for")
             return jsonify(payload)
     except Exception as e:
         print(e)
         return jsonify({"informacion":e})
-# ruta para mostrar los ejercicios en la predicción
+# ruta para Pedir mas informacion del ejercicio
 @app.route('/WorkoutById/<id>',methods=['GET'])
 def WorkoutById(id):
     try:
@@ -315,7 +317,7 @@ def Login(username):
                     'name':result[2],
                     'surname':result[3],
                     'rol':result[5],
-                    'exp': datetime.datetime.now() + datetime.timedelta(hours=5,minutes=15),
+                    'exp': datetime.datetime.now() + datetime.timedelta(hours=5,minutes=30),
                     'iat': datetime.datetime.now()
                  }
             token=jwt.encode(jpayload, app.secret_key, algorithm='HS256')

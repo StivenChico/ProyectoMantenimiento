@@ -1,10 +1,10 @@
-
-let tablaR = new DataTable('#tablaR', {
-    paging:false,
-    scrollY:500
-});
 //CARGA DE TABLAS PARA INTERFAZ DE PROFESIONAL
 const Init_Data =() =>{
+    CargarEjercicios()
+    CargarRutinasBIG()
+
+}
+const CargarEjercicios=()=>{
     //TABLA DE EJERCICIOS PARA AGGREGAR A UNA RUTINA
     axios.get('http://127.0.0.1:5000/ejercicioTabla')
     .then(function(response){
@@ -14,26 +14,32 @@ const Init_Data =() =>{
   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
 </svg></buttom>`
         data= response.data;
-        ArregloData=[]
+        ArregloDataPag2=[]
         for(let i = 0; i< data.length; i++){
-            ArregloData.push([data[i].id,data[i].nombre,data[i].tipo,data[i].nivel,botones1]);
-
+            ArregloDataPag2.push([data[i].id,data[i].nombre,data[i].tipo,data[i].nivel,botones1]);
         }
         let tabla = new DataTable('#tablaWorkout_routine', {
             paging:false,
             scrollY:200,
-            data:ArregloData
-            
+            data:ArregloDataPag2
         });
+        
     }).catch(err=> console.log('error:', err))
-
+}
+const CargarRutinasBIG=()=>{
     axios.get('http://127.0.0.1:5000/getRoutines')
     .then(function(response){
         botones2=`<button class="btn btn-danger btn-sm">Delete</button>`
         data= response.data;
+        ArregloRutinas=[]
         for(let i = 0; i< data.length; i++){
-            tablaR.row.add([data[i].Autor,data[i].id_routine,data[i].nombre,data[i].descripcion,data[i].duracion,data[i].nivel,botones2]).draw();
+            ArregloRutinas.push([data[i].Autor,data[i].id_routine,data[i].nombre,data[i].descripcion,data[i].duracion,data[i].nivel,botones2])
         }
+        let tablaR = new DataTable('#tablaR', {
+            paging:false,
+            scrollY:500,
+            data:ArregloRutinas
+        });
     }).catch(err=> console.log('error:', err))
 }
 Init_Data();
@@ -57,23 +63,23 @@ if(tablab!=null){
                     equipment:response.data.equipment,
                     level:response.data.level
                 }
-                localStorage.setItem('ejercicio', JSON.stringify(conten));
+                sessionStorage.setItem('ejercicio', JSON.stringify(conten));
                 // cargamos la información
-                CargarInfo();
+                CargarInformacion(conten);
             })
         }
     })
 }
-const CargarInfo= () =>{
-    let contenido= JSON.parse(localStorage.getItem('ejercicio'))
-    if(localStorage.getItem('ejercicio')!=null){
+const CargarInformacion= (contenido) =>{
+    //let contenido= JSON.parse(sessionStorage.getItem('ejercicio'))
+    //if(contenido!=null){
         console.log(contenido)
         document.getElementById('predicName').value= contenido.name
         document.getElementById('predicType').value= contenido.type
         document.getElementById('predicDescription').value= contenido.desc
         document.getElementById('predicEquipment').value= contenido.equipment
         document.getElementById('predicLevel').value= contenido.level
-    }
+   // }
 }
 // función para agregar ejercicios a la rutina
 let ejerciciosSeleccionados=[];
@@ -102,13 +108,13 @@ if(tablab!=null){
                 // se hace la consulta para obtener la duración del ejercicio
                 axios.get('http://127.0.0.1:5000/WorkoutById/'+id) 
                 .then(function(response){
-                duracionEjercicio = response.data.duration;
-                console.log(duracionEjercicio);
-                // se suma la duracion del nuevo ejercicio
-                totalDuracion += duracionEjercicio;
-                // se actualiza el input del total de la duracion de la rutina
-                document.getElementById('txtduration').value = totalDuracion;               
-            })
+                    duracionEjercicio = response.data.duration;
+                    console.log(duracionEjercicio);
+                    // se suma la duracion del nuevo ejercicio
+                    totalDuracion += duracionEjercicio;
+                    // se actualiza el input del total de la duracion de la rutina
+                    document.getElementById('txtduration').value = totalDuracion;               
+            }   ).catch(err=> console.log('error:', err))
             }else{
                 alert('El ejercicio ya se encuentra en la lista de la rutina')
             }
@@ -144,15 +150,7 @@ const Registrar_rutina = () =>{
             alert('Rutina registrada correctamente');
             if(response.data.informacion=='Registro de runtina Exitoso'){
                 console.log('Rutina registrada correctamente');
-                // limpiamos los inputs
-                document.getElementById('txtnombre').value='';
-                document.getElementById('txtdescripcion').value='';
-                document.getElementById('txtnivel').value='principiante';
-                sessionStorage.removeItem('Ejercicios');
-                // se vacia la lista de ejercicios seleccionados
-                document.getElementById('listaRutina').innerHTML='';
-                // se vacia el input del total de la duracion de la rutina
-                document.getElementById('txtduration').value = 0;
+                Cancelar();
             }
         }).catch(err=> console.log('error:', err))
     }).catch(err=> console.log('error:', err))
@@ -160,6 +158,8 @@ const Registrar_rutina = () =>{
 }
 const Cancelar = () =>{
     // limpiamos los inputs
+    totalDuracion=0;
+    ejerciciosSeleccionados=[];
     document.getElementById('txtnombre').value='';
     document.getElementById('txtdescripcion').value='';
     document.getElementById('txtduration').value='';
