@@ -19,38 +19,25 @@ const Init_Data=()=>{
             for (let i = 0; i < response.data.length; i++) {
                     
               tabla.row.add([response.data[i].id, response.data[i].name, response.data[i].surname, response.data[i].age, response.data[i].gender, response.data[i].height, response.data[i].weight, response.data[i].Fr_Train,botones]).draw();
-                /*let nuevaFila = tabla.insertRow(tabla.lenght);
-    
-                id = nuevaFila.insertCell(0);
-                id.innerHTML = response.data[i].id;
-    
-                namei = nuevaFila.insertCell(1);
-                namei.innerHTML = response.data[i].name;
-    
-                surname = nuevaFila.insertCell(2);
-                surname.innerHTML = response.data[i].surname; 
-    
-                age = nuevaFila.insertCell(3);
-                age.innerHTML = response.data[i].age;
-
-                gender = nuevaFila.insertCell(4);
-                gender.innerHTML = response.data[i].gender;
-    
-                height= nuevaFila.insertCell(5);
-                height.innerHTML = response.data[i].height;
-
-                weight = nuevaFila.insertCell(6);
-                weight.innerHTML = response.data[i].weight;  
-    
-                Fr_Train= nuevaFila.insertCell(7);
-                Fr_Train.innerHTML = response.data[i].Fr_Train; 
-    
-                cell4  = nuevaFila.insertCell(8);
-                cell4.innerHTML =botones;  */
+               
             } 
               
       }).catch(err => console.log('Error: ', err))
 
     }
+const descargarpdf= () => {
+  fetch('http://127.0.0.1:5000/generarPDF')
+   .then(res => res.blob())
+   .then(blob =>{
+     const url = window.URL.createObjectURL(blob);
+     const a = document.createElement('a');
+     a.href = url;
+     a.download = 'Informe.pdf';
+     document.body.appendChild(a);
+     a.click();
+     a.remove();
+   })
+   .catch(error => console.error('Error al generar el PDF:', error));
+}
 
 Init_Data();
