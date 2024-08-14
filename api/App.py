@@ -478,10 +478,14 @@ def delete_contact(id):
 def GetGeneral():
     try:
         cur = mysql.connection.cursor()
-        cur.execute('SELECT count(*) AS total ,(SELECT count(*) as total from evaluation) as Diagnosticos FROM cliente JOIN usuarios ON cliente.id_usuario=usuarios.id WHERE status=1')
+        cur.execute('''SELECT count(usuarios.id) as total, 
+                    (SELECT count(*) as evaluation FROM evaluation) as diagnosticos, 
+                    (SELECT count(*) FROM routine) as rutinas, 
+                    (SELECT count(*) FROM workout) as ejercicios  
+                    FROM usuarios where usuarios.status = 1''')
         rv = cur.fetchone()
         cur.close()
-        content={'totalUsuarios': rv[0],'diagnosticosTotales': rv[1]}
+        content={'totalUsuarios': rv[0],'diagnosticosTotales': rv[1], 'rutinas': rv[2], 'ejercicios':rv[3]}
         
         return jsonify(content)
     except Exception as e:
@@ -712,24 +716,28 @@ def generarPDF():
         cur=mysql.connection.cursor()
         ## consulta de todas las evaluaciones
         cur.execute('''SELECT evaluation.id_evaluation,
-                        cliente.name AS cliente, 
-                        profesional.name AS profesional,
-                        routine.nombre, 
-                        evaluation.fech_evaluation 
-                        FROM evaluation 
-                        JOIN usuarios AS cliente on evaluation.id_cliente = cliente.id 
-                        JOIN routine on  evaluation.id_routine = routine.id_routine 
-                        JOIN usuarios AS profesional on evaluation.id_prof= profesional.id''')
+                    cliente.name AS cliente, 
+                    profesional.name AS profesional,
+                    routine.nombre, 
+                    evaluation.fech_evaluation 
+                    FROM evaluation 
+                    JOIN usuarios AS cliente on evaluation.id_cliente = cliente.id 
+                    JOIN routine on  evaluation.id_routine = routine.id_routine 
+                    JOIN usuarios AS profesional on evaluation.id_prof= profesional.id
+                    WHERE evaluation.fech_evaluation >= now() - INTERVAL 7 DAY''')
         rv = cur.fetchall()
         payload=[]
         content={}
         for result in rv:
             content={'id_evaluation':result[0],'cliente':result[1],'profesional':result[2],'nombre_rutina':result[3],'fecha_evaluacion':result[4]}
             payload.append(content)
-        ## segunda consulta de las evaluaciones hechas en la ultima semana
-        cur.execute("SELECT count(evaluation.id_evaluation)  FROM evaluation WHERE evaluation.fech_evaluation >= now() - INTERVAL 7 DAY;")
+        ## segunda consulta, numero de usuarios activos
+        cur.execute("SELECT count(usuarios.id) FROM usuarios WHERE usuarios.status = 1")
+        US= cur.fetchone()
+        ## tercera consulta de las evaluaciones hechas en la ultima semana
+        cur.execute("SELECT count(evaluation.id_evaluation)  FROM evaluation WHERE evaluation.fech_evaluation >= now() - INTERVAL 7 DAY")
         ev= cur.fetchone()
-        ## tercera consulta, cantidad  de tipos de ejercicios 
+        ## cuarta consulta, cantidad  de tipos de ejercicios 
         cur.execute("SELECT workout.tipo, count(workout.id_workout) FROM workout  GROUP BY workout.tipo;")
         wk= cur.fetchall()
         payload2=[]
@@ -747,6 +755,7 @@ def generarPDF():
         pdf.cell(page_width, 10, txt='Reporte de Evaluaciones',ln=True, align='C')
         pdf.set_font('Arial', 'B', 12)
         ## evaluaciones de la semana
+        pdf.cell(0,10, txt='Usuarios activos: '+str(US[0]), ln=True)
         pdf.cell(0, 10, txt='Evaluaciones realizadas en la última semana: '+str(ev[0]), ln=False)
         col_width= page_width/6
         col_width2= page_width/3
@@ -761,7 +770,7 @@ def generarPDF():
         pdf.ln(th)
         pdf.set_font('Arial', '', 12)
         for row in payload:
-            print("fila escrita")
+            ##print("fila escrita")
             pdf.cell(col_width,th, str(row['id_evaluation']), border=1)
             pdf.cell(col_width,th, row['cliente'], border=1)
             pdf.cell(col_width,th, row['profesional'], border=1)
@@ -795,7 +804,7 @@ def generarPDF():
         pdf_output.write(pdf.output(dest='S').encode('latin1'))  # Escribir el contenido PDF en BytesIO
         pdf_output.seek(0)
 
-        print("PDF listo para mandar")
+        #print("PDF listo para mandar")
         return send_file(pdf_output, as_attachment=True, download_name='Informe.pdf', mimetype='application/pdf')
     except Exception as e:
         return f"Se produjo un error: {str(e)}"

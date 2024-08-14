@@ -25,19 +25,5 @@ const Init_Data=()=>{
       }).catch(err => console.log('Error: ', err))
 
     }
-const descargarpdf= () => {
-  fetch('http://127.0.0.1:5000/generarPDF')
-   .then(res => res.blob())
-   .then(blob =>{
-     const url = window.URL.createObjectURL(blob);
-     const a = document.createElement('a');
-     a.href = url;
-     a.download = 'Informe.pdf';
-     document.body.appendChild(a);
-     a.click();
-     a.remove();
-   })
-   .catch(error => console.error('Error al generar el PDF:', error));
-}
 
 Init_Data();

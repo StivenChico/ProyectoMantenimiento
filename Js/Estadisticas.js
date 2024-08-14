@@ -3,6 +3,7 @@ const grafica2=document.getElementById("Grafica2");
 const grafica3=document.getElementById("Grafica3");
 const grafica4=document.getElementById("Grafica4");
 const grafica5=document.getElementById("Grafica5");
+
 const Init_Graficas=()=>{
     //Peticion de datos generales
     axios({
@@ -11,6 +12,8 @@ const Init_Graficas=()=>{
     }).then(function(response){
         document.getElementById("Activos").innerHTML+=response.data.totalUsuarios;
         document.getElementById("DiagnosticosTt").innerHTML+=response.data.diagnosticosTotales;
+        document.getElementById("Ejercicios").innerHTML+=response.data.ejercicios;
+        document.getElementById("Rutinas").innerHTML+=response.data.rutinas;
     }).catch(err => console.log('Error: ', err))
 
 
@@ -45,15 +48,10 @@ axios({
             datasets:[{
                 label:"Grafica de IMC",
                 data:counts,
-                backgroundColor:['rgba(92, 186, 224 ,0.8)',
-                                 'rgba(157, 178, 39, 0.8)',
-                                 'rgba(217, 115, 24, 0.8)',
-                                 'rgba(198, 62, 47, 0.8)'],
-                borderColor:['rgba(92, 186, 224 ,1)',
-                             'rgba(157, 178, 39, 1)',
-                             'rgba(217, 115, 24, 1)',
-                             'rgba(198, 62, 47, 1)'],
-                borderWidth:1
+                backgroundColor:[getRandomColor(0.2),
+                                    getRandomColor(0.2),
+                                    getRandomColor(0.2),
+                                    getRandomColor(0.2)],
             }]
         }
     })
@@ -74,8 +72,9 @@ axios({
             datasets:[{
                 label:"Grafica de Genero",
                 data:[M,F],
-                
-            }]
+                backgroundColor:[getRandomColor(0.2),
+                    getRandomColor(0.2)]
+            }],
         }
     });
     }).catch(err => console.log('Error: ', err))
@@ -93,8 +92,7 @@ axios({
             datasets:[{
                 label:"Grafica Objetivos",
                 data:[arreglorecibe[0].total,arreglorecibe[1].total,arreglorecibe[2].total],
-                backgroundColor:['rgba(75, 192, 192, 1)'],
-                borderColor:['rgba(75, 192, 192, 1)'],
+                backgroundColor:[getRandomColor(0.2)],
                 borderWidth:1
             }]
         },
@@ -135,8 +133,7 @@ axios({
             datasets:[{
                 label:"Grafica de Roles",
                 data:datos,
-                backgroundColor:['rgba(75, 192, 192, 1)'],
-                borderColor:['rgba(75, 192, 192, 1)'],
+                backgroundColor:[getRandomColor(0.2)],
                 borderWidth:1
             }]
         },
@@ -178,8 +175,7 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
             datasets: [{
               label: 'Rangos de edad',
               data:datos, // datos de la cantidad de personas en cada rango de edad
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: getRandomColor(0.2),
               borderWidth: 1
             }]
           },
@@ -214,7 +210,7 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
         datasets:[{
           label:'Numero de personas por altura',
           data:datos, // datos de la cantidad de personas en cada rango
-          backgroundColor: 'rgba(75, 192, 192)'
+          backgroundColor: getRandomColor(0.2)
         }]
       },
       options:{
@@ -230,6 +226,26 @@ axios.get('http://127.0.0.1:5000/getGrafica5')
   })
   .catch(err => console.log('error:', err));
 
+}
+const getRandomColor = (opacidad) =>{
+    const r= Math.floor(Math.random() * 256);
+    const g= Math.floor(Math.random() * 256);
+    const b= Math.floor(Math.random() * 256);
+    return `rgba(${r},${g},${b}, ${opacidad || 1})`;
+}
+const descargarpdf= () => {
+    fetch('http://127.0.0.1:5000/generarPDF')
+     .then(res => res.blob())
+     .then(blob =>{
+       const url = window.URL.createObjectURL(blob);
+       const a = document.createElement('a');
+       a.href = url;
+       a.download = 'Informe.pdf';
+       document.body.appendChild(a);
+       a.click();
+       a.remove();
+     })
+     .catch(error => console.error('Error al generar el PDF:', error));
 }
 
 
